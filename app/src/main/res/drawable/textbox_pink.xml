@@ -6,4 +6,10 @@
         android:width="1.5dp"
         android:color="#BE88BB"/>
 
+    <corners
+        android:topLeftRadius="10dp"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:topRightRadius="10dp"/>
+
 </shape>
