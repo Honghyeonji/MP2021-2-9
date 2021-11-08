@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MP2021-2-9</string>
+    <string name="inputIdnum">(학번)</string>
 </resources>
