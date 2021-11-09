@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="230dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termsCon"
+            android:textColor="@color/black"
+            android:padding="20dp"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/join_ok"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:text="확인"
+        android:padding="10dp"
+        android:background="@drawable/button_login"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"/>
+
+</RelativeLayout>
