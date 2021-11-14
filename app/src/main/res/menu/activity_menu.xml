@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/topromt"
+        android:icon="@drawable/promotion"
+        android:title="" />
+    <item
+        android:id="@+id/toshop"
+        android:icon="@drawable/shop"
+        android:title="" />
+    <item
+        android:id="@+id/toprofile"
+        android:icon="@drawable/profile"
+        android:title="" />
+
+</menu>
