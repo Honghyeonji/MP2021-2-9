@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/join_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="15sp"
+            android:layout_marginTop="150dp"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:padding="17dp"
+            android:textColor="#919191"
+            android:background="@drawable/textbox_purple"
+            android:autofillHints="name" />
+
+        <TextView
+            android:id="@+id/join_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
+        <EditText
+            android:id="@+id/join_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/inputIdnum"
+            android:inputType="textPassword"
+            android:padding="17dp"
+            android:textColor="#919191"
+            android:background="@drawable/textbox_purple"
+            android:autofillHints="id" />
+
+        <TextView
+            android:id="@+id/join_id_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
+        <EditText
+            android:id="@+id/join_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/phoneNumber"
+            android:inputType="phone"
+            android:padding="17dp"
+            android:textColor="#919191"
+            android:background="@drawable/textbox_purple"
+            android:autofillHints="phone" />
+
+        <TextView
+            android:id="@+id/join_phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
+        <EditText
+            android:id="@+id/join_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/inputPassword"
+            android:inputType="textPassword"
+            android:padding="17dp"
+            android:textColor="#919191"
+            android:background="@drawable/textbox_purple"
+            android:autofillHints="password" />
+
+        <TextView
+            android:id="@+id/join_password_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
+        <EditText
+            android:id="@+id/join_passwordCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/passwordCheck"
+            android:inputType="textPassword"
+            android:padding="17dp"
+            android:textColor="#919191"
+            android:background="@drawable/textbox_purple"
+            android:autofillHints="password" />
+
+        <TextView
+            android:id="@+id/join_passwordCheck_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_pinkpurple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15sp"
+                android:text="@string/showTerms"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/join_showTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="160dp"
+                android:textColor="@color/gray"/>
+
+            <CheckBox
+                android:id="@+id/join_termCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </TableRow>
+
+        <TextView
+            android:id="@+id/join_join_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="50dp"
+            android:textSize="9sp" />
+
+        <Button
+            android:id="@+id/join_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/joinButton"
+            android:textSize="15sp"
+            android:padding="17dp"
+            android:background="@drawable/button_login" />
+
+        <Button
+            android:id="@+id/id_toLogin"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/bottomline_button"
+            android:stateListAnimator="@null"
+            android:text="@string/loginButton"
+            android:textColor="@color/dark_gray"
+            android:layout_marginStart="180dp"
+            android:layout_marginEnd="180dp"
+            android:layout_marginBottom="80dp"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</ScrollView>

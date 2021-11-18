@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".LoginActivity" android:label="Login page"/>
+        <activity android:name=".DetailPromotionActivity" android:label="Promotion Detailed page"/>
+        <activity android:name=".DetailGoodsActivity" android:label="Goods Detailed Page"/>
+
     </application>
 
 </manifest>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 로그인페이지 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/activity_login">
+
+    <EditText
+        android:id="@+id/inputIdnum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="17dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/textbox_purple"
+        android:hint="@string/inputIdnum"
+        android:textSize="15sp"
+        android:textColor="#919191"/>
+
+    <EditText
+        android:id="@+id/inputPW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:background="@drawable/textbox_purple"
+        android:padding="17dp"
+        android:hint="비밀번호"
+        android:textSize="15sp"
+        android:textColor="#919191" />
+
+    <CheckBox
+        android:id="@+id/login_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:scaleX="0.70"
+        android:scaleY="0.70"
+        android:text="로그인 상태 유지"
+        android:textSize="15sp"
+        android:clickable="true"/>
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_login"
+        android:text="로그인"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/login_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="회원가입"
+        android:textSize="10sp" />
+
+</LinearLayout>
