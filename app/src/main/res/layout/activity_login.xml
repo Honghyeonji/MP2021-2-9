@@ -15,7 +15,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/textbox_purple"
-        android:text="@string/inputIdnum"
+        android:hint="@string/inputIdnum"
         android:textSize="15sp"
         android:textColor="#919191"/>
 
@@ -30,7 +30,7 @@
         android:inputType="textPassword"
         android:background="@drawable/textbox_purple"
         android:padding="17dp"
-        android:text="비밀번호"
+        android:hint="비밀번호"
         android:textSize="15sp"
         android:textColor="#919191" />
 
