@@ -39,7 +39,7 @@ public class UserPage extends Fragment {
         goodsPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 레퍼런스에서 판매자인지를 확인하는 코드 필요 */
+                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
@@ -72,7 +72,7 @@ public class UserPage extends Fragment {
         promotionPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 레퍼런스에서 판매자인지를 확인하는 코드 필요 */
+                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
@@ -105,7 +105,7 @@ public class UserPage extends Fragment {
         goodsManage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 레퍼런스에서 판매자인지를 확인하는 코드 필요 */
+                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
