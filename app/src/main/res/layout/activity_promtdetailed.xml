@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 홍보페이지 세부페이지 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/activity_promtDetailed">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/promt_poster"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/promt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="[동아리이름]"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/promt_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="위치 : "
+                android:textSize="17dp"/>
+            <TextView
+                android:id="@+id/promt_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="시간 : "
+                android:textSize="17dp"/>
+
+            <TextView
+                android:id="@+id/promt_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/textbox_pink"
+                android:text="부스 관리자가 등록한 홍보글 노출" />
+
+            <ImageView
+                android:id="@+id/promt_map"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
