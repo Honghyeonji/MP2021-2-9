@@ -20,6 +20,6 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_color"
-        app:menu = "@menu/activity_menu"/>
+        app:menu="@menu/activity_menu" />
 
 </RelativeLayout>

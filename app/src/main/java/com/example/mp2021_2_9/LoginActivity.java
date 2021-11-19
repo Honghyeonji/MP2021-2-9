@@ -1,5 +1,6 @@
 package com.example.mp2021_2_9;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -23,11 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Tag;
 
 public class LoginActivity extends AppCompatActivity {
-    FirebaseDatabase database;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         String TAG = "LoginActivity";
 
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView join = (TextView) findViewById(R.id.login_join);                   // 회원가입텍스트뷰 - 회원가입으로
 
         /* 데이터베이스부분 */
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
         // 로그인 버튼 - 데이터베이스에서 id, 비밀번호 확인 후 일치하면 홍보메인화면으로
@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 입력한 id의 데이터목록 불러오기
+
                 String tempId = inputId.getText().toString();
                 String tempPw = inputPw.getText().toString();
 
@@ -99,8 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-
             }
+
         });
 
 
@@ -109,7 +110,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 회원가입으로 이동
-                // 프래그먼트 전환
+                Intent intent = new Intent(getApplicationContext(), joinActivity.class);
+                startActivity(intent);
 
             }
         });
