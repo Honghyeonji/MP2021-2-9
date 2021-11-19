@@ -1,5 +1,6 @@
 package com.example.mp2021_2_9;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -109,7 +110,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 회원가입으로 이동
-                // 프래그먼트 전환
+                Intent intent = new Intent(getApplicationContext(), joinActivity.class);
+                startActivity(intent);
 
             }
         });

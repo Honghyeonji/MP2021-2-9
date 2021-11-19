@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Main_Activity";
     private BottomNavigationView mBottomNavigationView;
 
+    LoginActivity loginActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
