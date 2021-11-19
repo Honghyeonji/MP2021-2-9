@@ -73,7 +73,7 @@
             android:src="@drawable/profile"
             android:scaleType="centerInside"
             android:padding="10dp"
-            android:background="#0000000"/>
+            android:background="#00000000"/>
 
     </TableRow>
 </LinearLayout>

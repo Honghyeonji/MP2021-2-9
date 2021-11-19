@@ -1,43 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app ="http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToOutline="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/information_check"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#FEDFE5"
-        android:text="개인 정보 확인/수정"
-        android:textColor="@color/black"/>
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation">
 
-    <Button
-        android:id="@+id/goods_posting"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#FEDFE5"
-        android:text="상품 게시글 등록"
-        android:textColor="@color/black"/>
+    </FrameLayout>
 
-    <Button
-        android:id="@+id/promotion_posting"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#FEDFE5"
-        android:text="부스 홍보 게시글 등록"
-        android:textColor="@color/black"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_color"
+        app:menu = "@menu/activity_menu"/>
 
-    <Button
-        android:id="@+id/goods_management"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#EBB0D1"
-        android:text="(판매자)등록 상품 관리"
-        android:textColor="@color/black"/>
-
-</LinearLayout>
+</RelativeLayout>
