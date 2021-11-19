@@ -37,7 +37,8 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:backgroundTint="#EBB0D1"
+        android:clickable="true"
         android:text="(판매자)등록 상품 관리"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
 </LinearLayout>
