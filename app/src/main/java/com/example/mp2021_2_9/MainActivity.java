@@ -8,10 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Main_Activity";
     private BottomNavigationView mBottomNavigationView;
+
+    LoginActivity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new testFrag1()).commit();
 
         mBottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener(){
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.topromt:  // 홍보 메인
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                    case R.id.topromt:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new testFrag1()).commit();
                         break;
-                    case R.id.toshop:   // 상품 메인
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
+                    case R.id.toshop:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new testFrag2()).commit();
                         break;
-                    case R.id.toprofile:    // 비로그인상태 - 로그인화면 /  로그인상태 - 개인정보화면
+                    case R.id.toprofile:
                         // 분기문 구현 필
                         Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
                         startActivity(intent);
