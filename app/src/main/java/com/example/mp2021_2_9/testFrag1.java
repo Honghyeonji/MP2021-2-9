@@ -14,7 +14,7 @@ public class testFrag1 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View v = inflater.inflate(R.layout.activity_login, container, false);
+        View v = inflater.inflate(R.layout.promotion_main_screen, container, false);
         return v;
     }
 }

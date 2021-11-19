@@ -1,5 +1,6 @@
 package com.example.mp2021_2_9;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new testFrag2()).commit();
                         break;
                     case R.id.toprofile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new testFrag3()).commit();
+                        // 분기문 구현 필
+                        Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
+                        startActivity(intent);
                         break;
                 }
                 return true;
