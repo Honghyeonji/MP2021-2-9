@@ -60,7 +60,7 @@ public class SeeProfile extends Fragment {
 
         // 비밀 번호 변경
         changePW.setOnClickListener(v -> {
-            if(newPW.getText().toString() != checkPW.getText().toString()){
+            if(newPW.getText().toString().equals(checkPW.getText().toString())){
                 Toast.makeText(getActivity().getApplication(), "비밀번호가 일치하지 않습니다.\n 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                 return ;
             }
@@ -72,6 +72,8 @@ public class SeeProfile extends Fragment {
                        Toast.LENGTH_LONG).show();
                return ;
             }
+
+            // 변경된 비밀번호를 데이터 베이스에 업데이트하는 기능 구현 필요
         });
         selectImg.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
