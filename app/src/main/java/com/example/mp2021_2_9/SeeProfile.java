@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SeeProfile extends Fragment {
     View view;
+    String TAG = "SeeProfile";
 
     ActivityResultLauncher resultLauncher;
     SharedPreferences pref = getContext().getSharedPreferences("current_info", 0);
@@ -73,7 +81,25 @@ public class SeeProfile extends Fragment {
                return ;
             }
 
-            // 변경된 비밀번호를 데이터 베이스에 업데이트하는 기능 구현 필요
+            // 현재 로그인된 계정의 비밀번호 변경
+            String loginID = pref.getString("ID", "");
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference();
+            myRef.child("mp2021-t9-default-rtdb").child("users").child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
+                    user.setPw(newPW.getText().toString());
+                    Toast.makeText(getActivity().getApplicationContext(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Changed password is: " + user.getPw());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
         });
         selectImg.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
