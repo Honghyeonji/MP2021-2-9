@@ -18,6 +18,8 @@ public class joinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
 
 
+
+
         // 로그인 글씨 누르면 로그인 화면으로
         TextView goToLogin = (TextView) findViewById(R.id.id_toLogin);   // 로그인 텍스트뷰
         goToLogin.setOnClickListener(new View.OnClickListener() {

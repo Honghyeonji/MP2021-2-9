@@ -9,14 +9,53 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/join_id"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textSize="15sp"
+                android:hint="@string/inputIdnum"
+                android:inputType="textPassword"
+                android:padding="17dp"
+                android:textColor="#919191"
+                android:background="@drawable/textbox_purple"
+                android:autofillHints="id" />
+
+             <Button
+                android:id="@+id/join_id_check"
+                android:layout_width="100dp"
+                android:layout_height="54dp"
+                android:background="@drawable/button_pinkpurple"
+                android:text="중복확인"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/join_id_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="9sp" />
+
         <EditText
             android:id="@+id/join_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
             android:textSize="15sp"
-            android:layout_marginTop="150dp"
             android:hint="@string/name"
             android:inputType="text"
             android:padding="17dp"
@@ -26,29 +65,6 @@
 
         <TextView
             android:id="@+id/join_name_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:textSize="9sp" />
-
-        <EditText
-            android:id="@+id/join_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:hint="@string/inputIdnum"
-            android:inputType="textPassword"
-            android:padding="17dp"
-            android:textColor="#919191"
-            android:background="@drawable/textbox_purple"
-            android:autofillHints="id" />
-
-        <TextView
-            android:id="@+id/join_id_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
