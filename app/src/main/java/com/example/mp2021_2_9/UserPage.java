@@ -1,6 +1,7 @@
 package com.example.mp2021_2_9;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 public class UserPage extends Fragment {
     View view;
     Button infoCheck, goodsPost, promotionPost, goodsManage;
+    SharedPreferences pref = getActivity().getSharedPreferences("current_info", 0);
+    boolean isManager = pref.getBoolean("isManager", false);
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
@@ -39,32 +42,32 @@ public class UserPage extends Fragment {
         goodsPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
-                AlertDialog alertDialog = builder.create();
+                if(!isManager) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
-                    }
-                });
+                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
+                    AlertDialog alertDialog = builder.create();
 
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 아무것도 안함
-                    }
-                });
-                alertDialog.show();
+                    builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
+                        }
+                    });
 
-                /* 판매자 인증이 된 사용자라면 */
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_container, new AddItemActivity());
-                transaction.commit();
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    });
+                    alertDialog.show();
+                }else{
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, new AddItemActivity());
+                    transaction.commit();
+                }
             }
         });
 
@@ -72,65 +75,64 @@ public class UserPage extends Fragment {
         promotionPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
-                AlertDialog alertDialog = builder.create();
+                if(!isManager) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
+                    AlertDialog alertDialog = builder.create();
 
-                builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
-                    }
-                });
+                    builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
+                        }
+                    });
 
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 아무것도 안함
-                    }
-                });
-                alertDialog.show();
-
-                /* 판매자 인증이 된 사용자라면 */
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_container, new AddPromotionActivity());
-                transaction.commit();
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    });
+                    alertDialog.show();
+                }else {
+                    /* 판매자 인증이 된 사용자라면 */
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, new AddPromotionActivity());
+                    transaction.commit();
+                }
             }
         });
-
         // 등록 상품 관리 페이지 연결
         goodsManage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* 프레퍼런스에서 판매자인지를 확인하는 코드 필요 */
                 /* 판매자 인증이 안된 사용자라면 */
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
-                AlertDialog alertDialog = builder.create();
+                if (!isManager) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
+                    AlertDialog alertDialog = builder.create();
 
-                builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
-                }
-                });
-
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // 아무것도 안함
+                    builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new ManageGoods()).commit();
                         }
-                });
-                alertDialog.show();
+                    });
 
-                /* 판매자 인증이 된 사용자라면 */
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_container, new ManageGoods());
-                transaction.commit();
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    });
+                    alertDialog.show();
+                } else {
+                    /* 판매자 인증이 된 사용자라면 */
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, new ManageGoods());
+                    transaction.commit();
+                }
             }
         });
         return view;

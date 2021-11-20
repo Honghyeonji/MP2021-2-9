@@ -34,7 +34,7 @@ public class SeeProfile extends Fragment {
 
     ActivityResultLauncher resultLauncher;
     SharedPreferences pref = getContext().getSharedPreferences("current_info", 0);
-    Bitmap validImg;
+    Bitmap validImg; // 사용자의 갤러리로부터 가져온 이미지를 저장할 비트맵
 
     TextView name, phoneNum, student_id, withdraw;
     EditText newPW, checkPW;
@@ -79,7 +79,7 @@ public class SeeProfile extends Fragment {
             resultLauncher.launch(intent);
         });
 
-        // 갤러리로부터 가져온 이미지 저장 및 버튼에 노출
+        // 갤러리로부터 가져온 이미지 저장
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -102,7 +102,6 @@ public class SeeProfile extends Fragment {
 
         // 부스 관리자 등록 버튼에 대한 추가 구현 필요.
 
-        //
         withdraw.setOnClickListener( v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("주의").setMessage("계정을 삭제하시겠습니까?");
