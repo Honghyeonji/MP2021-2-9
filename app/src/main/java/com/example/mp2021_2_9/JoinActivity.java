@@ -86,7 +86,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(Pattern.matches("^[a-zA-Z0-9]{8,}$", join_pw.toString())){
+                if(Pattern.matches("^[a-zA-Z0-9]{8,}$", s.toString())){
                     pw_check = true;
                     pw_text.setText("");
                 }else{
@@ -109,7 +109,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(Pattern.matches("^[a-zA-Z가-힣]{2,}$", join_name.toString())) {
+                if(Pattern.matches("^[a-zA-Z가-힣]{2,}$", s.toString())) {
                     name_check = true;
                     name_text.setText("");
                 }else{
@@ -131,7 +131,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(join_pw.toString().equals(join_pw_check.toString())){
+                if(join_pw.getText().toString().equals(s.toString())){
                     pwCheck_text.setTextColor(Color.BLUE);
                     pwCheck_text.setText("비밀번호가 일치합니다.");
                     pw_dupCheck=true;
@@ -144,7 +144,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(join_pw.toString().equals(join_pw_check.toString())){
+                if(join_pw.getText().toString().equals(s.toString())){
                     pwCheck_text.setText("");
                 }
             }
@@ -157,7 +157,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", join_phone.toString())){
+                if(Pattern.matches("^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", s.toString())){
                     phone_check = true;
                     phone_text.setText("");
                 }else{
@@ -195,18 +195,19 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+
         rDatabase = FirebaseDatabase.getInstance().getReference();
         Button idCheckBtn = (Button) findViewById(R.id.join_id_check);
         idCheckBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if(id_check) {
-                    String tempId = join_id.toString();
+                    String tempId = join_id.getText().toString();
                     rDatabase.child("mp2021-t9-default-rtdb").child("users").child(tempId)
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String value = snapshot.getValue(String.class);
+                            UserInfo_list value = snapshot.getValue(UserInfo_list.class);
                             if(value != null){
                                 id_text.setTextColor(Color.RED);
                                 id_text.setText("이미 존재하는 아이디입니다.");
@@ -257,11 +258,18 @@ public class JoinActivity extends AppCompatActivity {
                     String strid = join_id.getText().toString();
                     String strname = join_name.getText().toString();
                     String strphone = join_phone.getText().toString();
-                    String strpw = join_name.getText().toString();
+                    String strpw = join_pw.getText().toString();
+
+                    Map<String, Object> tempuser = new HashMap<>();
+                    tempuser.put("id", strid);
+                    tempuser.put("isManager", false);
+                    tempuser.put("password", strpw);
+                    tempuser.put("phoneNum", strphone);
+                    tempuser.put("userName", strname);
 
                     Map<String, Object> user = new HashMap<>();
-                    user.put(strid, new User(strid,false, strpw, strphone, strname));
-                    rDatabase.updateChildren(user);
+                    user.put(strid, tempuser);
+                    rDatabase.child("users").updateChildren(user);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                     finish();
@@ -291,29 +299,6 @@ public class JoinActivity extends AppCompatActivity {
                 terms_dialog.dismiss();
             }
         });
-    }
-
-    private class User{
-        private String user_id;
-        private String user_name;
-        private String user_phone;
-        private String user_pw;
-        private boolean user_manager;
-
-        public User(String id, boolean manager, String pw, String phone, String name){
-            this.user_id = id; this.user_manager = manager; this.user_name = name;
-            this.user_phone = phone; this.user_pw = pw;
-        }
-
-        public Map<String, Object> makeMap(){
-            HashMap<String, Object> user = new HashMap<>();
-            user.put("id", user_id);
-            user.put("isManager", user_manager);
-            user.put("password", user_pw);
-            user.put("phoneNum", user_phone);
-            user.put("userName", user_name);
-            return user;
-        }
     }
 
 }
