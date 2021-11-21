@@ -6,20 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/sliderViewPager"
+    <FrameLayout
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="240dp">
-
-        <LinearLayout
-            android:id="@+id/main_promotions"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal" />
-
-
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="@dimen/frameSize">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/frameSize"/>
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
 
 
     <GridLayout
