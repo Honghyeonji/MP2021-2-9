@@ -53,7 +53,7 @@ public class SeeProfile extends Fragment {
     // Component
     View view;
     Bitmap validImg; // 사용자의 갤러리로부터 가져온 이미지를 저장할 비트맵
-    TextView name, phoneNum, student_id, withdraw;
+    TextView name, phoneNum, student_id, withdraw, logout;
     EditText newPW, checkPW;
     Button changePW, selectImg;
     String policyPW = "((?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9가-힣]).{8,})";
@@ -69,6 +69,7 @@ public class SeeProfile extends Fragment {
         checkPW = getActivity().findViewById(R.id.checkPW);
         changePW = getActivity().findViewById(R.id.changePW);
         withdraw = getActivity().findViewById(R.id.withdraw);
+        logout = getActivity().findViewById(R.id.logout);
 
         // 회원 정보 출력
         name.setText(pref.getString("name", ""));
@@ -138,6 +139,17 @@ public class SeeProfile extends Fragment {
 
         // 부스 관리자 등록 버튼에 대한 추가 구현 필요.
 
+        // 로그아웃부분       -- 다이얼로그 추가 구현 해주세요
+        logout.setOnClickListener(v -> {
+            // 프리퍼런스 비우기
+            SharedPreferences.Editor editor = pref.edit();
+            editor.clear();
+            editor.commit();
+
+            // 테스트용 출력부분
+            Toast.makeText(getActivity().getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
+        });
+
         withdraw.setOnClickListener( v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("주의").setMessage("계정을 삭제하시겠습니까?");
@@ -173,6 +185,7 @@ public class SeeProfile extends Fragment {
             });
             alertDialog.show();
         });
+
         return view;
     }
 }

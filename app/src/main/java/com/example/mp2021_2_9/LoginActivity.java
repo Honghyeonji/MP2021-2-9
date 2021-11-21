@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText inputId = (EditText) findViewById(R.id.inputIdnum);    // 아이디(학번)
         EditText inputPw = (EditText) findViewById(R.id.inputPW);       // 비밀번호
-        CheckBox remainLogin = (CheckBox) findViewById(R.id.login_checkBox);        // 로그인상태유지 체크박스
         Button login = (Button) findViewById(R.id.button_login);                    // 로그인버튼 - 메인화면으로
         TextView join = (TextView) findViewById(R.id.login_join);                   // 회원가입텍스트뷰 - 회원가입으로
 
@@ -77,21 +76,20 @@ public class LoginActivity extends AppCompatActivity {
                                     phoneNum = user.getPhoneNum();
                                     isManager = user.getIsManager();
 
-                                    // 체크박스 체크시 로그인유지 구현 - 지정 preference에 저장
-                                    if (remainLogin.isChecked()) {
-                                        SharedPreferences preferences = getSharedPreferences("current_info", 0);
-                                        SharedPreferences.Editor editor = preferences.edit();
-                                        userName = user.getUserName();
-                                        phoneNum = user.getPhoneNum();
-                                        isManager = user.getIsManager();
+                                    // 로그인유지 - preference에 저장
+                                    SharedPreferences preferences = getSharedPreferences("current_info", 0);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    userName = user.getUserName();
+                                    phoneNum = user.getPhoneNum();
+                                    isManager = user.getIsManager();
 
-                                        editor.putString("ID", userId);
-                                        editor.putString("PW", userPw);
-                                        editor.putString("name", userName);
-                                        editor.putString("phoneNum", phoneNum);
-                                        editor.putBoolean("isManager", isManager);
-                                        editor.apply();
-                                    }
+                                    editor.putString("ID", userId);
+                                    editor.putString("PW", userPw);
+                                    editor.putString("name", userName);
+                                    editor.putString("phoneNum", phoneNum);
+                                    editor.putBoolean("isManager", isManager);
+                                    editor.apply();
+
 
                                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     // 메인화면 이동
