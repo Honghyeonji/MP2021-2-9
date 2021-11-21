@@ -4,228 +4,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="30sp"
+    android:paddingTop="20sp"
     android:orientation="vertical"
     tools:context=".AddItemActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <TextView
+        android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:elevation="2dp">
+        android:layout_marginVertical="5dp"
+        android:gravity="clip_vertical"
+        android:hint="@string/name"
+        android:shadowColor="#BD87BB"
+        tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="개인정보 확인"
-            android:textColor="#BD87BB"
-            android:textSize="20sp"
-            tools:ignore="TextContrastCheck">
+    <TextView
+        android:id="@+id/student_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/inputIdnum"
+        tools:ignore="TextContrastCheck" />
 
-        </TextView>
-    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/phoneNumber"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/PW"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/newPW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/newPW"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/checkPW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:hint="@string/checkPW"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/changePW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:backgroundTint="#EABADB"
+        android:text="@string/editBtn" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="106dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="508dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="20dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp">
 
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:gravity="clip_vertical"
-            android:hint="이름"
-            android:shadowColor="#BD87BB"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/student_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:hint="학번"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:hint="전화번호"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:hint="@string/PW"
-            tools:ignore="TextContrastCheck" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxStrokeColor="#BE88BB">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/newPW"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginVertical="5dp"
-                android:hint="@string/newPW"
-                android:inputType="textPassword"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxStrokeColor="#BE88BB">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/checkPW"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginVertical="5dp"
-                android:hint="@string/checkPW"
-                android:inputType="textPassword"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/changePW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:backgroundTint="#EABADB"
-            android:text="@string/editBtn"
-            tools:ignore="TextContrastCheck" />
+        <ImageButton
+            android:id="@+id/selectImageBtn"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:contentDescription="@string/camera"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/camera" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/selectImageBtn"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:contentDescription="@string/camera"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/camera" />
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/editTextTextMultiLine4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:ems="10"
+                android:gravity="start|top"
+                android:text="@string/notice"
+                android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/editTextTextMultiLine4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:text="@string/notice"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/registerAdminBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#EABADB"
-                    android:text="@string/registerAdminBtn"
-                    tools:ignore="TextContrastCheck" />
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/registerAdminBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#EABADB"
+                android:text="@string/registerAdminBtn"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/withdraw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/withdraw" />
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bottom_color"
-        android:gravity="center"
-        android:minHeight="?attr/actionBarSize"
-        android:paddingVertical="5dp"
-        android:theme="?attr/actionBarTheme">
-
-        <ImageButton
-            android:id="@+id/promotionBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="40dp"
-            android:background="@null"
-            android:contentDescription="@string/promotionBtn"
-            android:paddingHorizontal="10dp"
-            android:scaleType="fitXY"
-            android:screenReaderFocusable="false"
-            android:src="@drawable/promotion"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="2dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@color/white" />
-
-        <ImageButton
-            android:id="@+id/shopBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="40dp"
-            android:background="@null"
-            android:contentDescription="@string/shopBtn"
-            android:paddingHorizontal="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/shop"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,ImageContrastCheck" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="2dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@color/white" />
-
-        <ImageButton
-            android:id="@+id/profileBtn"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-
-            android:layout_marginHorizontal="40dp"
-            android:background="@null"
-            android:contentDescription="@string/profileBtn"
-            android:paddingHorizontal="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/profile"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,ImageContrastCheck" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/withdraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/withdraw" />
 
 </LinearLayout>
