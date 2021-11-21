@@ -38,6 +38,11 @@
     <string name="profileBtn">개인 정보 페이지로 이동</string>
     <string name="mapImage">부스 위치 이미지 등록</string>
     <string name="camera">이미지 등록</string>
+
+    <!-- ManageGoods -->
+    <string name="soldout">품절</string>
+    <string name="delete">삭제</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
