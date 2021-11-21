@@ -56,7 +56,7 @@ public class SeeProfile extends Fragment {
     TextView name, phoneNum, student_id, withdraw, logout;
     EditText newPW, checkPW;
     Button changePW, selectImg;
-    String policyPW = "((?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9가-힣]).{8,})";
+    String policyPW = "^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +73,7 @@ public class SeeProfile extends Fragment {
 
         // 회원 정보 출력
         name.setText(pref.getString("name", ""));
-        student_id.setText(pref.getInt("student_id", 0));
+        student_id.setText(pref.getString("student_id", ""));
         phoneNum.setText(pref.getString("phoneNum", ""));
 
         // 비밀 번호 변경

@@ -37,7 +37,7 @@
     <ListView
         android:id="@+id/managegoods_list"
         android:layout_width="match_parent"
-        android:layout_height="493dp"/>
+        android:layout_height="493dp" />
 
     <TableRow
         android:layout_width="match_parent"
