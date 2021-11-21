@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.toprofile:    // 로그인 or 개인정보화면
                         SharedPreferences preferences = getSharedPreferences("current_info", 0);
                         String Id = preferences.getString("ID", "");
-
                         if(Id.equals("")){  // 비로그인상태 - 로그인 액티비티
                             Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(intent);
