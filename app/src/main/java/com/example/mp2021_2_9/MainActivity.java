@@ -1,6 +1,7 @@
 package com.example.mp2021_2_9;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -33,10 +34,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.toshop:   // 상품 메인
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
                         break;
-                    case R.id.toprofile:    // 비로그인상태 - 로그인화면 /  로그인상태 - 개인정보화면
-                        // 분기문 구현 필
-                        Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
-                        startActivity(intent);
+                    case R.id.toprofile:    // 로그인 or 개인정보화면
+                        SharedPreferences preferences = getSharedPreferences("current_info", 0);
+                        String Id = preferences.getString("ID", "");
+
+                        if(Id.equals("")){  // 비로그인상태 - 로그인 액티비티
+                            Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
+                            startActivity(intent);
+                        }else{              // 로그인상태 - 개인정보화면
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new UserPage()).commit();
+                        }
+
                         break;
                 }
                 return true;

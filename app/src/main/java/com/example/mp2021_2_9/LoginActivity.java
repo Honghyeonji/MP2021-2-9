@@ -30,75 +30,85 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText inputId = (EditText) findViewById(R.id.inputIdnum);    // 아이디(학번)
         EditText inputPw = (EditText) findViewById(R.id.inputPW);       // 비밀번호
-        CheckBox remainLogin = (CheckBox) findViewById(R.id.login_checkBox);        // 로그인상태유지 체크박스
         Button login = (Button) findViewById(R.id.button_login);                    // 로그인버튼 - 메인화면으로
         TextView join = (TextView) findViewById(R.id.login_join);                   // 회원가입텍스트뷰 - 회원가입으로
 
         /* 데이터베이스부분 */
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();         // db의 루트 주소 가져와서 database 객체에 연결
 
         // 로그인 버튼 - 데이터베이스에서 id, 비밀번호 확인 후 일치하면 홍보메인화면으로
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 입력한 id의 데이터목록 불러오기
-
                 String tempId = inputId.getText().toString();
                 String tempPw = inputPw.getText().toString();
 
-                myRef.child("mp2021-t9-default-rtdb").child("users").child(tempId).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // user 값 가져오기
-                        UserInfo_list user = snapshot.getValue(UserInfo_list.class);
+                if (tempId.equals("") && tempPw.equals(""))      // 아이디, 비번 둘 다 빈칸일때
+                    Toast.makeText(getApplicationContext(), "학번을 입력해주세요", Toast.LENGTH_SHORT).show();
+                else if (tempPw.equals(""))      // 비번 빈칸일 때
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                else {
+                    // user 노드에 연결
+                    database.getReference("users").child(tempId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            // user 값 가져오기
+                            UserInfo_list user = snapshot.getValue(UserInfo_list.class);
+                            String userId;
+                            String userPw;
+                            String userName;
+                            String phoneNum;
+                            boolean isManager;
 
-                        if(user == null){
-                            // user is null
-                            Log.e(TAG, "User" + tempId + "is unexpectedly null");
-                            Toast.makeText(getApplicationContext(), "일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show();
+                            if (user == null) {         // 해당 유저 정보 없을때
+                                // user is null
+                                Log.e(TAG, "User" + tempId + "is unexpectedly null");
+                                Toast.makeText(getApplicationContext(), "일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show();
 
-                        }else{
-                            // user exists
-                            // 비밀번호 일치 확인
-                            if(user.getPw().equals(tempPw)){
-                                // 비밀번호 일치할 때
+                            } else {                    // user exists
+                                // 비밀번호 일치 확인
+                                if (user.getPassward().equals(tempPw)) {    // 비밀번호 일치할 때
+                                    // 정보 받아오기
+                                    userId = user.getId();
+                                    userPw = user.getPassward();
+                                    userName = user.getUserName();
+                                    phoneNum = user.getPhoneNum();
+                                    isManager = user.getIsManager();
 
-                                // 체크박스 체크시 로그인유지 구현 - 지정 preference에 저장
-                                if(remainLogin.isChecked()){
+                                    // 로그인유지 - preference에 저장
                                     SharedPreferences preferences = getSharedPreferences("current_info", 0);
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    String userName = user.getUserName();
-                                    String phoneNum = user.getPhoneNum();
-                                    boolean isManager = user.getIsManager();
+                                    userName = user.getUserName();
+                                    phoneNum = user.getPhoneNum();
+                                    isManager = user.getIsManager();
 
-                                    editor.putString("ID", tempId);
-                                    editor.putString("PW", tempPw);
+                                    editor.putString("ID", userId);
+                                    editor.putString("PW", userPw);
                                     editor.putString("name", userName);
                                     editor.putString("phoneNum", phoneNum);
                                     editor.putBoolean("isManager", isManager);
                                     editor.apply();
+
+
+                                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                    // 메인화면 이동
+                                    finish();
+
+                                } else {                // 비밀번호 일치하지 않을 때
+                                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                                 }
-
-                                // 메인화면 이동
-                                // 프래그먼트 전환 구현
-
-                            }else{
-                                // 비밀번호 일치하지 않을 때
-                                Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                             }
+                            Log.d(TAG, "user info : " + snapshot.getValue());
                         }
-                        Log.d(TAG, "user info : " + snapshot.getValue());
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.w(TAG, "getUser:onCancelled", error.toException());
-                    }
-                });
-
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.w(TAG, "getUser:onCancelled", error.toException());
+                        }
+                    });
+                }
             }
-
         });
 
 

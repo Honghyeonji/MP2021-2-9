@@ -6,7 +6,7 @@ import java.util.IdentityHashMap;
 public class UserInfo_list {
 
     private String id;
-    private String pw;
+    private String passward;
     private String userName;
     private String phoneNum;
     private boolean isManager;
@@ -19,11 +19,11 @@ public class UserInfo_list {
     public void setId(String id){
         this.id = id;
     }
-    public String getPw(){
-        return pw;
+    public String getPassward(){
+        return passward;
     }
-    public void setPw(String pw){
-        this.pw = pw;
+    public void setPassward(String passward){
+        this.passward = passward;
     }
     public String getUserName(){
         return userName;
@@ -45,9 +45,9 @@ public class UserInfo_list {
     }
 
     // 그룹 생성시 사용
-    public UserInfo_list(String id, String pw, String userName, String phoneNum, boolean isManager){
+    public UserInfo_list(String id, String passward, String userName, String phoneNum, boolean isManager){
         this.id = id;
-        this.pw = pw;
+        this.passward = passward;
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.isManager = isManager;
