@@ -18,9 +18,13 @@
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_login.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_main.xml" value="0.26288659793814434" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_managegoods.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_managegoods.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_promtdetailed.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_seeprofile.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_userpage.xml" value="0.5" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_waiting.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_seeprofile.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_waiting.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/layout.xml" value="0.35208333333333336" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/promotion_main_screen.xml" value="0.36666666666666664" />
@@ -74,6 +78,21 @@
         <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/personal_screen_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/promotion_main_screen.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/shopping_main_screen.xml" value="0.22" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/promotion_main_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/shopping_main_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_additem.xml" value="0.28028933092224234" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_addpromotion.xml" value="0.22" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_goodsdetailed.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_join.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_login.xml" value="0.29347826086956524" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_managegoods.xml" value="0.13703703703703704" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_promtdetailed.xml" value="0.32608695652173914" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_seeprofile.xml" value="0.22" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_userpage.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/activity_waiting.xml" value="0.18070652173913043" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/promotion_main_screen.xml" value="0.21331521739130435" />
+        <entry key="..\:/Users/solhe/AndroidStudioProjects/MP2021-2-9/app/src/main/res/layout/shopping_main_screen.xml" value="0.21331521739130435" />
       </map>
     </option>
   </component>
