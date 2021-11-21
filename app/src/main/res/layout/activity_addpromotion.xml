@@ -47,38 +47,19 @@
             app:srcCompat="@drawable/camera"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/booth_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            app:boxStrokeColor="#BE88BB">
+            android:layout_height="48dp"
+            android:hint = "부스 이름" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/booth_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="clip_vertical"
-                android:hint="@string/booth_name"
-                android:shadowColor="#BD87BB"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/booth_location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            app:boxStrokeColor="#BE88BB">
+            android:layout_height="48dp"
+            android:hint="부스 위치"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/booth_location"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="@string/booth_location"
-                tools:ignore="TextContrastCheck,TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+
 
         <ImageView
             android:id="@+id/imageView"
