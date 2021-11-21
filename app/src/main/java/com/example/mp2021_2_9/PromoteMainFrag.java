@@ -43,8 +43,6 @@ public class PromoteMainFrag extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.promotion_main_screen, container, false);
         setInit();
-        return v;
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.promotion_main_screen, container, false);
         /* ViewPager 부분 */
         //setInit();
 
@@ -92,7 +90,7 @@ public class PromoteMainFrag extends Fragment {
         ImageSliderAdapter setUpPagerAdapter = new ImageSliderAdapter(getActivity(), page_num);
         viewPageSetUp.setAdapter(setUpPagerAdapter);
 
-        CircleIndicator3 indicator = (CircleIndicator3) v.findViewById(R.id.indicator);
+        CircleIndicator3 indicator = (CircleIndicator3) viewGroup.findViewById(R.id.indicator);
         indicator.setViewPager(viewPageSetUp);
         indicator.createIndicators(page_num, 0);
 
