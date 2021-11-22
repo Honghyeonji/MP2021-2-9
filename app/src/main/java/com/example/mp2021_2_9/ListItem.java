@@ -4,9 +4,9 @@ public class ListItem {
     private String name;
     private boolean isSoldOut;
 
-    public ListItem(String name){
+    public ListItem(String name, boolean isSoldOut){
         this.name = name;
-        this.isSoldOut = false;
+        this.isSoldOut = isSoldOut;
     }
 
     public String getName()

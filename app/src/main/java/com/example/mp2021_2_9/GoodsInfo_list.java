@@ -1,7 +1,6 @@
 package com.example.mp2021_2_9;
 
 public class GoodsInfo_list {
-    // manager 빼고 모두 스트링으로 저장, 불러오기!
     private String userId;
     private String goodsName;
     private String goodsPrice;
@@ -14,41 +13,42 @@ public class GoodsInfo_list {
 
     public String getUserId(){ return userId; }
     public void setUserId(String userId){ this.userId = userId;}
-    public String getName(){
+    public String getGoodsName(){
         return goodsName;
     }
-    public void setName(String name){ this.goodsName = name; }
-    public String getPrice(){ return goodsPrice; }
-    public void setPrice(String price){
+    public void setGoodsName(String goodsName){ this.goodsName = goodsName; }
+    public String getGoodsPrice(){ return goodsPrice; }
+    public void setGoodsPrice(String price){
         this.goodsPrice = price;
     }
-    public String getImgUrl(){
+    public String getGoodsImgUrl(){
         return goodsImgurl;
     }
-    public void setImgUrl(String imgUrl){ this.goodsImgurl = imgUrl; }
-    public boolean getIsSoldOut(){ return goodsIsSoldOut; }
-    public void setIsSoldOut(boolean isSoldOut){
+    public void setGoodsImgUrl(String imgUrl){ this.goodsImgurl = imgUrl; }
+    public boolean getGoodsIsSoldOut(){ return goodsIsSoldOut; }
+    public void setGoodsIsSoldOut(boolean isSoldOut){
         this.goodsIsSoldOut = isSoldOut;
     }
-    public String getLocation(){ return goodsLocation; }
-    public void setLocation(String location){
+    public String getGoodsLocation(){ return goodsLocation; }
+    public void setGoodsLocation(String location){
         this.goodsLocation = location;
     }
-    public String getTxtUrl(){ return goodsTxturl; }
-    public void setTextUrl(String txtUrl){
+    public String getGoodsTxtUrl(){ return goodsTxturl; }
+    public void setGoodsTextUrl(String txtUrl){
         this.goodsTxturl = txtUrl;
     }
 
 
     // 그룹 생성시 사용
-    public GoodsInfo_list(String userId, String name, String price, String imgUrl, boolean isSoldOut,
-                          String location, String txtUrl){
+    public GoodsInfo_list(String goodsImgurl,  boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice,
+                           String goodsTxturl, String userId){
+        this.goodsImgurl = goodsImgurl;
+        this.goodsIsSoldOut = goodsIsSoldOut;
+        this.goodsLocation = goodsLocation;
+        this.goodsName = goodsName;
+        this.goodsPrice = goodsPrice;
+        this.goodsTxturl = goodsTxturl;
         this.userId = userId;
-        this.goodsName = name;
-        this.goodsPrice = price;
-        this.goodsImgurl = imgUrl;
-        this.goodsIsSoldOut = isSoldOut;
-        this.goodsLocation = location;
-        this.goodsTxturl = txtUrl;
+
     }
 }

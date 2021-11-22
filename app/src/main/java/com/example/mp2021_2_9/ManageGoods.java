@@ -30,37 +30,38 @@ public class ManageGoods extends Fragment {
 
     String TAG = "ManageGoods";
     // DataBase
-    SharedPreferences pref = getActivity().getSharedPreferences("current_info", 0);
-    String loginID = pref.getString("ID", "");  // 데이터 베이스에서 검색시 필요
+    //SharedPreferences pref = getActivity().getSharedPreferences("current_info", 0);
+    //String loginID = pref.getString("ID", "");  // 데이터 베이스에서 검색시 필요
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
+    DatabaseReference myRef = database.getReference("goods");
 
-    ArrayList<ListItem> items;
+    ArrayList<ListItem> goodsList;
     ListViewAdapter adapter;
 
     View view;
+    String loginID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.activity_managegoods, container, false);
+        loginID = getArguments().getString("ID");
 
-        items = new ArrayList<ListItem>();
-        adapter = new ListViewAdapter(this.getContext(), items);
+        goodsList = new ArrayList<>();
+        adapter = new ListViewAdapter(this.getContext(), goodsList);
 
         ListView listView = (ListView)view.findViewById(R.id.managegoods_list);
-        listView.setAdapter(adapter);
 
         // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
-        Query query = myRef.child("goods").orderByChild("dimensions/userId").equalTo(loginID);
+        Query query = myRef.orderByChild("userId").equalTo(loginID);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                adapter.item.clear();
+                goodsList.clear();
                 for (DataSnapshot item : snapshot.getChildren()){
                     GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
-                    items.add(new ListItem(goods.getName()));
-                    //adapter.item.add(new ListItem(item_name));
+                    goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut()));
+                    //adapter.item.add(new ListItem(item_name), goods.getIsSoldOut());
                 }
                 adapter.notifyDataSetChanged();
                 //listView.setSelection(adapter.getCount() -1);
@@ -71,7 +72,11 @@ public class ManageGoods extends Fragment {
                 Log.w(TAG, error.toException());
             }
         });
+        listView.setAdapter(adapter);
+/*        if(adapter.isSoldOutClicked()){
 
+        }
+*/
         return view ;
     }
 }
