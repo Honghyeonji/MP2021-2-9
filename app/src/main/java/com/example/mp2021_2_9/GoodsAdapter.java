@@ -29,6 +29,15 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             this.imageView = itemView.findViewById(R.id.putImage);
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int pos = getAdapterPosition();
+                    if(pos!=RecyclerView.NO_POSITION){
+                        mListener.onItemClick(v, pos);
+                    }
+                }
+            });
         }
     }
 
@@ -53,5 +62,16 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return (goodsInfo_lists != null ? goodsInfo_lists.size() : 0) ;
+    }
+
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private GoodsAdapter.OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(GoodsAdapter.OnItemClickListener listener){
+        this.mListener = listener;
     }
 }

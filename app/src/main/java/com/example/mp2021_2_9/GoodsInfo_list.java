@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
-public class GoodsInfo_list {
+import java.io.Serializable;
+
+public class GoodsInfo_list implements Serializable {
     // manager 빼고 모두 스트링으로 저장, 불러오기!
     private String userId;
     private String goodsName;
