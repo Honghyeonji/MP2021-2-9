@@ -1,7 +1,6 @@
 package com.example.mp2021_2_9;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +26,9 @@ public class BoothAdapter extends RecyclerView.Adapter<BoothAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
 
-        public ViewHolder(@NonNull View itemVew){
-            super(itemVew);
-            this.imageView = itemView.findViewById(R.id.putRcv);
+        public ViewHolder(@NonNull View itemView){
+            super(itemView);
+            this.imageView = itemView.findViewById(R.id.putImage);
         }
     }
 
