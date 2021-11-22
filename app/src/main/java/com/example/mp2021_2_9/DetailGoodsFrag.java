@@ -1,5 +1,6 @@
 package com.example.mp2021_2_9;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import org.w3c.dom.Text;
 public class DetailGoodsFrag extends Fragment {
     ViewGroup v;
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class DetailGoodsFrag extends Fragment {
         TextView goods_location = v.findViewById(R.id.goods_location);
 
         goods_name.setText(goodsinfo.getGoodsName());
-        goods_price.setText(goodsinfo.getGoodsPrice()+"원");
+        goods_price.setText(goodsinfo.getGoodsPrice() + "원");
         goods_location.setText(goodsinfo.getGoodsLocation());
 
         return v;
