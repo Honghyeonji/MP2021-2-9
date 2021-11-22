@@ -59,7 +59,7 @@ public class ManageGoods extends Fragment {
                 adapter.item.clear();
                 for (DataSnapshot item : snapshot.getChildren()){
                     GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
-                    items.add(new ListItem(goods.getName()));
+                    items.add(new ListItem(goods.getGoodsName()));
                     //adapter.item.add(new ListItem(item_name));
                 }
                 adapter.notifyDataSetChanged();
