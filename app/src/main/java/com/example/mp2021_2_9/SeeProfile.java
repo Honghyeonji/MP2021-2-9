@@ -115,9 +115,9 @@ public class SeeProfile extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                        user.setPassward(newPW.getText().toString());
+                        user.setPassword(newPW.getText().toString());
                         Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Changed password is: " + user.getPassward());
+                        Log.d(TAG, "Changed password is: " + user.getPassword());
                     }
 
                     @Override

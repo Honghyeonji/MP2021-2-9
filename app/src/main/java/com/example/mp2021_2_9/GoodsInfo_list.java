@@ -27,10 +27,10 @@ public class GoodsInfo_list {
         return goodsImgurl;
     }
     public void setGoodsImgUrl(String goodsImgurl){ this.goodsImgurl = goodsImgurl; }
-    public boolean getSoldOut(){
+    public boolean getGoodsIsSoldOut(){
         return goodsIsSoldOut;
     }
-    public void setSoldOut(boolean goodsIsSoldOut) {
+    public void setGoodsIsSoldOut(boolean goodsIsSoldOut) {
         goodsIsSoldOut = goodsIsSoldOut;
     }
     public String getGoodsLocation(){

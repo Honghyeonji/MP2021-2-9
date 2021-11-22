@@ -44,13 +44,13 @@ public class ManageGoods extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.activity_managegoods, container, false);
+        view = inflater.inflate(R.layout.activity_managegoods, container, false);
         loginID = getArguments().getString("ID");
 
         goodsList = new ArrayList<>();
         adapter = new ListViewAdapter(this.getContext(), goodsList);
 
-        ListView listView = (ListView)view.findViewById(R.id.managegoods_list);
+        ListView listView = (ListView) view.findViewById(R.id.managegoods_list);
 
         // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
         Query query = myRef.orderByChild("userId").equalTo(loginID);
@@ -58,7 +58,7 @@ public class ManageGoods extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 goodsList.clear();
-                for (DataSnapshot item : snapshot.getChildren()){
+                for (DataSnapshot item : snapshot.getChildren()) {
                     GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
                     goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut()));
                     //adapter.item.add(new ListItem(item_name), goods.getIsSoldOut());
@@ -77,5 +77,6 @@ public class ManageGoods extends Fragment {
 
         }
 */
-        return view ;
+        return view;
     }
+}
