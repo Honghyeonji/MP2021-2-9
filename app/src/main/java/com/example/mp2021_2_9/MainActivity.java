@@ -42,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent= new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(intent);
                         }else{              // 로그인상태 - 개인정보화면
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new UserPage()).commit();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("ID", preferences.getString("ID", ""));
+                            UserPage userpage = new UserPage();
+                            userpage.setArguments(bundle);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
                         }
 
                         break;
