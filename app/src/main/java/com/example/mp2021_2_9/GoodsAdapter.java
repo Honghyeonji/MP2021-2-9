@@ -47,7 +47,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
     // 각 아이템 매칭
     @Override
     public void onBindViewHolder(@NonNull GoodsAdapter.ViewHolder holder, int position){
-        Glide.with(holder.itemView).load(goodsInfo_lists.get(position).getImgUrl()).into(holder.imageView);
+        Glide.with(holder.itemView).load(goodsInfo_lists.get(position).getGoodsImgUrl()).into(holder.imageView);
     }
 
     @Override

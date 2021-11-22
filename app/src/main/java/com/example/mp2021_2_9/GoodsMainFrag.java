@@ -36,7 +36,7 @@ public class GoodsMainFrag extends Fragment {
 
         // DB 부분
         database = FirebaseDatabase.getInstance();      // DB 루트 연결
-        databaseReference = database.getReference("goods");     // goods 최상위 노드 ㅇ녀결
+        databaseReference = database.getReference("goods");     // goods 최상위 노드 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
