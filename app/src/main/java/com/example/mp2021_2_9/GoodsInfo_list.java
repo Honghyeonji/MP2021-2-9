@@ -1,10 +1,10 @@
 package com.example.mp2021_2_9;
 
 public class GoodsInfo_list {
-
-    private int userId;
+    // manager 빼고 모두 스트링으로 저장, 불러오기!
+    private String userId;
     private String name;
-    private int price;
+    private String price;
     private String imgUrl;
     private boolean isSoldOut;
     private String location;
@@ -13,14 +13,14 @@ public class GoodsInfo_list {
 
     public GoodsInfo_list() {}
 
-    public int getUserId(){ return userId; }
-    public void setUserId(int userId){ this.userId = userId;}
+    public String getUserId(){ return userId; }
+    public void setUserId(String userId){ this.userId = userId;}
     public String getName(){
         return name;
     }
     public void setName(String name){ this.name = name; }
-    public int getPrice(){ return price; }
-    public void setPrice(int price){
+    public String getPrice(){ return price; }
+    public void setPrice(String price){
         this.price = price;
     }
     public String getImgUrl(){
@@ -52,7 +52,7 @@ public class GoodsInfo_list {
 
 
     // 그룹 생성시 사용
-    public GoodsInfo_list(int userId, String name, int price, String imgUrl, boolean isSoldout,
+    public GoodsInfo_list(String userId, String name, String price, String imgUrl, boolean isSoldOut,
                           String location, String mapUrl, String textUrl){
         this.userId = userId;
         this.name = name;

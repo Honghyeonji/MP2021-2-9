@@ -8,47 +8,39 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.bumptech.glide.Glide;
 
-public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.MyViewHolder> {
-    private Context context;
-    private String[] sliderImage;
+public class ImageSliderAdapter extends FragmentStateAdapter {
+    private int count;
 
-    public ImageSliderAdapter(Context context, String[] sliderImage){
-        this.context = context;
-        this.sliderImage = sliderImage;
+    public ImageSliderAdapter(FragmentActivity fa, int count){
+        super(fa);
+        this.count = count;
     }
+
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slider, parent,false);
-        return new MyViewHolder(view);
-    }
+    public Fragment createFragment(int position) {
+        int index = getRealPosition(position);
 
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bindSliderImage(sliderImage[position]);
+        if(index == 0) return new ViewPagerImages.ViewPageImage1();
+        else if(index == 1) return new ViewPagerImages.ViewPageImage2();
+        else if(index == 2) return new ViewPagerImages.ViewPageImage3();
+        else return new ViewPagerImages.ViewPageImage4();
     }
 
     @Override
     public int getItemCount() {
-        return sliderImage.length;
+        return 2000;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        private ImageView mImageView;
-
-        public MyViewHolder(@NonNull View itemView){
-            super(itemView);
-            mImageView = itemView.findViewById(R.id.sliderImages);
-        }
-
-        public void bindSliderImage(String imageURL){
-            Glide.with(context).load(imageURL).into(mImageView);
-        }
+    public int getRealPosition(int position){
+        return position % count;
     }
-
 }
