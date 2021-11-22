@@ -1,16 +1,14 @@
 package com.example.mp2021_2_9;
 
 public class GoodsInfo_list {
-    // manager 빼고 모두 스트링으로 저장, 불러오기!
     private String userId;
     private String goodsName;
     private String goodsPrice;
     private String goodsImgurl;
-    private boolean isSoldOut;
+    private boolean goodsIsSoldOut;
     private String goodsLocation;
-    private String goodsTexturl;
+    private String goodsTxturl;
 
-    //private String goodsMapUrl;
     public GoodsInfo_list() {}
 
     public String getUserId(){ return userId; }
@@ -20,51 +18,37 @@ public class GoodsInfo_list {
     }
     public void setGoodsName(String goodsName){ this.goodsName = goodsName; }
     public String getGoodsPrice(){ return goodsPrice; }
-    public void setGoodsPrice(String goodsPrice){
-        this.goodsPrice = goodsPrice;
+    public void setGoodsPrice(String price){
+        this.goodsPrice = price;
     }
     public String getGoodsImgUrl(){
         return goodsImgurl;
     }
-    public void setGoodsImgUrl(String goodsImgurl){ this.goodsImgurl = goodsImgurl; }
-    public boolean getSoldOut(){
-        return isSoldOut;
+    public void setGoodsImgUrl(String imgUrl){ this.goodsImgurl = imgUrl; }
+    public boolean getGoodsIsSoldOut(){ return goodsIsSoldOut; }
+    public void setGoodsIsSoldOut(boolean isSoldOut){
+        this.goodsIsSoldOut = isSoldOut;
     }
-    public void setSoldOut(boolean soldOut) {
-        isSoldOut = soldOut;
+    public String getGoodsLocation(){ return goodsLocation; }
+    public void setGoodsLocation(String location){
+        this.goodsLocation = location;
     }
-    public String getGoodsLocation(){
-        return goodsLocation;
-    }
-    public void setGoodsLocation(String goodsLocation){
-        this.goodsLocation = goodsLocation;
-    }
-    public String getGoodsTextUrl(){
-        return goodsTexturl;
-    }
-    public void setGoodsTextUrl(String goodsTexturl){
-        this.goodsTexturl = goodsTexturl;
+    public String getGoodsTxtUrl(){ return goodsTxturl; }
+    public void setGoodsTxtUrl(String txtUrl){
+        this.goodsTxturl = txtUrl;
     }
 
-    /*public String getMapUrl(){
-        return mapUrl;
-    }
-    //public void setMapUrl(String mapUrl){
-        this.mapUrl = mapUrl;
-    }
-
-    */
 
     // 그룹 생성시 사용
-    public GoodsInfo_list(String userId, String goodsName, String goodsPrice, String goodsImgurl, boolean isSoldOut,
-                          String goodsLocation, String goodsTexturl){
-        this.userId = userId;
+    public GoodsInfo_list(String goodsImgurl,  boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice,
+                          String goodsTxturl, String userId){
+        this.goodsImgurl = goodsImgurl;
+        this.goodsIsSoldOut = goodsIsSoldOut;
+        this.goodsLocation = goodsLocation;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
-        this.goodsImgurl = goodsImgurl;
-        this.isSoldOut = isSoldOut;
-        this.goodsLocation = goodsLocation;
-        this.goodsTexturl = goodsTexturl;
-        //this.mapUrl = mapUrl;
+        this.goodsTxturl = goodsTxturl;
+        this.userId = userId;
+
     }
 }

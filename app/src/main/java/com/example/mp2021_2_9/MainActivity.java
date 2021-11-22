@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         }else{              // 로그인상태 - 개인정보화면
                             Bundle bundle = new Bundle();
                             bundle.putString("ID", preferences.getString("ID", ""));
+                            bundle.putBoolean("isManager", preferences.getBoolean("isManager", false));
                             UserPage userpage = new UserPage();
                             userpage.setArguments(bundle);
                             getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();

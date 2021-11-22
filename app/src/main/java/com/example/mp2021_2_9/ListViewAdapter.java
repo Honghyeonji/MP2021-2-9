@@ -1,7 +1,6 @@
 package com.example.mp2021_2_9;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +9,6 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter{
@@ -20,12 +16,6 @@ public class ListViewAdapter extends BaseAdapter{
     Context mContext = null;
     LayoutInflater mLayoutInflater = null;
     ArrayList<ListItem> item;
-
-    // DataBase
-    SharedPreferences pref = mContext.getSharedPreferences("current_info", 0);
-    String loginID = pref.getString("ID", "");  // 데이터 베이스에서 검색시 필요
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
 
     public ListViewAdapter(Context context, ArrayList<ListItem> data) {
         mContext = context;
@@ -63,12 +53,25 @@ public class ListViewAdapter extends BaseAdapter{
         else
             isSoldOut.setTextColor(ContextCompat.getColor(this.mContext, R.color.red)); // 품절시 빨간 글씨
 
+        //isSoldOut.setOnClickListener(new View.OnClickListener(){ isSoldOutClicked(isSoldOut)});
+        //delete.setOnClickListener(v -> deleteClicked(delete));
+
         return view;
+    }
+
+
+    public View isSoldOutClicked(View v){
+        return (View)v.getParent(); // 해당 버튼의 위젯 반환
+    }
+
+    public View deleteClicked(View v){
+        return (View)v.getParent(); // 해당 버튼의 위젯 반환
     }
 
     public void deleteItem(int pos){
         ListItem item = this.getItem(pos);
         this.item.remove(item);
     }
+
 
 }
