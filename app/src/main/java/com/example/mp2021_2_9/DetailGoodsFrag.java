@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.w3c.dom.Text;
 
 // 굿즈 상세페이지
-public class DetailGoodsActivity extends AppCompatActivity {
+public class DetailGoodsFrag extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
