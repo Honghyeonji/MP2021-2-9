@@ -4,7 +4,7 @@ public class BoothInfo_list {
     private String boothImgurl;
     private String boothLocation;
     private String boothName;
-    private String boothOpemTime;
+    private String boothOpenTime;
     private String boothTxturl;
     private String userId;
 
@@ -28,11 +28,11 @@ public class BoothInfo_list {
     public String getBoothName() {
         return boothName;
     }
-    public void setBoothOpemTime(String boothOpemTime) {
-        this.boothOpemTime = boothOpemTime;
+    public void setBoothOpenTime(String boothOpenTime) {
+        this.boothOpenTime = boothOpenTime;
     }
-    public String getBoothOpemTime() {
-        return boothOpemTime;
+    public String getBoothOpenTime() {
+        return boothOpenTime;
     }
     public void setBoothTxturl(String boothTxturl) {
         this.boothTxturl = boothTxturl;
@@ -47,11 +47,11 @@ public class BoothInfo_list {
         return userId;
     }
 
-    public void BoothInfo_list(String boothImgurl, String boothLocation, String boothName, String boothOpemTime, String boothTxturl, String userId){
+    public void BoothInfo_list(String boothImgurl, String boothLocation, String boothName, String boothOpenTime, String boothTxturl, String userId){
         this.boothImgurl = boothImgurl;
         this.boothLocation = boothLocation;
         this.boothName = boothName;
-        this.boothOpemTime = boothOpemTime;
+        this.boothOpenTime = boothOpenTime;
         this.boothTxturl = boothTxturl;
         this.userId = userId;
     }

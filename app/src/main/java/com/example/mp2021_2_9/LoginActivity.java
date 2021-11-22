@@ -68,10 +68,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             } else {                    // user exists
                                 // 비밀번호 일치 확인
-                                if (user.getPassward().equals(tempPw)) {    // 비밀번호 일치할 때
+                                if (user.getPassword().equals(tempPw)) {    // 비밀번호 일치할 때
                                     // 정보 받아오기
                                     userId = user.getId();
-                                    userPw = user.getPassward();
+                                    userPw = user.getPassword();
                                     userName = user.getUserName();
                                     phoneNum = user.getPhoneNum();
                                     isManager = user.getIsManager();
