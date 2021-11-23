@@ -59,7 +59,7 @@
                 android:textSize="15sp"/>
 
             <TextView
-                android:id="@+id/goods_detail"
+                android:id="@+id/goods_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -68,6 +68,7 @@
                 android:padding="10dp"
                 android:background="@drawable/textbox_pink"
                 android:text="판매자가 입력한 판매위치 노출"
+                android:textColor="@color/black"
                 android:textSize="13sp" />
 
             <ImageView

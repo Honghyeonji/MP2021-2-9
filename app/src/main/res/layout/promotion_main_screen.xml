@@ -1,58 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/sliderViewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </androidx.viewpager2.widget.ViewPager2>
-
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@drawable/ex2" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp">
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/frameSize">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frameSize"/>
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
 
+        <!-- recyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/putRcv"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </LinearLayout>
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
-        android:layout_marginTop="70dp">
-
-        <ImageView
-            android:background="@drawable/edge"
-            android:id="@+id/imageView5"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_columnSpan="1"
-            android:layout_width="180dp"
-            android:layout_height="280dp" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="180dp"
-            android:layout_height="280dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_columnSpan="1"
-            android:layout_margin="10dp"
-            android:background="@drawable/edge2" />
-
-
-    </GridLayout>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

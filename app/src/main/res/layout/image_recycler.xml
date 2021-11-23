@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="193dp"
+    android:layout_height="280dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/buttonedge">
+
+    <ImageView
+        android:id="@+id/putImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_launcher_foreground"/>
+
+</FrameLayout>
