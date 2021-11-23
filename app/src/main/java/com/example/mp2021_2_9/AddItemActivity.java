@@ -27,10 +27,17 @@ public class AddItemActivity extends Fragment {
     Button save;
     String goodsIsSoldout = "false";
 
+//    FirebaseDatabase database = FirebaseDatabase.getInstance();
+//    DatabaseReference databaseReference = database.getReference();
+//    String loginID;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_additem, container, false);
+
+//        loginID = getArguments().getString("ID");
+
         save = (Button) view.findViewById(R.id.savebutton);
         itemname = (EditText) view.findViewById(R.id.item_name);
         itemprice = (EditText) view.findViewById(R.id.item_price);
@@ -62,3 +69,4 @@ public class AddItemActivity extends Fragment {
     }
 
 }
+

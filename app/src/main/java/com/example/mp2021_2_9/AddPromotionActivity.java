@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,10 +23,16 @@ public class AddPromotionActivity extends Fragment {
     DatabaseReference base = FirebaseDatabase.getInstance().getReference();
     DatabaseReference databaseReference = base.child("booth");
 
+//    String loginID;
+//    TextInputEditText boothname, boothlocation;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_addpromotion, container, false);
+
+//        loginID = getArguments().getString("ID");
+
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);
         boothlocation = (EditText) view.findViewById(R.id.booth_location);
