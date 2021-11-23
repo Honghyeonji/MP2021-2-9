@@ -72,10 +72,6 @@
         android:backgroundTint="#EABADB"
         android:text="@string/editBtn" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="106dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
