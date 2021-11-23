@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_margin="20dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/frameSize">
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager"
-            android:clipToPadding="false"
-            android:clipChildren="false"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_margin="20dp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/frameSize"/>
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
+            android:layout_height="@dimen/frameSize">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/frameSize"/>
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
+
+        <!-- recyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/putRcv"
+            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"/>
-    </FrameLayout>
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
 
-    <!-- recyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/putRcv"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

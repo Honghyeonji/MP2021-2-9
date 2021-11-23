@@ -5,17 +5,24 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class AddPromotionData {
-    public String goodsid, location, goodsname, userid;
-    public boolean soldout = false;
-    public int price;
+    public String boothLocation,  boothName, boothOpenTime, boothImgurl, boothTxturl; //부스관련
+    public String userid;
+    public String goodsIsSoldout, goodsLocation, goodsName, goodsPrice, goodsImgurl,  goodsTxturl;
 
     public AddPromotionData(){}
-    public AddPromotionData(String goodsid, String location, String goodsname,String userid, int price){
-        this.goodsid = goodsid;
-        this.location = location;
-        this.goodsname =goodsname;
+    public AddPromotionData(String goodsIsSoldout, String goodsLocation, String goodsName, String goodsPrice, String userid){
+        this.goodsLocation = goodsLocation;
+        this.goodsName = goodsName;
+        this.goodsPrice = goodsPrice;
+        this. userid = userid;
+        this. goodsIsSoldout = goodsIsSoldout;
+    }
+    public AddPromotionData(String boothLocation, String boothName,String boothOpenTime, String userid){
+        this.boothLocation = boothLocation;
+        this.boothName =boothName;
+        this.boothOpenTime = boothOpenTime;
         this.userid = userid;
-        this.price = price;
+
     }
 
 

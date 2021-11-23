@@ -1,13 +1,17 @@
 package com.example.mp2021_2_9;
 
-public class GoodsInfo_list {
+import java.io.Serializable;
+
+public class GoodsInfo_list implements Serializable {
+    // soldout 빼고 모두 스트링으로 저장, 불러오기!
     private String userId;
     private String goodsName;
     private String goodsPrice;
     private String goodsImgurl;
-    private boolean goodsIsSoldOut;
     private String goodsLocation;
     private String goodsTxturl;
+    private boolean goodsIsSoldOut;
+    //private String goodsMapUrl;
 
     public GoodsInfo_list() {}
 
@@ -18,37 +22,51 @@ public class GoodsInfo_list {
     }
     public void setGoodsName(String goodsName){ this.goodsName = goodsName; }
     public String getGoodsPrice(){ return goodsPrice; }
-    public void setGoodsPrice(String price){
-        this.goodsPrice = price;
+    public void setGoodsPrice(String goodsPrice){
+        this.goodsPrice = goodsPrice;
     }
     public String getGoodsImgUrl(){
         return goodsImgurl;
     }
-    public void setGoodsImgUrl(String imgUrl){ this.goodsImgurl = imgUrl; }
-    public boolean getGoodsIsSoldOut(){ return goodsIsSoldOut; }
-    public void setGoodsIsSoldOut(boolean isSoldOut){
-        this.goodsIsSoldOut = isSoldOut;
+    public void setGoodsImgUrl(String goodsImgurl){ this.goodsImgurl = goodsImgurl; }
+    public boolean getGoodsIsSoldOut(){
+        return goodsIsSoldOut;
     }
-    public String getGoodsLocation(){ return goodsLocation; }
-    public void setGoodsLocation(String location){
-        this.goodsLocation = location;
+    public void setGoodsIsSoldOut(boolean goodsIsSoldOut) {
+        goodsIsSoldOut = goodsIsSoldOut;
     }
-    public String getGoodsTxtUrl(){ return goodsTxturl; }
-    public void setGoodsTextUrl(String txtUrl){
-        this.goodsTxturl = txtUrl;
+    public String getGoodsLocation(){
+        return goodsLocation;
+    }
+    public void setGoodsLocation(String goodsLocation){
+        this.goodsLocation = goodsLocation;
+    }
+    public String getGoodsTxtUrl(){
+        return goodsTxturl;
+    }
+    public void setGoodsTxtUrl(String goodsTxturl){
+        this.goodsTxturl = goodsTxturl;
     }
 
+    /*public String getMapUrl(){
+        return mapUrl;
+    }
+    //public void setMapUrl(String mapUrl){
+        this.mapUrl = mapUrl;
+    }
+
+    */
 
     // 그룹 생성시 사용
-    public GoodsInfo_list(String goodsImgurl,  boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice,
-                           String goodsTxturl, String userId){
+    public GoodsInfo_list(String userId, String goodsName, String goodsPrice, String goodsImgurl, boolean goodsIsSoldOut,
+                          String goodsLocation, String goodsTxturl){
+        this.userId = userId;
+        this.goodsName = goodsName;
+        this.goodsPrice = goodsPrice;
         this.goodsImgurl = goodsImgurl;
         this.goodsIsSoldOut = goodsIsSoldOut;
         this.goodsLocation = goodsLocation;
-        this.goodsName = goodsName;
-        this.goodsPrice = goodsPrice;
         this.goodsTxturl = goodsTxturl;
-        this.userId = userId;
-
+        //this.mapUrl = mapUrl;
     }
 }

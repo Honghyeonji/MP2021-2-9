@@ -1,7 +1,6 @@
 package com.example.mp2021_2_9;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +26,18 @@ public class BoothAdapter extends RecyclerView.Adapter<BoothAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
 
-        public ViewHolder(@NonNull View itemVew){
-            super(itemVew);
-            this.imageView = itemView.findViewById(R.id.putRcv);
+        public ViewHolder(@NonNull View itemView){
+            super(itemView);
+            this.imageView = itemView.findViewById(R.id.putImage);
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int pos = getAdapterPosition();
+                    if(pos!=RecyclerView.NO_POSITION){
+                        mListener.onItemClick(v, pos);
+                    }
+                }
+            });
         }
     }
 
@@ -48,11 +56,22 @@ public class BoothAdapter extends RecyclerView.Adapter<BoothAdapter.ViewHolder> 
     // 각 아이템 매칭
     @Override
     public void onBindViewHolder(@NonNull BoothAdapter.ViewHolder holder, int position){
+
         Glide.with(holder.itemView).load(boothInfo_lists.get(position).getBoothImgurl()).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
         return (boothInfo_lists != null ? boothInfo_lists.size() : 0) ;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private BoothAdapter.OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(BoothAdapter.OnItemClickListener listener){
+        this.mListener = listener;
     }
 }
