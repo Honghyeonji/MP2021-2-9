@@ -15,15 +15,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddItemActivity extends Fragment {
     View view;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
-
+    String loginID;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_additem, container, false);
+
+        // loginID 현재 로그인된 아이디 수신
+        loginID = getArguments().getString("ID");
         return view;
     }
 

@@ -15,12 +15,16 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class AddPromotionActivity extends Fragment {
     View view;
+    String loginID;
     TextInputEditText boothname, boothlocation;
     Button save;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_addpromotion, container, false);
+
+        loginID = getArguments().getString("ID");
+
         save = (Button)view.findViewById(R.id.savebutton);
         boothname = (TextInputEditText) view.findViewById(R.id.booth_name);
         boothlocation = (TextInputEditText) view.findViewById(R.id.booth_location);
