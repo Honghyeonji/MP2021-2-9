@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddItemActivity extends Fragment {
+    Bundle bundle;
     View view;
     String userid;
     EditText itemname,itemprice, boothlocation;
@@ -59,6 +60,9 @@ public class AddItemActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 additem(goodsIsSoldout, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
+                PromoteMainFrag Pf = new PromoteMainFrag();
+                Pf.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
             }
         });
         return view;

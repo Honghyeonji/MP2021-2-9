@@ -11,11 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddPromotionActivity extends Fragment {
+    Bundle bundle;
     String userid;
     View view;
     EditText boothname, boothlocation,boothtime;
@@ -44,6 +44,9 @@ public class AddPromotionActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 addbooth(boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid);
+                PromoteMainFrag Pf = new PromoteMainFrag();
+                Pf.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
             }
         });
         return view;

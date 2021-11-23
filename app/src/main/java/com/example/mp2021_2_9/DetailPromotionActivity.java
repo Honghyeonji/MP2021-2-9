@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+
 // 부스 홍보 상세페이지
 public class DetailPromotionActivity extends Fragment {
     ViewGroup v;
@@ -37,6 +40,7 @@ public class DetailPromotionActivity extends Fragment {
         boothName.setText(boothinfo.getBoothName());
         boothLocation.setText(boothinfo.getBoothLocation());
         boothTime.setText(boothinfo.getBoothOpenTime());
+        Glide.with(poster).load(boothinfo.getBoothImgurl()).into(poster);
 
         return v;
     }
