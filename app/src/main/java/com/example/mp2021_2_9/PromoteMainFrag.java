@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -77,6 +78,19 @@ public class PromoteMainFrag extends Fragment {
         adapter = new BoothAdapter(boothInfo_lists, getContext());
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new BoothAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos){
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                BoothInfo_list tempList = boothInfo_lists.get(pos);
+                DetailPromotionActivity f = new DetailPromotionActivity();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("BoothInfo_list", tempList);
+                f.setArguments(bundle);
+                transaction.replace(R.id.frame_container, f).commit();
+                Log.v("test", "pos:" + pos);
+            }
+        });
 
 
         return viewGroup;

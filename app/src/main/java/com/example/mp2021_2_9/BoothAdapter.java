@@ -54,4 +54,14 @@ public class BoothAdapter extends RecyclerView.Adapter<BoothAdapter.ViewHolder> 
     public int getItemCount() {
         return (boothInfo_lists != null ? boothInfo_lists.size() : 0) ;
     }
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private BoothAdapter.OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(BoothAdapter.OnItemClickListener listener){
+        this.mListener = listener;
+    }
 }
