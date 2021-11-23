@@ -13,7 +13,7 @@ public class AddPromotionData {
     public AddPromotionData(String goodsid, String location, String goodsname,String userid, int price){
         this.goodsid = goodsid;
         this.location = location;
-        this.goodsname =goodsname;
+        this.goodsname = goodsname;
         this.userid = userid;
         this.price = price;
     }
