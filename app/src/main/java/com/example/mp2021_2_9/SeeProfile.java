@@ -2,6 +2,7 @@ package com.example.mp2021_2_9;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,71 +47,89 @@ public class SeeProfile extends Fragment {
     ActivityResultLauncher resultLauncher;
 
     // DataBase
-    SharedPreferences pref = getContext().getSharedPreferences("current_info", 0);
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
-    String loginID = pref.getString("ID", "");  // 데이터 베이스에서 검색시 필요
+    DatabaseReference myRef = database.getReference("users");
 
     // Component
     View view;
     Bitmap validImg; // 사용자의 갤러리로부터 가져온 이미지를 저장할 비트맵
     TextView name, phoneNum, student_id, withdraw, logout;
     EditText newPW, checkPW;
-    Button changePW, selectImg;
-    String policyPW = "^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$";
+    Button changePW;
+    ImageButton selectImg;
+    String policyPW = "^[a-zA-Z0-9]{8,}$";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        String loginID = this.getArguments().getString("ID", "");
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
-        name = getActivity().findViewById(R.id.user_name);
-        student_id = getActivity().findViewById(R.id.student_id);
-        phoneNum = getActivity().findViewById(R.id.phone_number);
-        newPW = getActivity().findViewById(R.id.newPW);
-        checkPW = getActivity().findViewById(R.id.checkPW);
-        changePW = getActivity().findViewById(R.id.changePW);
-        withdraw = getActivity().findViewById(R.id.withdraw);
-        logout = getActivity().findViewById(R.id.logout);
 
-        // 회원 정보 출력
-        name.setText(pref.getString("name", ""));
-        student_id.setText(pref.getString("student_id", ""));
-        phoneNum.setText(pref.getString("phoneNum", ""));
+        name = view.findViewById(R.id.user_name);
+        student_id = view.findViewById(R.id.student_id);
+        phoneNum = view.findViewById(R.id.phone_number);
+        newPW = view.findViewById(R.id.newPW);
+        checkPW = view.findViewById(R.id.checkPW);
+        changePW = view.findViewById(R.id.changePW);
+        selectImg = view.findViewById(R.id.selectImageBtn);
+        withdraw = view.findViewById(R.id.withdraw);
+        logout = view.findViewById(R.id.logout);
+
+        // 회원 정보 출력 (DB read)
+        myRef.child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
+                name.setText("이름: " + user.getUserName());
+                student_id.setText("아이디: " + user.getId());
+                phoneNum.setText("전화번호: " + user.getPhoneNum());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         // 비밀 번호 변경
-        changePW.setOnClickListener(v -> {
-            // 두 비밀번호가 일치하지 않을 때
-            if(newPW.getText().toString().equals(checkPW.getText().toString())){
-                Toast.makeText(getActivity().getApplication(), "비밀번호가 일치하지 않습니다.\n 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
-                return ;
-            }
-            Pattern pattern = Pattern.compile(policyPW);
-            Matcher matcher = pattern.matcher(newPW.getText().toString());
-            // 비밀번호 정책을 부합하지 않을 때
-            if(!matcher.matches()){
-               Toast.makeText(getActivity().getApplication(),
-                       "비밀번호는 영소문자, 숫자, 특수문자가 반드시 1개 이상 들어간 8자 이상의 문자열이어야합니다.",
-                       Toast.LENGTH_LONG).show();
-               return ;
-            }
-
-            // 현재 로그인된 계정의 비밀번호 변경 (DB write)
-            myRef.child("mp2021-t9-default-rtdb").child("users").child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                    user.setPassword(newPW.getText().toString());
-                    Toast.makeText(getActivity().getApplicationContext(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "Changed password is: " + user.getPassword());
+        changePW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 두 비밀번호가 일치하지 않을 때
+                if(!newPW.getText().toString().equals(checkPW.getText().toString())){
+                    Toast.makeText(getActivity(), "비밀번호가 일치하지 않습니다.\n 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+                Pattern pattern = Pattern.compile(policyPW);
+                Matcher matcher = pattern.matcher(newPW.getText().toString());
+                // 비밀번호 정책을 부합하지 않을 때
+                if(!matcher.matches()){
+                    Toast.makeText(getActivity(),
+                            "비밀번호는 영대소문자, 숫자로 이루어진 8자 이상의 문자열이어야합니다.",
+                            Toast.LENGTH_LONG).show();
+                    return ;
                 }
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    Log.w(TAG, "Failed to read value.", error.toException());
-                }
-            });
+                // 현재 로그인된 계정의 비밀번호 변경 (DB write)
+                myRef.child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
+                        user.setPassword(newPW.getText().toString());
+                        Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Changed password is: " + user.getPassword());
+                    }
 
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        Log.w(TAG, "Failed to read value.", error.toException());
+                    }
+                });
+
+
+            }
         });
+
         selectImg.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
@@ -126,8 +146,9 @@ public class SeeProfile extends Fragment {
                             Intent intent = result.getData();
                             Uri selectedImageUri = intent.getData();
                             try {
-                                InputStream in = getActivity().getContentResolver().openInputStream(selectedImageUri);
+                                InputStream in = view.getContext().getContentResolver().openInputStream(selectedImageUri);
                                 validImg = BitmapFactory.decodeStream(in);
+                                selectImg.setImageBitmap(validImg);
                                 in.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -139,51 +160,65 @@ public class SeeProfile extends Fragment {
 
         // 부스 관리자 등록 버튼에 대한 추가 구현 필요.
 
-        // 로그아웃부분       -- 다이얼로그 추가 구현 해주세요
+        // 로그아웃
         logout.setOnClickListener(v -> {
-            // 프리퍼런스 비우기
-            SharedPreferences.Editor editor = pref.edit();
-            editor.clear();
-            editor.commit();
-
-            // 테스트용 출력부분
-            Toast.makeText(getActivity().getApplicationContext(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("알림").setMessage("로그아웃하시겠습니까?")
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+                            Toast.makeText(getActivity(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Success logout!");
+                        }
+                    })
+                    .setNegativeButton("취소", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    })
+                    .create()
+                    .show();
         });
 
-        withdraw.setOnClickListener( v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("주의").setMessage("계정을 삭제하시겠습니까?");
-            AlertDialog alertDialog = builder.create();
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    // 탈퇴시 데이터 베이스에서 삭제 후 홍보 메인 페이지로 이동. (DB write)
-                    myRef.child("mp2021-t9-default-rtdb").child("users").child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(getActivity().getApplicationContext(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "Delete account");
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity().getApplicationContext(), "계정 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
-                    });
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
-                }
-            });
-
-            builder.setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    // 아무것도 안함
-                }
-            });
-            alertDialog.show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("주의").setMessage("계정을 삭제하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                // 탈퇴시 데이터 베이스에서 삭제 후 홍보 메인 페이지로 이동. (DB write)
+                                myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(getActivity(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Log.d(TAG, "Delete account");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getActivity(), "계정 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                    }
+                                });
+                                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                // 아무것도 안함
+                            }
+                        })
+                        .create()
+                        .show();
+            }
         });
 
         return view;

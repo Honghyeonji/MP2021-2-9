@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
-public class GoodsInfo_list {
+import java.io.Serializable;
+
+public class GoodsInfo_list implements Serializable {
     // soldout 빼고 모두 스트링으로 저장, 불러오기!
     private String userId;
     private String goodsName;
@@ -27,10 +29,10 @@ public class GoodsInfo_list {
         return goodsImgurl;
     }
     public void setGoodsImgUrl(String goodsImgurl){ this.goodsImgurl = goodsImgurl; }
-    public boolean getSoldOut(){
+    public boolean getGoodsIsSoldOut(){
         return goodsIsSoldOut;
     }
-    public void setSoldOut(boolean goodsIsSoldOut) {
+    public void setGoodsIsSoldOut(boolean goodsIsSoldOut) {
         goodsIsSoldOut = goodsIsSoldOut;
     }
     public String getGoodsLocation(){

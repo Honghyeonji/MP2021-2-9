@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 public class UserPage extends Fragment {
     View view;
     Button infoCheck, goodsPost, promotionPost, goodsManage;
+    Bundle bundle;
+    String loginID; boolean isManager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
@@ -21,12 +23,12 @@ public class UserPage extends Fragment {
         promotionPost = view.findViewById(R.id.promotion_posting);
         goodsManage = view.findViewById(R.id.goods_management);
 
-        String loginId = getArguments().getString("ID");
-        boolean isManager = getArguments().getBoolean("isManager");
+        loginID = getArguments().getString("ID");
+        isManager = getArguments().getBoolean("isManager");
 
         // 각각의 프래그먼트로 이동시 현재 로그인된 계정의 아이디 전달 객체 Bundle
-        Bundle bundle = new Bundle();
-        bundle.putString("ID", loginId);
+        bundle = new Bundle();
+        bundle.putString("ID", loginID);
 
         // 개인정보 확인 페이지로 전환
         infoCheck.setOnClickListener(new View.OnClickListener() {
