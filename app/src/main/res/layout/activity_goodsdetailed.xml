@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/goods_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
                 android:layout_margin="20dp"
                 android:src="@color/white"/>
 
@@ -73,7 +73,8 @@
                 android:id="@+id/goods_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+                android:background="@drawable/textbox_pink"/>
 
 <!--            <ImageView-->
 <!--                android:id="@+id/goods_map"-->
