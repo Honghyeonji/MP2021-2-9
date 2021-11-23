@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddPromotionActivity extends Fragment {
-    int id;
+    String userid;
     View view;
     EditText boothname, boothlocation,boothtime;
     Button save;
@@ -30,19 +30,20 @@ public class AddPromotionActivity extends Fragment {
         boothname= (EditText) view.findViewById(R.id.booth_name);
         boothlocation = (EditText) view.findViewById(R.id.booth_location);
         boothtime = (EditText) view.findViewById(R.id.booth_time);
+        userid = getArguments().getString("ID");
 
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addbooth(boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), "받을 아이디");
+                addbooth(boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid);
             }
         });
         return view;
     }
     public void addbooth(String boothLocation, String boothName,String boothOpenTime, String userid){
         AddPromotionData addPromotionData = new AddPromotionData(boothLocation, boothName,boothOpenTime,userid);
-        databaseReference.child("booth"+userid).setValue(addPromotionData);
+        databaseReference.push().setValue(addPromotionData);
 
     }
 

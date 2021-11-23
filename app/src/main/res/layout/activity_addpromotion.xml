@@ -55,27 +55,31 @@
                 android:id="@+id/booth_name"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="부스 이름" />
+                android:hint="부스 이름"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
 
             <EditText
                 android:id="@+id/booth_location"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="부스 위치" />
+                android:hint="부스 위치"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
             <EditText
                 android:id="@+id/booth_time"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="부스 시간" />
+                android:hint="부스 시간"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
             <EditText
                 android:id="@+id/booth"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="부스 설명 "
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
             <ImageView
                 android:id="@+id/imageView"

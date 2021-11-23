@@ -10,7 +10,7 @@ public class AddPromotionData {
     public String goodsIsSoldout, goodsLocation, goodsName, goodsPrice, goodsImgurl,  goodsTxturl;
 
     public AddPromotionData(){}
-    public AddPromotionData(String goodsLocation, String goodsName, String goodsPrice, String userid , String goodsIsSoldout){
+    public AddPromotionData(String goodsIsSoldout, String goodsLocation, String goodsName, String goodsPrice, String userid){
         this.goodsLocation = goodsLocation;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
