@@ -23,7 +23,9 @@
 
         <activity android:name=".LoginActivity" android:label="Login page"/>
         <activity android:name=".DetailPromotionActivity" android:label="Promotion Detailed page"/>
+        <!--
         <activity android:name=".DetailGoodsFrag" android:label="Goods Detailed Page"/>
+        -->
         <activity android:name=".JoinActivity" android:label="Join Page"/>
 
     </application>

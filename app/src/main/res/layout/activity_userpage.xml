@@ -6,7 +6,7 @@
     android:clipToOutline="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    >
 
     <Button
         android:id="@+id/information_check"
