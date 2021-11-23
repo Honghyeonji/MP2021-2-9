@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
-public class BoothInfo_list {
+import java.io.Serializable;
+
+public class BoothInfo_list implements Serializable {
     private String boothImgurl;
     private String boothLocation;
     private String boothName;
