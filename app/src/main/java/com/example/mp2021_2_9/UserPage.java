@@ -1,12 +1,12 @@
 package com.example.mp2021_2_9;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 public class UserPage extends Fragment {
@@ -56,7 +56,7 @@ public class UserPage extends Fragment {
                         public void onClick(DialogInterface dialog, int id) {
                             SeeProfile sp = new SeeProfile();
                             sp.setArguments(bundle);
-                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, sp).commit();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
                         }
                     });
 
@@ -90,7 +90,7 @@ public class UserPage extends Fragment {
                         public void onClick(DialogInterface dialog, int id) {
                             SeeProfile sp = new SeeProfile();
                             sp.setArguments(bundle);
-                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, sp).commit();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
                         }
                     });
 
@@ -115,31 +115,30 @@ public class UserPage extends Fragment {
             public void onClick(View v) {
                 /* 판매자 인증이 안된 사용자라면 */
                 if (!isManager) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
-                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
-                    AlertDialog alertDialog = builder.create();
-
-                    builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            SeeProfile sp = new SeeProfile();
-                            sp.setArguments(bundle);
-                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, sp).commit();
-                        }
-                    });
-
-                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            // 아무것도 안함
-                        }
-                    });
-                    alertDialog.show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("알림")
+                            .setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?")
+                            .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    SeeProfile sp = new SeeProfile();
+                                    sp.setArguments(bundle);
+                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // 아무것도 안함
+                                }
+                            })
+                            .create()
+                            .show();
                 } else {
                     /* 판매자 인증이 된 사용자라면 */
                     ManageGoods mg = new ManageGoods();
                     mg.setArguments(bundle);
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, mg).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, mg).commit();
                 }
             }
         });

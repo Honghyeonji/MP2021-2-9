@@ -95,6 +95,12 @@ public class SeeProfile extends Fragment {
         changePW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 둘 중 하나라도 null값이라면
+                if((newPW.getText() == null)||(checkPW.getText() == null)){
+                    Toast.makeText(getActivity(), "올바른 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+
                 // 두 비밀번호가 일치하지 않을 때
                 if(!newPW.getText().toString().equals(checkPW.getText().toString())){
                     Toast.makeText(getActivity(), "비밀번호가 일치하지 않습니다.\n 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -102,6 +108,7 @@ public class SeeProfile extends Fragment {
                 }
                 Pattern pattern = Pattern.compile(policyPW);
                 Matcher matcher = pattern.matcher(newPW.getText().toString());
+
                 // 비밀번호 정책을 부합하지 않을 때
                 if(!matcher.matches()){
                     Toast.makeText(getActivity(),
