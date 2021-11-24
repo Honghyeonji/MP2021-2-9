@@ -3,10 +3,8 @@ package com.example.mp2021_2_9;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -81,7 +79,7 @@ public class SeeProfile extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
                 name.setText("이름: " + user.getUserName());
-                student_id.setText("아이디: " + user.getId());
+                student_id.setText("학번: " + user.getId());
                 phoneNum.setText("전화번호: " + user.getPhoneNum());
             }
 
