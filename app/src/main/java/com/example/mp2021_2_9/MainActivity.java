@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Main_Activity";
     private BottomNavigationView mBottomNavigationView;
@@ -56,26 +58,21 @@ public class MainActivity extends AppCompatActivity {
                         }else{              // 로그인상태 - 개인정보화면
                             Bundle bundle = new Bundle();
                             bundle.putString("ID", preferences.getString("ID", ""));
-                            myRef.child(preferences.getString("ID", "")).addListenerForSingleValueEvent(new ValueEventListener(){
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                                    isManager =  user.getIsManager();
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError error) {
-                                    Log.w(TAG, "Failed to read value.", error.toException());
-                                }
-                            });
-                            bundle.putBoolean("isManager", isManager);
                             UserPage userpage = new UserPage();
-                            userpage.setArguments(bundle);
-
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
-
+                            myRef.child(preferences.getString("ID", "")).child("isManager").addListenerForSingleValueEvent(new ValueEventListener(){
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        isManager = dataSnapshot.getValue(boolean.class);
+                                        bundle.putBoolean("isManager", isManager);
+                                        userpage.setArguments(bundle);
+                                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
+                                    }
+                                    @Override
+                                    public void onCancelled(DatabaseError error) {
+                                        Log.w(TAG, "Failed to read value.", error.toException());
+                                    }
+                                });
                         }
-
                         break;
                 }
                 return true;

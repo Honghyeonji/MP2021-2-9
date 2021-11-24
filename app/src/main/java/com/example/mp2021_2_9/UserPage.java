@@ -13,7 +13,7 @@ public class UserPage extends Fragment {
     View view;
     Button infoCheck, goodsPost, promotionPost, goodsManage;
     Bundle bundle;
-    String loginID; boolean isManager;
+    String loginID; Boolean isManager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
@@ -23,12 +23,13 @@ public class UserPage extends Fragment {
         promotionPost = view.findViewById(R.id.promotion_posting);
         goodsManage = view.findViewById(R.id.goods_management);
 
-        loginID = getArguments().getString("ID");
-        isManager = getArguments().getBoolean("isManager");
+        loginID = this.getArguments().getString("ID");
+        isManager = this.getArguments().getBoolean("isManager");
 
         // 각각의 프래그먼트로 이동시 현재 로그인된 계정의 아이디 전달 객체 Bundle
         bundle = new Bundle();
         bundle.putString("ID", loginID);
+        bundle.putBoolean("isManager", isManager);
 
         // 개인정보 확인 페이지로 전환
         infoCheck.setOnClickListener(new View.OnClickListener() {
@@ -48,25 +49,23 @@ public class UserPage extends Fragment {
                 if(!isManager) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?");
-                    AlertDialog alertDialog = builder.create();
-
-                    builder.setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            SeeProfile sp = new SeeProfile();
-                            sp.setArguments(bundle);
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
-                        }
-                    });
-
-                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            // 아무것도 안함
-                        }
-                    });
-                    alertDialog.show();
+                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다.\n판매자 인증하시겠습니까?")
+                        .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                SeeProfile sp = new SeeProfile();
+                                sp.setArguments(bundle);
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                // 아무것도 안함
+                            }
+                        })
+                        .create()
+                        .show();
                 }else{
                     AddItemActivity ai = new AddItemActivity();
                     ai.setArguments(bundle);
@@ -82,7 +81,7 @@ public class UserPage extends Fragment {
                 /* 판매자 인증이 안된 사용자라면 */
                 if(!isManager) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?")
+                    builder.setTitle("알림").setMessage("판매자 인증이 안된 계정입니다.\n판매자 인증하시겠습니까?")
                         .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -116,7 +115,7 @@ public class UserPage extends Fragment {
                 if (!isManager) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("알림")
-                            .setMessage("판매자 인증이 안된 계정입니다. 판매자 인증하시겠습니까?")
+                            .setMessage("판매자 인증이 안된 계정입니다.\n판매자 인증하시겠습니까?")
                             .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
