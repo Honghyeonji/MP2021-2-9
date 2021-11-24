@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.core.content.ContextCompat;
-
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -64,15 +62,12 @@ public class ListViewAdapter extends BaseAdapter{
         if(goodsList.get(position).getIsSoldOut())
             isSoldOut.setTextColor(ContextCompat.getColor(this.mContext, R.color.gray));    // 재고가 있을땐 회색 글씨
         else
-            isSoldOut.setTextColor(ContextCompat.getColor(this.mContext, R.color.red)); // 품절시 빨간 글씨
+            isSoldOut.setTextColor(ContextCompat.getColor(this.mContext, R.color.red));  // 품절시 빨간 글씨
 
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //LinearLayout itemParent = (LinearLayout)v.getParent();
-                //int nPosition = (int) v.getTag();
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("주의").setMessage("해당 상품 관련 데이터가 모두 삭제됩니다. \n 삭제하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener(){
@@ -85,7 +80,6 @@ public class ListViewAdapter extends BaseAdapter{
                                 notifyDataSetChanged();
                                 Toast.makeText(view.getContext().getApplicationContext(), "상품이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                 Log.d("ListViewAdapter: ", "Success to delete goods!");
-
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener(){
@@ -96,12 +90,8 @@ public class ListViewAdapter extends BaseAdapter{
                         })
                         .create()
                         .show();
-
             }
         });
-
-
         return view;
     }
-
 }

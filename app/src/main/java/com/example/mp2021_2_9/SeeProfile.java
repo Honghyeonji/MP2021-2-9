@@ -131,7 +131,6 @@ public class SeeProfile extends Fragment {
                     }
                 });
 
-
             }
         });
 
@@ -225,7 +224,6 @@ public class SeeProfile extends Fragment {
                         .show();
             }
         });
-
         return view;
     }
 }

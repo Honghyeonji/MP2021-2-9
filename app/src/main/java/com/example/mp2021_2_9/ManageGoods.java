@@ -1,10 +1,8 @@
 package com.example.mp2021_2_9;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 
@@ -54,10 +51,8 @@ public class ManageGoods extends Fragment {
                 for (DataSnapshot item : snapshot.getChildren()) {
                     GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
                     goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
-                    //adapter.goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
                 }
                 adapter.notifyDataSetChanged();
-                //listView.setSelection(adapter.getCount() -1);
             }
 
             @Override
@@ -68,32 +63,4 @@ public class ManageGoods extends Fragment {
 
         return view;
     }
-/*
-    public void removeGoods(ListItem it){
-        Query query = myRef.orderByChild("userId").equalTo(loginID);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                goodsList.clear();
-                for (DataSnapshot item : snapshot.getChildren()){
-                    if(it.getName() == item.getRef){
-                        item.getRef().removeValue();
-                        continue;
-                    }
-                    GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
-                    goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut()));
-                    //adapter.item.add(new ListItem(item_name), goods.getIsSoldOut());
-                }
-                adapter.notifyDataSetChanged();
-                //listView.setSelection(adapter.getCount() -1);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, error.toException());
-            }
-        });
-    }
-
- */
 }
