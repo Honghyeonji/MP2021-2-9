@@ -64,8 +64,9 @@ public class AddItemActivity extends Fragment {
         return view;
     }
     public void additem(String goodsIsSoldout, String goodsLocation, String goodsName, String goodsPrice, String userid){
-        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldout, goodsLocation,goodsName,goodsPrice,userid);
-        databaseReference.push().setValue(addgoodsdata);
+        DatabaseReference ref = databaseReference.push();
+        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldout, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid);
+        ref.setValue(addgoodsdata);
     }
 
 }

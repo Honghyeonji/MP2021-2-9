@@ -1,7 +1,5 @@
 package com.example.mp2021_2_9;
 
-import java.util.IdentityHashMap;
-
 // 로그인 정보 snapshot으로 받아올 클래스
 public class UserInfo_list {
 
@@ -40,12 +38,12 @@ public class UserInfo_list {
     public boolean getIsManager(){
         return isManager;
     }
-    public void setManager(boolean isManager){
+    public void setManager(Boolean isManager){
         this.isManager = isManager;
     }
 
     // 그룹 생성시 사용
-    public UserInfo_list(String id, String password, String userName, String phoneNum, boolean isManager){
+    public UserInfo_list(String id, String password, String userName, String phoneNum, Boolean isManager){
         this.id = id;
         this.password = password;
         this.userName = userName;
