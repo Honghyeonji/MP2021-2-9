@@ -77,7 +77,7 @@ public class GoodsMainFrag extends Fragment {
                 GoodsInfo_list tempList = goods_lists.get(pos);
                 DetailGoodsFrag f = new DetailGoodsFrag();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("GoodsInfo_list", tempList);
+                bundle.putSerializable("GoodsInfo_list", (Serializable) tempList);
                 f.setArguments(bundle);
                 transaction.replace(R.id.frame_container, f).commit();
                 Log.v("test", "pos:" + pos);

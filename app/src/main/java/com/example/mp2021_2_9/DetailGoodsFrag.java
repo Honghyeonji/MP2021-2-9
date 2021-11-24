@@ -46,7 +46,7 @@ public class DetailGoodsFrag extends Fragment {
 
         Bundle bundle = getArguments();
         GoodsInfo_list goodsinfo = (GoodsInfo_list) bundle.getSerializable("GoodsInfo_list");
-        Log.w("test", "id " + goodsinfo.getGoodsName() + ", " +goodsinfo.getUserId());
+        Log.w("test", "id " + goodsinfo.getGoodsName() + ", " +goodsinfo.getUserid());
 
         TextView goods_name = v.findViewById(R.id.goods_name);
         TextView goods_price = v.findViewById(R.id.goods_price);

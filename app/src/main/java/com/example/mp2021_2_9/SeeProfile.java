@@ -2,10 +2,9 @@ package com.example.mp2021_2_9;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.content.Context;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -16,7 +15,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -83,7 +81,7 @@ public class SeeProfile extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
                 name.setText("이름: " + user.getUserName());
-                student_id.setText("아이디: " + user.getId());
+                student_id.setText("학번: " + user.getId());
                 phoneNum.setText("전화번호: " + user.getPhoneNum());
             }
 
@@ -97,6 +95,12 @@ public class SeeProfile extends Fragment {
         changePW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 둘 중 하나라도 null값이라면
+                if((newPW.getText() == null)||(checkPW.getText() == null)){
+                    Toast.makeText(getActivity(), "올바른 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+
                 // 두 비밀번호가 일치하지 않을 때
                 if(!newPW.getText().toString().equals(checkPW.getText().toString())){
                     Toast.makeText(getActivity(), "비밀번호가 일치하지 않습니다.\n 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -104,6 +108,7 @@ public class SeeProfile extends Fragment {
                 }
                 Pattern pattern = Pattern.compile(policyPW);
                 Matcher matcher = pattern.matcher(newPW.getText().toString());
+
                 // 비밀번호 정책을 부합하지 않을 때
                 if(!matcher.matches()){
                     Toast.makeText(getActivity(),
@@ -127,7 +132,6 @@ public class SeeProfile extends Fragment {
                         Log.w(TAG, "Failed to read value.", error.toException());
                     }
                 });
-
 
             }
         });
@@ -222,7 +226,6 @@ public class SeeProfile extends Fragment {
                         .show();
             }
         });
-
         return view;
     }
 }
