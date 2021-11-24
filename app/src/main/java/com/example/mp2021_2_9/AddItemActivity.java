@@ -38,6 +38,8 @@ public class AddItemActivity extends Fragment {
 
 //        loginID = getArguments().getString("ID");
 
+        app_info.setNowPage("굿즈등록페이지");
+
         save = (Button) view.findViewById(R.id.savebutton);
         itemname = (EditText) view.findViewById(R.id.item_name);
         itemprice = (EditText) view.findViewById(R.id.item_price);

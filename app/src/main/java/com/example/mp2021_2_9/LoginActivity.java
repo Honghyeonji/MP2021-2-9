@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         String TAG = "LoginActivity";
 
+        app_info.setNowPage("로그인페이지");
+
         EditText inputId = (EditText) findViewById(R.id.inputIdnum);    // 아이디(학번)
         EditText inputPw = (EditText) findViewById(R.id.inputPW);       // 비밀번호
         Button login = (Button) findViewById(R.id.button_login);                    // 로그인버튼 - 메인화면으로

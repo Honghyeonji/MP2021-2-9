@@ -65,6 +65,8 @@ public class SeeProfile extends Fragment {
         String loginID = this.getArguments().getString("ID", "");
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
 
+        app_info.setNowPage("개인정보수정페이지");
+
         name = view.findViewById(R.id.user_name);
         student_id = view.findViewById(R.id.student_id);
         phoneNum = view.findViewById(R.id.phone_number);

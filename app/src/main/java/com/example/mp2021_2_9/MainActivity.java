@@ -7,8 +7,11 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Main_Activity";
@@ -18,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        app_info.setKeyMap();
+        app_info.setPageMap();
+
+        Toolbar toolbar = findViewById(R.id.mp_toolbar);
+        setSupportActionBar(toolbar);
+        if(app_info.isEmptyStack()) Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        else Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
+        app_info.setNowPage("부스메인페이지");
+        getSupportActionBar().setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
 

@@ -35,6 +35,8 @@ public class GoodsMainFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.shopping_main_screen, container, false);
 
+        app_info.setNowPage("굿즈메인페이지");
+
         goods_lists = new ArrayList<>();        // 상품 정보 담을 arrayList
 
         // DB 부분

@@ -47,6 +47,8 @@ public class ManageGoods extends Fragment {
         view = inflater.inflate(R.layout.activity_managegoods, container, false);
         loginID = getArguments().getString("ID");
 
+        app_info.setNowPage("등록상품관리페이지");
+
         goodsList = new ArrayList<>();
         adapter = new ListViewAdapter(this.getContext(), goodsList);
 

@@ -41,6 +41,9 @@ public class DetailGoodsFrag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = (ViewGroup) inflater.inflate(R.layout.activity_goodsdetailed, container, false);
+
+        app_info.setNowPage("굿즈세부페이지");
+
         Bundle bundle = getArguments();
         GoodsInfo_list goodsinfo = (GoodsInfo_list) bundle.getSerializable("GoodsInfo_list");
         Log.w("test", "id " + goodsinfo.getGoodsName() + ", " +goodsinfo.getUserId());
@@ -56,57 +59,56 @@ public class DetailGoodsFrag extends Fragment {
         ImageView goodsImg = (ImageView) v.findViewById(R.id.goods_image);
         Glide.with(goodsImg).load(goodsinfo.getGoodsImgUrl()).into(goodsImg);
 
-        FirebaseStorage storage = FirebaseStorage.getInstance("gs://mp2021-t9.appspot.com");
-        StorageReference storageRef = storage.getReference();
-        StorageReference pathReference = storageRef.child("goods/" + goodsinfo.getGoodsName() + ".txt");
 
-        try{
-            File path = new File(Environment.getExternalStorageDirectory() + "goodstxt");
-            final File file = new File(path, goodsinfo.getGoodsName() + ".txt");
-            try{
-                if(!path.exists()){
-                    path.mkdirs();
-                }
-                file.createNewFile();
-
-                final FileDownloadTask fileDownloadTask = pathReference.getFile(file);
-                fileDownloadTask.addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        //다운로드 성공 후 할 일
-//                        FileInputStream fis;
-//                        try{
-//                            FileReader fr = new FileReader(goodsinfo.getGoodsName() + ".txt");
-//                            BufferedReader buffer = new BufferedReader(fr);
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference pathReference = storage.getReferenceFromUrl(goodsinfo.getGoodsTxtUrl());
 //
-//                            String line;
-//                            ArrayList<String> lines = new ArrayList<>();
-//                            while((line = buffer.readLine()) != null){
-//                                lines.add(line);
-//                            }
-//                            buffer.close();
-//                        }catch (Exception e){
-//                            e.printStackTrace();
-//                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        //다운로드 실패 후 할 일
-                    }
-                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    //진행상태 표시
-                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                    }
-                });
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            File localFile = File.createTempFile("detail", "txt");
+//            try{
+////                if(!path.exists()){
+////                    path.mkdirs();
+////                }
+////                file.createNewFile();
+//
+//                final FileDownloadTask fileDownloadTask = pathReference.getFile(localFile);
+//                fileDownloadTask.addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                        //다운로드 성공 후 할 일
+////                        FileInputStream fis;
+////                        try{
+////                            FileReader fr = new FileReader(goodsinfo.getGoodsName() + ".txt");
+////                            BufferedReader buffer = new BufferedReader(fr);
+////
+////                            String line;
+////                            ArrayList<String> lines = new ArrayList<>();
+////                            while((line = buffer.readLine()) != null){
+////                                lines.add(line);
+////                            }
+////                            buffer.close();
+////                        }catch (Exception e){
+////                            e.printStackTrace();
+////                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        //다운로드 실패 후 할 일
+//                    }
+//                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
+//                    @Override
+//                    //진행상태 표시
+//                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//
+//                    }
+//                });
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
         return v;
     }

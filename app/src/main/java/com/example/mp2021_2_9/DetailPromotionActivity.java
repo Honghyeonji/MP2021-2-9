@@ -23,6 +23,9 @@ public class DetailPromotionActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = (ViewGroup) inflater.inflate(R.layout.activity_promtdetailed, container, false);
+
+        app_info.setNowPage("부스세부페이지");
+
         Bundle bundle = getArguments();
         BoothInfo_list boothinfo = (BoothInfo_list) bundle.getSerializable("BoothInfo_list");
         Log.w("test", "id " + boothinfo.getBoothName() + ", " +boothinfo.getUserId());

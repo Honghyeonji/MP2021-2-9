@@ -33,6 +33,8 @@ public class AddPromotionActivity extends Fragment {
 
 //        loginID = getArguments().getString("ID");
 
+        app_info.setNowPage("부스등록페이지");
+
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);
         boothlocation = (EditText) view.findViewById(R.id.booth_location);

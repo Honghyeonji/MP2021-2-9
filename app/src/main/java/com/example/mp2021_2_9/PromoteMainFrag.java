@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +45,7 @@ public class PromoteMainFrag extends Fragment {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.promotion_main_screen, container, false);
         setInit();
 
+        app_info.setNowPage("부스메인페이지");
 
         /* 상품 목록 부분 */
         boothInfo_lists = new ArrayList<>();    // 부스 정보 담을 arraylist
