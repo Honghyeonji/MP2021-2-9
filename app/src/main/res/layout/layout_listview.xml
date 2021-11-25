@@ -28,8 +28,9 @@
                 android:id="@+id/isSoldOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10sp"
                 android:layout_marginEnd="10sp"
+                android:background="@android:color/transparent"
+                android:padding="10sp"
                 android:text="@string/soldout"
                 android:textSize="16sp" />
 
