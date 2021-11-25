@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,8 @@ public class ManageGoods extends Fragment {
 
     View view;
     String loginID;
+    ImageButton searchBtn;
+    EditText searchTxt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +44,8 @@ public class ManageGoods extends Fragment {
         adapter = new ListViewAdapter(this, goodsList);
 
         ListView listView = (ListView) view.findViewById(R.id.managegoods_list);
+        searchBtn = (ImageButton) view.findViewById(R.id.searchBtn);
+        searchTxt = (EditText) view.findViewById(R.id.searchTxt);
         listView.setAdapter(adapter);
 
         // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
@@ -61,6 +67,34 @@ public class ManageGoods extends Fragment {
             }
         });
 
-        return view;
+        // 서치 버튼 클릭시 goodslist 변경경
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goodsList.clear();
+                Query query = myRef.orderByChild("userid").equalTo(loginID);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        goodsList.clear();
+                        String keyword = searchTxt.getText().toString();
+                        for (DataSnapshot item : snapshot.getChildren()) {
+                            GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
+                            if(goods.getGoodsName().contains(keyword)) {
+                                goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.w(TAG, error.toException());
+                    }
+                });
+            }
+        });
+
+       return view;
     }
 }
