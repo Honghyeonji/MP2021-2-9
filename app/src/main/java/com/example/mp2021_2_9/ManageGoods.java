@@ -52,7 +52,7 @@ public class ManageGoods extends Fragment {
 
         // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
         Query query = myRef.orderByChild("userid").equalTo(loginID);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 goodsList.clear();
