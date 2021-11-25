@@ -28,7 +28,7 @@ public class AddItemActivity extends Fragment  {
     DatabaseReference databaseReference = base.child("goods");
     DatabaseReference myRef = base.child("users");
     Button save;
-    String goodsIsSoldout = "false";
+    boolean goodsIsSoldOut = false;
 
 
 //    FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -64,7 +64,7 @@ public class AddItemActivity extends Fragment  {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                additem(goodsIsSoldout, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
+                additem(goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
@@ -72,9 +72,9 @@ public class AddItemActivity extends Fragment  {
         });
         return view;
     }
-    public void additem(String goodsIsSoldout, String goodsLocation, String goodsName, String goodsPrice, String userid){
+    public void additem(boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String userid){
         DatabaseReference ref = databaseReference.push();
-        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldout, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid);
+        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldOut, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid);
         ref.setValue(addgoodsdata);
     }
 

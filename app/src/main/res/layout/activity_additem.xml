@@ -7,44 +7,48 @@
     android:orientation="vertical"
     tools:context=".AddItemActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="20dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/selectImageBtn"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
-            android:contentDescription="@string/camera"
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/camera"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <EditText
-            android:id="@+id/item_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="상품 이름"
-            android:privateImeOptions="defaultInputmode=korean"/>
+            android:layout_height="450dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/selectImageBtn"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:contentDescription="@string/camera"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/camera"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <EditText
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="상품 이름"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
 
-        <EditText
-            android:id="@+id/item_price"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:inputType="number"
-            android:hint="상품 가격"/>
-        <EditText
-            android:id="@+id/booth_location"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="부스 위치"
-            android:privateImeOptions="defaultInputmode=korean"/>
+            <EditText
+                android:id="@+id/item_price"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="number"
+                android:hint="상품 가격"/>
+            <EditText
+                android:id="@+id/booth_location"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="부스 위치"
+                android:privateImeOptions="defaultInputmode=korean"/>
 
             <EditText
                 android:id="@+id/item_description"
@@ -66,5 +70,7 @@
                 android:backgroundTint="#EABADB"
                 android:text="저장하기" />
         </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

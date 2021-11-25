@@ -17,10 +17,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.ArrayList;
@@ -38,8 +43,11 @@ public class ListViewAdapter extends BaseAdapter{
     ArrayList<ListItem> goodsList;
 
     TextView itemName;
-    TextView isSoldOut;
+    TextView btn_isSoldOut;
     TextView delete;
+
+    boolean tempValue;
+
 
     public ListViewAdapter(ManageGoods page, ArrayList<ListItem> data) {
         mContext = page.getContext();
@@ -69,35 +77,65 @@ public class ListViewAdapter extends BaseAdapter{
         View view = mLayoutInflater.inflate(R.layout.layout_listview, null);
 
         itemName = (TextView)view.findViewById(R.id.item_name);
-        isSoldOut = (TextView)view.findViewById(R.id.isSoldOut);
+        btn_isSoldOut = (TextView)view.findViewById(R.id.isSoldOut);
         delete = (TextView)view.findViewById(R.id.delete);
 
         itemName.setText(goodsList.get(position).getName());
 
-        if(goodsList.get(position).getIsSoldOut()) {
-            isSoldOut.setTextColor(Color.RED);    // 품절시 빨간 글씨
+        if(goodsList.get(position).getIsSoldOut()) {    //true
+            btn_isSoldOut.setTextColor(Color.RED);    // 품절시 빨간 글씨
             Log.d(TAG, "gray->red");
         }else {
-            isSoldOut.setTextColor(Color.GRAY);  // 재고가 있을시 회색 글씨
-            ;
+            btn_isSoldOut.setTextColor(Color.GRAY);  // 재고가 있을시 회색 글씨
             Log.d(TAG, "red->gray");
         }
 
-        isSoldOut.setOnClickListener(new View.OnClickListener() {
+        // 품절버튼 이벤트
+        btn_isSoldOut.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("LongLogTag")
             @Override
             public void onClick(View v) {
-                    // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
-                if(isSoldOut.getCurrentTextColor() == Color.RED){
-                    myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(false);
-                    Log.d(TAG+"(onClick)", "red->gray");
-                }else{
-                    myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(true);
-                    Log.d(TAG+"(onClick)", "gray->red");
+                // 해당 데이터의 goodsIsSoldOut 값 받아서 tempValue에 저장
+                tempValue = goodsList.get(position).getIsSoldOut();
 
-                    }
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("확인");
+
+                if (tempValue == false) {   // 품절아니었을 때  -> true(품절)로
+                    builder.setMessage("품절처리 하시겠습니까? \n").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(true);
+                            Toast.makeText(view.getContext().getApplicationContext(), "품절처리 되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    })
+                            .create()
+                            .show();
+                }else if(tempValue) {    // 품절이었을 때 -> false(품절아님)으로
+                    builder.setMessage("품절 취소처리 하시겟습니까? \n").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(false);
+                            Toast.makeText(view.getContext().getApplicationContext(), "품절 취소 처리 되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // 아무것도 안함
+                        }
+                    })
+                            .create()
+                            .show();
                 }
-            });
+
+                    notifyDataSetChanged();
+            }
+        });
 
         // 삭제 버튼 클릭시 해당 상품 삭제 후 Adapter에 반영
         delete.setOnClickListener(new View.OnClickListener() {
@@ -129,4 +167,5 @@ public class ListViewAdapter extends BaseAdapter{
         });
         return view;
     }
+
 }
