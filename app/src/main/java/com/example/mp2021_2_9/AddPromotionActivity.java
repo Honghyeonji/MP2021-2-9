@@ -37,7 +37,7 @@ public class AddPromotionActivity extends Fragment {
     ActivityResultLauncher resultLauncher;
     String userid;
     View view;
-    EditText boothname, boothlocation,boothtime;
+    EditText boothname, boothlocation,boothtime, boothdetail;
     Button save;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
@@ -64,10 +64,12 @@ public class AddPromotionActivity extends Fragment {
 
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);
+        boothname.setPrivateImeOptions("defaultInputmode=korean;");
         boothlocation = (EditText) view.findViewById(R.id.booth_location);
         boothtime = (EditText) view.findViewById(R.id.booth_time);
         userid = getArguments().getString("ID");
         addposter = (ImageButton)view.findViewById(R.id.selectImageBtn);
+        boothdetail = (EditText) view.findViewById(R.id.booth);
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +79,7 @@ public class AddPromotionActivity extends Fragment {
                 StorageReference imgRef = storage.getReference("goods/" + filename);
                 UploadTask uploadTask = imgRef.putFile(posteruri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
                 boothImgurl = posteruri.toString();
-                addbooth(boothImgurl,boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid);
+                addbooth(boothImgurl,boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid,boothdetail.getText().toString());
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
@@ -116,8 +118,8 @@ public class AddPromotionActivity extends Fragment {
         return view;
 
     }
-    public void addbooth(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid){
-        AddPromotionData addPromotionData = new AddPromotionData(boothImgurl,boothLocation, boothName,boothOpenTime,userid);
+    public void addbooth(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
+        AddPromotionData addPromotionData = new AddPromotionData(boothImgurl,boothLocation, boothName,boothOpenTime,userid,boothTxturl);
         databaseReference.push().setValue(addPromotionData);
 
     }

@@ -1,11 +1,9 @@
 package com.example.mp2021_2_9;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,11 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-
-import java.util.Objects;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 // 부스 홍보 상세페이지
 public class DetailPromotionActivity extends Fragment{
@@ -28,6 +25,8 @@ public class DetailPromotionActivity extends Fragment{
     ViewGroup v;
     TextView boothName,boothLocation,boothTime,boothDetail;
     ImageView poster;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
 
     @SuppressLint("SetTextI18n")
     @Nullable
@@ -39,11 +38,13 @@ public class DetailPromotionActivity extends Fragment{
         ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
+
         mainFrag = new PromoteMainFrag();
 
         Bundle bundle = getArguments();
         BoothInfo_list boothinfo = (BoothInfo_list) bundle.getSerializable("BoothInfo_list");
         Log.w("test", "id " + boothinfo.getBoothName() + ", " + boothinfo.getUserId());
+        StorageReference txtref = storage.getReference("booth/"+"가톨릭.txt");
 
         poster = (ImageView) v.findViewById(R.id.promt_poster);// 동아리 포스터 띄울 이미지뷰
         boothName = (TextView) v.findViewById(R.id.promt_name);
@@ -56,7 +57,7 @@ public class DetailPromotionActivity extends Fragment{
         boothLocation.setText(boothinfo.getBoothLocation());
         boothTime.setText(boothinfo.getBoothOpenTime());
         Glide.with(poster).load(boothinfo.getBoothImgurl()).into(poster);
-
+        boothDetail.setText(boothinfo.getBoothTxturl());
         return v;
     }
 }

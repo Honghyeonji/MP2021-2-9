@@ -21,12 +21,13 @@ public class AddPromotionData {
         this. userid = userid;
         this. goodsIsSoldOut = goodsIsSoldOut;
     }
-    public AddPromotionData(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid){
+    public AddPromotionData(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
         this.boothImgurl = boothImgurl;
         this.boothLocation = boothLocation;
         this.boothName =boothName;
         this.boothOpenTime = boothOpenTime;
         this.userid = userid;
+        this.boothTxturl = boothTxturl;
 
     }
 
