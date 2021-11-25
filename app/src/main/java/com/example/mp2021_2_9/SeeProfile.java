@@ -189,6 +189,7 @@ public class SeeProfile extends Fragment {
                     .show();
         });
 
+        // 회원탈퇴
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
