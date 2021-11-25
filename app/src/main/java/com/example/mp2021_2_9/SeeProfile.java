@@ -36,6 +36,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
 import java.util.regex.Matcher;
@@ -50,6 +53,10 @@ public class SeeProfile extends Fragment{
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("users");
 
+    // Storage 객체 생성 및 참조
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageReference = storage.getReference();
+
     // Component
     View view;
     Bitmap validImg; // 사용자의 갤러리로부터 가져온 이미지를 저장할 비트맵
@@ -58,6 +65,10 @@ public class SeeProfile extends Fragment{
     Button changePW;
     ImageButton selectImg;
     String policyPW = "^[a-zA-Z0-9]{8,}$";
+    Button register;
+    Uri selectedImgUri;                 // Uri 갤러리에서 부른거 바로 스토리지 저장할 때 써야하니까 필드로 선언
+
+    boolean isManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +86,8 @@ public class SeeProfile extends Fragment{
         selectImg = view.findViewById(R.id.selectImageBtn);
         withdraw = view.findViewById(R.id.withdraw);
         logout = view.findViewById(R.id.logout);
+        register = view.findViewById(R.id.registerAdminBtn);
+
 
         // 회원 정보 출력 (DB read)
         myRef.child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
@@ -84,6 +97,7 @@ public class SeeProfile extends Fragment{
                 name.setText("이름: " + user.getUserName());
                 student_id.setText("학번: " + user.getId());
                 phoneNum.setText("전화번호: " + user.getPhoneNum());
+                isManager = user.getIsManager();
             }
 
             @Override
@@ -151,10 +165,15 @@ public class SeeProfile extends Fragment{
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == RESULT_OK) {
                             Intent intent = result.getData();
-                            Uri selectedImageUri = intent.getData();
+                            selectedImgUri = intent.getData();
+
+                            // 비트맵 이미지 이미지뷰에 셋 할때 그대로 가져오면 너무 느려서 이렇게 써서 품질 좀 낮춰줘용
+                            BitmapFactory.Options options = new BitmapFactory.Options();
+                            options.inSampleSize = 8;
+
                             try {
-                                InputStream in = view.getContext().getContentResolver().openInputStream(selectedImageUri);
-                                validImg = BitmapFactory.decodeStream(in);
+                                InputStream in = view.getContext().getContentResolver().openInputStream(selectedImgUri);
+                                validImg = BitmapFactory.decodeStream(in, null, options);
                                 selectImg.setImageBitmap(validImg);
                                 in.close();
                             } catch (Exception e) {
@@ -165,7 +184,48 @@ public class SeeProfile extends Fragment{
                 }
         );
 
-        // 부스 관리자 등록 버튼에 대한 추가 구현 필요.
+        // 부스 관리자 등록 버튼 - > uri 파이어베이스 스토리지에 저장
+        if(isManager){      // 이미 관리자인경우 클릭불가
+            register.setClickable(false);
+        }
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isManager){
+                    Toast.makeText(getContext().getApplicationContext(), "이미 부스 관리자로 등록되어있습니다", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    if(validImg == null){       // 이미지 선택 안 했을 경우
+                        Toast.makeText(getContext().getApplicationContext(), "사진을 선택해주세요", Toast.LENGTH_SHORT).show();
+                    }else{      // 이미지 존재 -> 파이어베이스에 사진 저장
+                        // 파일명 스트링으로 저장 (.PNG)
+                        // 매니저는 아이디당 하나씩 올릴테니까 아이디로 올렸는데, goods나 booth는 키값같은 중복되지 않는 값으로 잘 맞춰서 올려야 함!
+                        String filename = loginID + ".PNG";
+
+                        // location값에 상위파일명 (goods/, booth/ 중 하나) + 정한 파일이름으로 스토리지레퍼런스 참조
+                        StorageReference imgRef = storage.getReference("manager/" + filename);
+                        UploadTask uploadTask = imgRef.putFile(selectedImgUri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
+                        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            // 이건 성공했는지 아닌지 받아오는거. 근데 이게 보니까 success가 느리게 뜨더라~!~! 직접 새로고침해서 확인해봐
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Log.d(TAG, "UploadTask - success");
+                                Toast.makeText(getContext().getApplicationContext(), "등록되었습니다", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext().getApplicationContext(), "등록 실패", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "UploadTask - onFailure() called");
+                            }
+                        });
+                        //Toast.makeText(getContext().getApplicationContext(), "success upload", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+        });
 
         // 로그아웃
         logout.setOnClickListener(v -> {
