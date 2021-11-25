@@ -25,15 +25,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements onBackPressedListener {
+public class MainActivity extends AppCompatActivity{
     private static final String TAG = "Main_Activity";
     private BottomNavigationView mBottomNavigationView;
-    private long pressedTime = 0;
 
     private boolean isManager;
-
-    // 리스너 객체 생성
-    private onBackPressedListener mBackListener;
 
     // DataBase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -49,9 +45,7 @@ public class MainActivity extends AppCompatActivity implements onBackPressedList
 
         Toolbar toolbar = findViewById(R.id.mp_toolbar);
         setSupportActionBar(toolbar);
-        if (app_info.isEmptyStack())
-            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
-        else Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(!app_info.isEmptyStack());
 
 
         app_info.setNowPage("부스메인페이지");
@@ -106,40 +100,4 @@ public class MainActivity extends AppCompatActivity implements onBackPressedList
 
     }
 
-    // 리스너 설정 메소드
-    public void setOnBackPressedListener(onBackPressedListener listener) {
-        mBackListener = listener;
-    }
-
-    // 뒤로가기 버튼을 눌렀을 때의 오버라이드 메소드
-    @Override
-    public void onBackPressed() {
-
-        // 다른 Fragment 에서 리스너를 설정했을 때 처리됩니다.
-        if (mBackListener != null) {
-            mBackListener.onBackPressed();
-            Log.e("!!!", "Listener is not null");
-            // 리스너가 설정되지 않은 상태라면 뒤로가기 버튼을 연속적으로 두번 눌렀을 때 앱이 종료
-        } else {
-            Log.e("!!!", "Listener is null");
-            if (pressedTime == 0) {
-                Snackbar.make(findViewById(R.id.main_layout),
-                        " 한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
-                pressedTime = System.currentTimeMillis();
-            } else {
-                int seconds = (int) (System.currentTimeMillis() - pressedTime);
-
-                if (seconds > 2000) {
-                    Snackbar.make(findViewById(R.id.main_layout),
-                            " 한 번 더 누르면 종료됩니다.", Snackbar.LENGTH_LONG).show();
-                    pressedTime = 0;
-                } else {
-                    super.onBackPressed();
-                    Log.e("!!!", "onBackPressed : finish, killProcess");
-                    finish();
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                }
-            }
-        }
-    }
 }

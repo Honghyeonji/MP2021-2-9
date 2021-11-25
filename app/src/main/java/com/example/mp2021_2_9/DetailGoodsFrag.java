@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 // 굿즈 상세페이지
-public class DetailGoodsFrag extends Fragment implements onBackPressedListener {
+public class DetailGoodsFrag extends Fragment{
     ViewGroup v;
     GoodsMainFrag returnFrag;
 
@@ -114,21 +114,5 @@ public class DetailGoodsFrag extends Fragment implements onBackPressedListener {
 //        }
 
         return v;
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.e("Other", "onBack()");
-        MainActivity activity = (MainActivity)getActivity();
-        activity.setOnBackPressedListener(null);
-        // MainFragment 로 교체
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, returnFrag).commit();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.e("Other", "onAttach()");
-        ((MainActivity)context).setOnBackPressedListener(this);
     }
 }

@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import java.util.Objects;
 
 // 부스 홍보 상세페이지
-public class DetailPromotionActivity extends Fragment implements onBackPressedListener{
+public class DetailPromotionActivity extends Fragment{
     PromoteMainFrag mainFrag;
 
     ViewGroup v;
@@ -55,22 +55,6 @@ public class DetailPromotionActivity extends Fragment implements onBackPressedLi
         Glide.with(poster).load(boothinfo.getBoothImgurl()).into(poster);
 
         return v;
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.e("Other", "onBack()");
-        MainActivity activity = (MainActivity)getActivity();
-        activity.setOnBackPressedListener(null);
-        // MainFragment 로 교체
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, mainFrag).commit();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.e("Other", "onAttach()");
-        ((MainActivity)context).setOnBackPressedListener(this);
     }
 }
 
