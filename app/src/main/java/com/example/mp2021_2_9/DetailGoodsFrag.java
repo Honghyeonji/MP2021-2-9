@@ -1,6 +1,7 @@
 package com.example.mp2021_2_9;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -32,15 +33,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 // 굿즈 상세페이지
-public class DetailGoodsFrag extends Fragment {
+public class DetailGoodsFrag extends Fragment implements onBackPressedListener {
     ViewGroup v;
-
+    GoodsMainFrag returnFrag;
 
     @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = (ViewGroup) inflater.inflate(R.layout.activity_goodsdetailed, container, false);
+
+        returnFrag = new GoodsMainFrag();
 
         app_info.setNowPage("굿즈세부페이지");
 
@@ -111,5 +114,21 @@ public class DetailGoodsFrag extends Fragment {
 //        }
 
         return v;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.e("Other", "onBack()");
+        MainActivity activity = (MainActivity)getActivity();
+        activity.setOnBackPressedListener(null);
+        // MainFragment 로 교체
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, returnFrag).commit();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.e("Other", "onAttach()");
+        ((MainActivity)context).setOnBackPressedListener(this);
     }
 }

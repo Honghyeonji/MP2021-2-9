@@ -1,5 +1,6 @@
 package com.example.mp2021_2_9;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,10 +38,11 @@ public class ManageGoods extends Fragment {
     EditText searchTxt;
     TextView text_no_goods;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_managegoods, container, false);
+
         loginID = getArguments().getString("ID");
         text_no_goods = view.findViewById(R.id.text_no_goods);
 
@@ -107,4 +109,5 @@ public class ManageGoods extends Fragment {
 
        return view;
     }
+
 }
