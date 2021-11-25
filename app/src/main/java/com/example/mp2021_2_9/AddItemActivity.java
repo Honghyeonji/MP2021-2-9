@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +44,8 @@ public class AddItemActivity extends Fragment  {
 //        loginID = getArguments().getString("ID");
 
         app_info.setNowPage("굿즈등록페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         save = (Button) view.findViewById(R.id.savebutton);
         itemname = (EditText) view.findViewById(R.id.item_name);

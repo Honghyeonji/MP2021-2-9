@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -34,9 +35,11 @@ public class DetailPromotionActivity extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = (ViewGroup) inflater.inflate(R.layout.activity_promtdetailed, container, false);
 
-        mainFrag = new PromoteMainFrag();
-
         app_info.setNowPage("부스세부페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+
+        mainFrag = new PromoteMainFrag();
 
         Bundle bundle = getArguments();
         BoothInfo_list boothinfo = (BoothInfo_list) bundle.getSerializable("BoothInfo_list");

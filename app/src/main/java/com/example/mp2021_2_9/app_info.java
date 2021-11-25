@@ -8,6 +8,7 @@ public class app_info {
     private static String nowPage;
     private static HashMap<String, Integer> pageMap = new HashMap<String, Integer>();
     private static HashMap<Integer, String> keyMap = new HashMap<Integer, String>();
+    private static String prevPage;
 
     public static String getNowPage() {
         return nowPage;
@@ -66,4 +67,12 @@ public class app_info {
    public static boolean isEmptyStack(){
         return stack.isEmpty();
    }
+
+    public static String getPrevPage() {
+        return prevPage;
+    }
+
+    public static void setPrevPage(String prevPage) {
+        app_info.prevPage = prevPage;
+    }
 }

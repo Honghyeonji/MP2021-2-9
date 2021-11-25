@@ -3,6 +3,7 @@ package com.example.mp2021_2_9;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +51,8 @@ public class ManageGoods extends Fragment {
         adapter = new ListViewAdapter(this, goodsList);
 
         app_info.setNowPage("등록상품관리페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         ListView listView = (ListView) view.findViewById(R.id.managegoods_list);
         searchBtn = (ImageButton) view.findViewById(R.id.searchBtn);
