@@ -90,14 +90,9 @@ public class ListViewAdapter extends BaseAdapter{
                     // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
                 if(isSoldOut.getCurrentTextColor() == Color.RED){
                     myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(false);
-                    //getItem(position).setIsSoldOut(false);
-                    //isSoldOut.setTextColor(R.color.gray);    // 재고가 있을땐 회색 글씨
                     Log.d(TAG+"(onClick)", "red->gray");
                 }else{
                     myRef.child(getItem(position).getKey()).child("goodsIsSoldOut").getRef().setValue(true);
-                    //getItem(position).setIsSoldOut(true);
-                    //isSoldOut.setTextColor(R.color.red);    // 재고가 있을땐 회색 글씨
-                    //notifyDataSetChanged();
                     Log.d(TAG+"(onClick)", "gray->red");
 
                     }
