@@ -2,11 +2,14 @@ package com.example.mp2021_2_9;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 public class UserPage extends Fragment {
@@ -19,14 +22,19 @@ public class UserPage extends Fragment {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
 
         app_info.setNowPage("개인페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        app_info.setPrevPage("개인페이지");
 
         infoCheck = view.findViewById(R.id.information_check);
         goodsPost = view.findViewById(R.id.goods_posting);
         promotionPost = view.findViewById(R.id.promotion_posting);
         goodsManage = view.findViewById(R.id.goods_management);
 
-        loginID = this.getArguments().getString("ID");
-        isManager = this.getArguments().getBoolean("isManager");
+        SharedPreferences preferences = getActivity().getSharedPreferences("current_info", 0);
+
+        loginID = preferences.getString("ID", "");
+        isManager = preferences.getBoolean("isManager", false);
 
         // 각각의 프래그먼트로 이동시 현재 로그인된 계정의 아이디 전달 객체 Bundle
         bundle = new Bundle();

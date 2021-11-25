@@ -17,6 +17,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -65,6 +66,8 @@ public class SeeProfile extends Fragment{
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
 
         app_info.setNowPage("개인정보수정페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         name = view.findViewById(R.id.user_name);
         student_id = view.findViewById(R.id.student_id);

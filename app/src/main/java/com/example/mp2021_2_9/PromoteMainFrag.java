@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -49,6 +50,9 @@ public class PromoteMainFrag extends Fragment{
         setInit();
 
         app_info.setNowPage("부스메인페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        app_info.setPrevPage("부스메인페이지");
 
         /* 상품 목록 부분 */
         boothInfo_lists = new ArrayList<>();    // 부스 정보 담을 arraylist

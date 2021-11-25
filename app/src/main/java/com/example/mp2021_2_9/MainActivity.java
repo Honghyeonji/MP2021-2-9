@@ -52,29 +52,12 @@ public class MainActivity extends AppCompatActivity{
 
         toolbar = findViewById(R.id.mp_toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         app_info.setNowPage("부스메인페이지");
         getSupportActionBar().setTitle("대동대동");
         Log.v("test1", "isEmptyStack?" + app_info.isEmptyStack() + ", nowPage?" + app_info.getNowPage());
-
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case android.R.id.home :
-                        if(app_info.isEmptyStack() && (app_info.getNowPage().equals("굿즈메인페이지")
-                                || app_info.getNowPage().equals("부스메인페이지")
-                                || app_info.getNowPage().equals("개인페이지"))){
-                            createDialog();
-                        }else if(!app_info.isEmptyStack()){
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
-                        }
-                        return true;
-                }
-                return onOptionsItemSelected(item);
-            }
-        });
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -85,12 +68,15 @@ public class MainActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.topromt:  // 홍보 메인
+                        app_info.setPrevPage(null);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
                         break;
                     case R.id.toshop:   // 상품 메인
+                        app_info.setPrevPage(null);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
                         break;
                     case R.id.toprofile:    // 로그인 or 개인정보화면
+                        app_info.setPrevPage(null);
                         SharedPreferences preferences = getSharedPreferences("current_info", 0);
                         String Id = preferences.getString("ID", "");
                         if (Id.equals("")) {  // 비로그인상태 - 로그인 액티비티
@@ -128,13 +114,21 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home :
+                String layout = app_info.getPrevPage();
                 if(app_info.isEmptyStack() && (app_info.getNowPage().equals("굿즈메인페이지")
                         || app_info.getNowPage().equals("부스메인페이지")
                         || app_info.getNowPage().equals("개인페이지"))){
                     createDialog();
                 }else if(!app_info.isEmptyStack()){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                }else if(layout.equals("굿즈메인페이지")){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
+                }else if(layout.equals("부스메인페이지")){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                }else if(layout.equals("개인페이지")){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new UserPage()).commit();
                 }
+                app_info.setPrevPage(null);
                 return true;
         }
         return onOptionsItemSelected(item);
