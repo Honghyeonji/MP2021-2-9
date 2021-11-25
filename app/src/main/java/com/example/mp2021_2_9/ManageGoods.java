@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,12 +31,14 @@ public class ManageGoods extends Fragment {
 
     View view;
     String loginID;
+    TextView text_no_goods;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_managegoods, container, false);
         loginID = getArguments().getString("ID");
+        text_no_goods = view.findViewById(R.id.text_no_goods);
 
         goodsList = new ArrayList<ListItem>();
         adapter = new ListViewAdapter(this, goodsList);
@@ -55,6 +59,10 @@ public class ManageGoods extends Fragment {
                     goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
                 }
                 adapter.notifyDataSetChanged();
+
+                if(goodsList.isEmpty()){        // 등록한 상품이 하나도 없을 때
+                    text_no_goods.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
