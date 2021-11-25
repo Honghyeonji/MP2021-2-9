@@ -6,13 +6,6 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:src="@drawable/daedongdaedong"
-        android:padding="15dp"
-        android:background="@drawable/titlebar"/>
-
     <LinearLayout
         android:layout_height="0dp"
         android:layout_gravity="end"
