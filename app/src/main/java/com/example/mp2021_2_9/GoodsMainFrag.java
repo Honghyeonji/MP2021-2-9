@@ -88,5 +88,5 @@ public class GoodsMainFrag extends Fragment {
         return rootView;
     }
 
-    // 이미지 클릭시 상세페이지 연결 구현 필
+
 }

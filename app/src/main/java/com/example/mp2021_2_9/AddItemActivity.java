@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddItemActivity extends Fragment {
+public class AddItemActivity extends Fragment  {
     Bundle bundle;
     View view;
     String userid;
@@ -27,6 +29,7 @@ public class AddItemActivity extends Fragment {
     DatabaseReference myRef = base.child("users");
     Button save;
     String goodsIsSoldout = "false";
+
 
 //    FirebaseDatabase database = FirebaseDatabase.getInstance();
 //    DatabaseReference databaseReference = database.getReference();

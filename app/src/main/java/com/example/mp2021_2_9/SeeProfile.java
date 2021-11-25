@@ -3,6 +3,7 @@ package com.example.mp2021_2_9;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,7 +41,7 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SeeProfile extends Fragment {
+public class SeeProfile extends Fragment{
     String TAG = "SeeProfile";
 
     ActivityResultLauncher resultLauncher;
@@ -59,8 +60,7 @@ public class SeeProfile extends Fragment {
     String policyPW = "^[a-zA-Z0-9]{8,}$";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         String loginID = this.getArguments().getString("ID", "");
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
 
