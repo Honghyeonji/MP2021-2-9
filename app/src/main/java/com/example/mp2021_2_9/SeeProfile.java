@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -174,7 +175,10 @@ public class SeeProfile extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int id)
                         {
-                            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+                            // 프리퍼런스 저장된 로그인정보 null로 수정
+                            editPrefs();
+
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
                             Toast.makeText(getActivity(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Success logout!");
                         }
@@ -189,6 +193,7 @@ public class SeeProfile extends Fragment {
                     .show();
         });
 
+        // 회원탈퇴
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,6 +204,9 @@ public class SeeProfile extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int id)
                             {
+                                // 현재 로그인 정보 삭제
+                                editPrefs();
+
                                 // 탈퇴시 데이터 베이스에서 삭제 후 홍보 메인 페이지로 이동. (DB write)
                                 myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -213,7 +221,7 @@ public class SeeProfile extends Fragment {
                                         e.printStackTrace();
                                     }
                                 });
-                                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener(){
@@ -226,6 +234,19 @@ public class SeeProfile extends Fragment {
                         .show();
             }
         });
+
         return view;
+    }
+
+    public void editPrefs(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("current_info", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("name", "");
+        editor.putString("PW","");
+        editor.putString("ID","");
+        editor.putString("phoneNum","");
+        editor.putBoolean("isManager",false);
+        editor.apply();
+
     }
 }
