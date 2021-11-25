@@ -1,5 +1,7 @@
 package com.example.mp2021_2_9;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,9 +10,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,8 +32,11 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "Main_Activity";
     private BottomNavigationView mBottomNavigationView;
+    Toolbar toolbar;
 
     private boolean isManager;
+
+    private long backKeyPressedTime = 0;
 
     // DataBase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -43,20 +50,37 @@ public class MainActivity extends AppCompatActivity{
         app_info.setKeyMap();
         app_info.setPageMap();
 
-        Toolbar toolbar = findViewById(R.id.mp_toolbar);
+        toolbar = findViewById(R.id.mp_toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(!app_info.isEmptyStack());
-
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         app_info.setNowPage("부스메인페이지");
-        getSupportActionBar().setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        getSupportActionBar().setTitle("대동대동");
+        Log.v("test1", "isEmptyStack?" + app_info.isEmptyStack() + ", nowPage?" + app_info.getNowPage());
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case android.R.id.home :
+                        if(app_info.isEmptyStack() && (app_info.getNowPage().equals("굿즈메인페이지")
+                                || app_info.getNowPage().equals("부스메인페이지")
+                                || app_info.getNowPage().equals("개인페이지"))){
+                            createDialog();
+                        }else if(!app_info.isEmptyStack()){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                        }
+                        return true;
+                }
+                return onOptionsItemSelected(item);
+            }
+        });
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
 
         getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
 
         mBottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -97,7 +121,41 @@ public class MainActivity extends AppCompatActivity{
                 return true;
             }
         });
-
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home :
+                if(app_info.isEmptyStack() && (app_info.getNowPage().equals("굿즈메인페이지")
+                        || app_info.getNowPage().equals("부스메인페이지")
+                        || app_info.getNowPage().equals("개인페이지"))){
+                    createDialog();
+                }else if(!app_info.isEmptyStack()){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                }
+                return true;
+        }
+        return onOptionsItemSelected(item);
+    }
+
+    private void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("대동대동 종료").setMessage("어플을 종료하시겠습니까?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
