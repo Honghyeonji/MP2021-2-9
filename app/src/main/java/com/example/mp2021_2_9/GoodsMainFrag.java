@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -34,6 +35,11 @@ public class GoodsMainFrag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.shopping_main_screen, container, false);
+
+        app_info.setNowPage("굿즈메인페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        app_info.setPrevPage("굿즈메인페이지");
 
         goods_lists = new ArrayList<>();        // 상품 정보 담을 arrayList
 
@@ -86,5 +92,5 @@ public class GoodsMainFrag extends Fragment {
         return rootView;
     }
 
-    // 이미지 클릭시 상세페이지 연결 구현 필
+
 }

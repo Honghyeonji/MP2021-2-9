@@ -5,15 +5,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,10 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class PromoteMainFrag extends Fragment {
+public class PromoteMainFrag extends Fragment{
     private ViewGroup viewGroup;
     private int page_num = 4;
 
@@ -42,8 +46,13 @@ public class PromoteMainFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         viewGroup = (ViewGroup) inflater.inflate(R.layout.promotion_main_screen, container, false);
+
         setInit();
 
+        app_info.setNowPage("부스메인페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        app_info.setPrevPage("부스메인페이지");
 
         /* 상품 목록 부분 */
         boothInfo_lists = new ArrayList<>();    // 부스 정보 담을 arraylist
@@ -145,4 +154,5 @@ public class PromoteMainFrag extends Fragment {
             }
         });
     }
+
 }

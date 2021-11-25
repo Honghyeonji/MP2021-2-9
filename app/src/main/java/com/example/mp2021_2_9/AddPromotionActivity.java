@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +35,10 @@ public class AddPromotionActivity extends Fragment {
         view = inflater.inflate(R.layout.activity_addpromotion, container, false);
 
 //        loginID = getArguments().getString("ID");
+
+        app_info.setNowPage("부스등록페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);

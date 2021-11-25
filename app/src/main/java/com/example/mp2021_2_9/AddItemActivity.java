@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddItemActivity extends Fragment {
+public class AddItemActivity extends Fragment  {
     Bundle bundle;
     View view;
     String userid;
@@ -26,7 +29,8 @@ public class AddItemActivity extends Fragment {
     DatabaseReference databaseReference = base.child("goods");
     DatabaseReference myRef = base.child("users");
     Button save;
-    String goodsIsSoldout = "false";
+    boolean goodsIsSoldOut = false;
+
 
 //    FirebaseDatabase database = FirebaseDatabase.getInstance();
 //    DatabaseReference databaseReference = database.getReference();
@@ -38,6 +42,10 @@ public class AddItemActivity extends Fragment {
         view = inflater.inflate(R.layout.activity_additem, container, false);
 
 //        loginID = getArguments().getString("ID");
+
+        app_info.setNowPage("굿즈등록페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         save = (Button) view.findViewById(R.id.savebutton);
         itemname = (EditText) view.findViewById(R.id.item_name);
@@ -59,7 +67,7 @@ public class AddItemActivity extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                additem(goodsIsSoldout, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
+                additem(goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
@@ -67,9 +75,10 @@ public class AddItemActivity extends Fragment {
         });
         return view;
     }
-    public void additem(String goodsIsSoldout, String goodsLocation, String goodsName, String goodsPrice, String userid){
-        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldout, goodsLocation,goodsName,goodsPrice,userid);
-        databaseReference.push().setValue(addgoodsdata);
+    public void additem(boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String userid){
+        DatabaseReference ref = databaseReference.push();
+        AddPromotionData addgoodsdata = new AddPromotionData(goodsIsSoldOut, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid);
+        ref.setValue(addgoodsdata);
     }
 
 }

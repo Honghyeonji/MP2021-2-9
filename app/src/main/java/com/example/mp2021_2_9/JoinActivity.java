@@ -42,6 +42,9 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+        app_info.setNowPage("회원가입페이지");
+
         EditText join_id = (EditText) findViewById(R.id.join_id);
         EditText join_name = (EditText) findViewById(R.id.join_name);
         EditText join_pw = (EditText) findViewById(R.id.join_password);

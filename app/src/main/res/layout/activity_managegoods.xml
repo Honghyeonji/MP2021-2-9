@@ -6,13 +6,6 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:src="@drawable/daedongdaedong"
-        android:padding="15dp"
-        android:background="@drawable/titlebar"/>
-
     <LinearLayout
         android:layout_height="0dp"
         android:layout_gravity="end"
@@ -22,15 +15,17 @@
         android:layout_weight="1">
 
         <EditText
+            android:id="@+id/searchTxt"
             android:layout_width="160sp"
             android:layout_height="40sp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:textSize="15sp"
             android:singleLine="true"
+            android:textSize="15sp"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
+            android:id="@+id/searchBtn"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_marginTop="2.5dp"
@@ -41,10 +36,23 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text_no_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="등록한 상품이 없습니다"
+        android:textSize="20sp"
+        android:visibility="gone"
+        />
+
     <ListView
         android:id="@+id/managegoods_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="12"/>
+
+
 
 </LinearLayout>

@@ -1,28 +1,25 @@
 package com.example.mp2021_2_9;
 
-import android.content.SharedPreferences;
+import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 
@@ -30,8 +27,6 @@ public class ManageGoods extends Fragment {
 
     String TAG = "ManageGoods";
     // DataBase
-    //SharedPreferences pref = getActivity().getSharedPreferences("current_info", 0);
-    //String loginID = pref.getString("ID", "");  // 데이터 베이스에서 검색시 필요
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("goods");
 
@@ -40,31 +35,45 @@ public class ManageGoods extends Fragment {
 
     View view;
     String loginID;
+    ImageButton searchBtn;
+    EditText searchTxt;
+    TextView text_no_goods;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_managegoods, container, false);
-        loginID = getArguments().getString("ID");
 
-        goodsList = new ArrayList<>();
-        adapter = new ListViewAdapter(this.getContext(), goodsList);
+        loginID = getArguments().getString("ID");
+        text_no_goods = view.findViewById(R.id.text_no_goods);
+
+        goodsList = new ArrayList<ListItem>();
+        adapter = new ListViewAdapter(this, goodsList);
+
+        app_info.setNowPage("등록상품관리페이지");
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         ListView listView = (ListView) view.findViewById(R.id.managegoods_list);
+        searchBtn = (ImageButton) view.findViewById(R.id.searchBtn);
+        searchTxt = (EditText) view.findViewById(R.id.searchTxt);
+        listView.setAdapter(adapter);
 
         // 현재 로그인된 계정과 상품을 등록한 userId 값이 일치하는 상품 필터링
-        Query query = myRef.orderByChild("userId").equalTo(loginID);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        Query query = myRef.orderByChild("userid").equalTo(loginID);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 goodsList.clear();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
-                    goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut()));
-                    //adapter.item.add(new ListItem(item_name), goods.getIsSoldOut());
+                    goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
                 }
                 adapter.notifyDataSetChanged();
-                //listView.setSelection(adapter.getCount() -1);
+
+                if(goodsList.isEmpty()){        // 등록한 상품이 하나도 없을 때
+                    text_no_goods.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -72,11 +81,36 @@ public class ManageGoods extends Fragment {
                 Log.w(TAG, error.toException());
             }
         });
-        listView.setAdapter(adapter);
-/*        if(adapter.isSoldOutClicked()){
 
-        }
-*/
-        return view;
+        // 서치 버튼 클릭시 goodslist 변경경
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goodsList.clear();
+                Query query = myRef.orderByChild("userid").equalTo(loginID);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        goodsList.clear();
+                        String keyword = searchTxt.getText().toString();
+                        for (DataSnapshot item : snapshot.getChildren()) {
+                            GoodsInfo_list goods = item.getValue(GoodsInfo_list.class);
+                            if(goods.getGoodsName().contains(keyword)) {
+                                goodsList.add(new ListItem(goods.getGoodsName(), goods.getGoodsIsSoldOut(), goods.getKey()));
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.w(TAG, error.toException());
+                    }
+                });
+            }
+        });
+
+       return view;
     }
+
 }
