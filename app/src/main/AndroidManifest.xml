@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mp2021_2_9">
 
     <!-- INTERNET permission for firebase connection -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +26,10 @@
         </activity>
 
         <activity android:name=".LoginActivity" android:label="Login page"/>
+<!--        <activity android:name=".DetailPromotionActivity" android:label="Promotion Detailed page"/>-->
+        <!--
+        <activity android:name=".DetailGoodsFrag" android:label="Goods Detailed Page"/>
+        -->
         <activity android:name=".JoinActivity" android:label="Join Page"/>
 
     </application>

@@ -18,6 +18,8 @@ public class UserPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
 
+        app_info.setNowPage("개인페이지");
+
         infoCheck = view.findViewById(R.id.information_check);
         goodsPost = view.findViewById(R.id.goods_posting);
         promotionPost = view.findViewById(R.id.promotion_posting);

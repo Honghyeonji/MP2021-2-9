@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
-public class GoodsInfo_list {
+import java.io.Serializable;
+
+public class GoodsInfo_list implements Serializable {
     private String key;
     private String userid;
     private String goodsName;

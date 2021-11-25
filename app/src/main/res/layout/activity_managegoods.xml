@@ -43,10 +43,23 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text_no_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="등록한 상품이 없습니다"
+        android:textSize="20sp"
+        android:visibility="gone"
+        />
+
     <ListView
         android:id="@+id/managegoods_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="12"/>
+
+
 
 </LinearLayout>

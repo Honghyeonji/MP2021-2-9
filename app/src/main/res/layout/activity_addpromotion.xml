@@ -28,75 +28,61 @@
         </TextView>
     </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="450dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/selectImageBtn"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:contentDescription="@string/camera"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/camera"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/booth_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/selectImageBtn"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:contentDescription="@string/camera"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/camera"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <EditText
-                android:id="@+id/booth_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 이름"
-                android:privateImeOptions="defaultInputmode=korean"/>
+            android:layout_height="48dp"
+            android:hint="부스 이름"
+            android:privateImeOptions="defaultInputmode=korean" />
 
 
-            <EditText
-                android:id="@+id/booth_location"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 위치"
-                android:privateImeOptions="defaultInputmode=korean"/>
+        <EditText
+            android:id="@+id/booth_location"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="부스 위치"
+            android:privateImeOptions="defaultInputmode=korean" />
 
-            <EditText
-                android:id="@+id/booth_time"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 시간"
-                android:privateImeOptions="defaultInputmode=korean"/>
+        <EditText
+            android:id="@+id/booth_time"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="부스 시간"
+            android:privateImeOptions="defaultInputmode=korean" />
 
-            <EditText
-                android:id="@+id/booth"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 설명 "
-                android:inputType="textMultiLine"
-                android:privateImeOptions="defaultInputmode=korean"/>
+        <EditText
+            android:id="@+id/booth"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="부스 설명 "
+            android:inputType="textMultiLine"
+            android:privateImeOptions="defaultInputmode=korean" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="256dp"
-                android:layout_marginVertical="10dp"
-                android:contentDescription="@string/mapImage"
-                app:srcCompat="@drawable/location" />
 
-            <Button
-                android:id="@+id/savebutton"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="#EABADB"
-                android:text="저장하기" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/savebutton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="#EABADB"
+        android:text="저장하기" />
 
 </LinearLayout>

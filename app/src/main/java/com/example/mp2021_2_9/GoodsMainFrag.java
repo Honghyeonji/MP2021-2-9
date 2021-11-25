@@ -35,6 +35,8 @@ public class GoodsMainFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.shopping_main_screen, container, false);
 
+        app_info.setNowPage("굿즈메인페이지");
+
         goods_lists = new ArrayList<>();        // 상품 정보 담을 arrayList
 
         // DB 부분
@@ -75,7 +77,7 @@ public class GoodsMainFrag extends Fragment {
                 GoodsInfo_list tempList = goods_lists.get(pos);
                 DetailGoodsFrag f = new DetailGoodsFrag();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("GoodsInfo_list", (Serializable) tempList);
+                bundle.putSerializable("GoodsInfo_list", tempList);
                 f.setArguments(bundle);
                 transaction.replace(R.id.frame_container, f).commit();
                 Log.v("test", "pos:" + pos);
