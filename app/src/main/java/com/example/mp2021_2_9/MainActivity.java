@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity{
                         if (Id.equals("")) {  // 비로그인상태 - 로그인 액티비티
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         } else {              // 로그인상태 - 개인정보화면
                             Bundle bundle = new Bundle();
                             bundle.putString("ID", preferences.getString("ID", ""));
