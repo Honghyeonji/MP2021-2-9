@@ -20,6 +20,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
@@ -63,8 +64,8 @@ public class AddItemActivity extends Fragment  {
 //        loginID = getArguments().getString("ID");
 
         app_info.setNowPage("굿즈등록페이지");
-        //ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        //actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         additem = (ImageButton) view.findViewById(R.id.selectImageBtn);
         save = (Button) view.findViewById(R.id.savebutton);
