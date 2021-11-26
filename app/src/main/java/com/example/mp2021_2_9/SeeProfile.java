@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -42,6 +43,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -140,9 +143,19 @@ public class SeeProfile extends Fragment{
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                        user.setPassword(newPW.getText().toString());
-                        Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Changed password is: " + user.getPassword());
+                        if(user != null){
+                            Map<String, Object> map = new HashMap<String, Object>();
+                            map.put("passward", newPW.getText().toString());
+                            myRef.child(loginID).updateChildren(map);
+                        }
+                        else{
+                        }
+
+//                        UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
+//                        assert user != null;
+//                        user.setPassword(newPW.getText().toString());
+//                        Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
+//                        Log.d(TAG, "Changed password is: " + user.getPassword());
                     }
 
                     @Override
