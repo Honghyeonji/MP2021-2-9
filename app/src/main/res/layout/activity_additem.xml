@@ -17,18 +17,32 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="20dp"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/selectImageBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/camera"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/camera"
+                    tools:ignore="SpeakableTextPresentCheck" />
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/goods_explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/goods_explain"
+                    android:textSize="14dp"
+                    />
 
-            <ImageButton
-                android:id="@+id/selectImageBtn"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:contentDescription="@string/camera"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/camera"
-                tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
             <EditText
                 android:id="@+id/item_name"
                 android:layout_width="match_parent"
