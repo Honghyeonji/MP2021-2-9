@@ -64,7 +64,7 @@ public class AddItemActivity extends Fragment  {
 
 //        loginID = getArguments().getString("ID");
 
-        app_info.setNowPage("굿즈등록페이지");
+        app_info.setNowPage("상품등록페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
@@ -79,10 +79,12 @@ public class AddItemActivity extends Fragment  {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String filename = userid + ".PNG";
+                String filename = userid + ".PNG";      // 굿즈이름 수정해주세요! (ex. 굿즈이름_id 등으로)
                 StorageReference imgRef = storage.getReference("goods/" + filename);
                 UploadTask uploadTask = imgRef.putFile(imguri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
-                goodsImgurl = imguri.toString();
+                //goodsImgurl = imguri.toString();
+                goodsImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/goods%2F" + filename + "?alt=media";
+
                 Additem(goodsImgurl,goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid ,itemdetail.getText().toString());
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
