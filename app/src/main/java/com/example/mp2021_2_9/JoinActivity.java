@@ -199,14 +199,14 @@ public class JoinActivity extends AppCompatActivity {
         });
 
 
-        rDatabase = FirebaseDatabase.getInstance().getReference();
+        rDatabase = FirebaseDatabase.getInstance().getReference("users");
         Button idCheckBtn = (Button) findViewById(R.id.join_id_check);
         idCheckBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if(id_check) {
                     String tempId = join_id.getText().toString();
-                    rDatabase.child("mp2021-t9-default-rtdb").child("users").child(tempId)
+                    rDatabase.child(tempId)
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
