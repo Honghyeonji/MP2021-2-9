@@ -12,7 +12,7 @@ public class AddPromotionData {
     public boolean goodsIsSoldOut;
 
     public AddPromotionData(){}
-    public AddPromotionData(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String key, String userid){
+    public AddPromotionData(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String key, String userid, String goodsTxturl){
         this.goodsImgurl = goodsImgurl;
         this.goodsLocation = goodsLocation;
         this.goodsName = goodsName;
@@ -20,6 +20,7 @@ public class AddPromotionData {
         this.key = key;
         this. userid = userid;
         this. goodsIsSoldOut = goodsIsSoldOut;
+        this.goodsTxturl = goodsTxturl;
     }
     public AddPromotionData(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
         this.boothImgurl = boothImgurl;
