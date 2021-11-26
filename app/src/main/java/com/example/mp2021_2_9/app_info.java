@@ -3,8 +3,11 @@ package com.example.mp2021_2_9;
 import java.util.HashMap;
 import java.util.Stack;
 
+// 모든 프래그먼트와 액티비티 정보들 저장
+// 현재 화면에 나와있는 액티비티 혹은 프래그먼트 정보 저장
+// 이전 액티비티 혹은 프래그먼트 정보 저장
+// 로딩페이지를 화면에 보낼지 말지 결정하는 boolean 값 설정
 public class app_info {
-    private static Stack<String> stack = new Stack<>();
     private static String nowPage;
     private static HashMap<String, Integer> pageMap = new HashMap<String, Integer>();
     private static HashMap<Integer, String> keyMap = new HashMap<Integer, String>();
@@ -49,18 +52,6 @@ public class app_info {
 
    public static String getKeyMap(int la){
         return keyMap.get(la);
-   }
-
-   public static void putStack(String page){
-        stack.push(page);
-   }
-
-   public static String getStack(){
-        return stack.pop();
-   }
-
-   public static boolean isEmptyStack(){
-        return stack.isEmpty();
    }
 
     public static String getPrevPage() {

@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SeeProfile extends Fragment{
+public class SeeProfileFrag extends Fragment{
     String TAG = "SeeProfile";
 
     ActivityResultLauncher resultLauncher;
@@ -80,6 +80,7 @@ public class SeeProfile extends Fragment{
         String loginID = this.getArguments().getString("ID", "");
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("개인정보수정페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
@@ -247,6 +248,7 @@ public class SeeProfile extends Fragment{
                             // 프리퍼런스 저장된 로그인정보 null로 수정
                             editPrefs();
 
+                            // MainActivity 새로 띄우고 기존 Activity는 종료
                             newActivity();
                             getActivity().finish();
                             Toast.makeText(getActivity(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
@@ -281,6 +283,7 @@ public class SeeProfile extends Fragment{
                                 myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
+                                        // MainActivity 새로 띄우고 기존 Activity는 종료
                                         newActivity();
                                         getActivity().finish();
                                         Toast.makeText(getActivity(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
@@ -321,7 +324,7 @@ public class SeeProfile extends Fragment{
         editor.apply();
     }
 
-    private void newActivity(){
+    private void newActivity(){ // 새로운 MainActivity 띄우고 loading page 안뜨게 loading값 설정
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
         app_info.setLoading(true);

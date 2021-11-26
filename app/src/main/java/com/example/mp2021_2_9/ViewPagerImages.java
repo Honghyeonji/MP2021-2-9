@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+
+// ViewPager 안에 들어가는 이미지 프래그먼트들 (이미지 클릭시 공지글(외부 앱 글)로 이동)
 public class ViewPagerImages {
     public static class ViewPageImage1 extends Fragment{
         @Nullable

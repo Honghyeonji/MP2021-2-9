@@ -33,14 +33,17 @@ public class DetailGoodsFrag extends Fragment{
 
         returnFrag = new GoodsMainFrag();
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("굿즈세부페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
+        // 이전의 프래그먼트에서 정보 받아옴
         Bundle bundle = getArguments();
         GoodsInfo_list goodsinfo = (GoodsInfo_list) bundle.getSerializable("GoodsInfo_list");
         Log.w("test", "id " + goodsinfo.getGoodsName() + ", " +goodsinfo.getUserid());
 
+        // 모든 텍스트뷰, 이미지뷰에 받아온 정보들 세팅
         TextView goods_name = v.findViewById(R.id.goods_name);
         TextView goods_price = v.findViewById(R.id.goods_price);
         TextView goods_location = v.findViewById(R.id.goods_location);

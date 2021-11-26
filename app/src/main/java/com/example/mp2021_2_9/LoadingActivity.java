@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
-public class LoadingActivity extends Activity {
+public class LoadingActivity extends Activity { // 로딩페이지 설정
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,7 +14,7 @@ public class LoadingActivity extends Activity {
         startLoading();
     }
 
-    private void startLoading(){
+    private void startLoading(){ // 로딩페이지를 열고 2초 뒤 종료
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

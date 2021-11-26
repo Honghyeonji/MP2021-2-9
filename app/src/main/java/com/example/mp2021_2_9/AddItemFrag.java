@@ -31,7 +31,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
 
-public class AddItemActivity extends Fragment  {
+public class AddItemFrag extends Fragment  {
     Bundle bundle;
     View view;
     String userid;
@@ -56,8 +56,7 @@ public class AddItemActivity extends Fragment  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_additem, container, false);
 
-//        loginID = getArguments().getString("ID");
-
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("상품등록페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));

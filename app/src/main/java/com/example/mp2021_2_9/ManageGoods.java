@@ -50,6 +50,7 @@ public class ManageGoods extends Fragment {
         goodsList = new ArrayList<ListItem>();
         adapter = new ListViewAdapter(this, goodsList);
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("등록상품관리페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));

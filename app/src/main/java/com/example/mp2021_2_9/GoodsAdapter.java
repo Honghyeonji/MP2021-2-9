@@ -65,6 +65,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
     }
 
 
+    // item 클릭 이벤트 설정
     public interface OnItemClickListener{
         void onItemClick(View v, int pos);
     }

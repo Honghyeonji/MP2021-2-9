@@ -74,19 +74,17 @@ public class GoodsMainFrag extends Fragment {
         adapter = new GoodsAdapter(goods_lists, getContext());
         recyclerView.setAdapter(adapter);
 
-
+        // 리사이클러뷰의 아이템 선택시 발생하는 이벤트
         adapter.setOnItemClickListener(new GoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos){
+                GoodsInfo_list tempList = goods_lists.get(pos); // 클릭한 굿즈 아이템의 정보 읽기
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                GoodsInfo_list tempList = goods_lists.get(pos);
                 DetailGoodsFrag f = new DetailGoodsFrag();
-                Bundle bundle = new Bundle();
+                Bundle bundle = new Bundle();// bundle에 tempList 담아 굿즈세부페이지 프래그먼트로 전달
                 bundle.putSerializable("GoodsInfo_list", tempList);
                 f.setArguments(bundle);
                 transaction.replace(R.id.frame_container, f).commit();
-                Log.v("test", "pos:" + pos);
-//                Log.w("test", tempList.getUserId() + ", " + tempList.getGoodsPrice());
             }
         });
 

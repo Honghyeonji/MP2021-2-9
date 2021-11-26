@@ -32,7 +32,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.InputStream;
 
 
-public class AddPromotionActivity extends Fragment {
+public class AddPromotionFrag extends Fragment {
     Bundle bundle;
     ActivityResultLauncher resultLauncher;
     String userid;
@@ -50,16 +50,12 @@ public class AddPromotionActivity extends Fragment {
     Uri posteruri;
     String boothImgurl;
 
-//    String loginID;
-//    TextInputEditText boothname, boothlocation;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_addpromotion, container, false);
 
-//        loginID = getArguments().getString("ID");
-
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("부스등록페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
