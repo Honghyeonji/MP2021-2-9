@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -61,8 +62,8 @@ public class AddPromotionActivity extends Fragment {
 //        loginID = getArguments().getString("ID");
 
         app_info.setNowPage("부스등록페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);

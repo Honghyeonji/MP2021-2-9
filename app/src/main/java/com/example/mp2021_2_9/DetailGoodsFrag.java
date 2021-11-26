@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 // 굿즈 상세페이지
 public class DetailGoodsFrag extends Fragment{
     ViewGroup v;
@@ -30,8 +32,8 @@ public class DetailGoodsFrag extends Fragment{
         returnFrag = new GoodsMainFrag();
 
         app_info.setNowPage("굿즈세부페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         Bundle bundle = getArguments();
         GoodsInfo_list goodsinfo = (GoodsInfo_list) bundle.getSerializable("GoodsInfo_list");

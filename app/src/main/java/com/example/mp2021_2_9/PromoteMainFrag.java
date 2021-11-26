@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,8 +51,8 @@ public class PromoteMainFrag extends Fragment{
         setInit();
 
         app_info.setNowPage("부스메인페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
         app_info.setPrevPage("부스메인페이지");
 
         /* 상품 목록 부분 */

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
@@ -22,8 +23,8 @@ public class UserPage extends Fragment {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
 
         app_info.setNowPage("개인페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
         app_info.setPrevPage("개인페이지");
 
         infoCheck = view.findViewById(R.id.information_check);

@@ -51,8 +51,8 @@ public class ManageGoods extends Fragment {
         adapter = new ListViewAdapter(this, goodsList);
 
         app_info.setNowPage("등록상품관리페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
         ListView listView = (ListView) view.findViewById(R.id.managegoods_list);
         searchBtn = (ImageButton) view.findViewById(R.id.searchBtn);

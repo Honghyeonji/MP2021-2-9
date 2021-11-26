@@ -35,8 +35,8 @@ public class DetailPromotionActivity extends Fragment{
         v = (ViewGroup) inflater.inflate(R.layout.activity_promtdetailed, container, false);
 
         app_info.setNowPage("부스세부페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
 
 
         mainFrag = new PromoteMainFrag();

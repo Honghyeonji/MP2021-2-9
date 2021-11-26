@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,8 +38,8 @@ public class GoodsMainFrag extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.shopping_main_screen, container, false);
 
         app_info.setNowPage("굿즈메인페이지");
-        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
         app_info.setPrevPage("굿즈메인페이지");
 
         goods_lists = new ArrayList<>();        // 상품 정보 담을 arrayList
