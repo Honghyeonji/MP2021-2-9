@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     // 메인화면 이동
+                                    newActivity();
                                     finish();
 
                                 } else {                // 비밀번호 일치하지 않을 때
@@ -126,11 +127,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
+    private void newActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         app_info.setLoginBack(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        newActivity();
         finish();
     }
 }

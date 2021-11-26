@@ -272,7 +272,7 @@ public class JoinActivity extends AppCompatActivity {
 
                     Map<String, Object> user = new HashMap<>();
                     user.put(strid, tempuser);
-                    rDatabase.child("users").updateChildren(user);
+                    rDatabase.updateChildren(user);
                     Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                     finish();
