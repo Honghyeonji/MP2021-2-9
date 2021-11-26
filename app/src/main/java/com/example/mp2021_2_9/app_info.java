@@ -9,7 +9,7 @@ public class app_info {
     private static HashMap<String, Integer> pageMap = new HashMap<String, Integer>();
     private static HashMap<Integer, String> keyMap = new HashMap<Integer, String>();
     private static String prevPage;
-    private static boolean loginBack = false;
+    private static boolean loading = false;
 
     public static String getNowPage() {
         return nowPage;
@@ -71,11 +71,11 @@ public class app_info {
         app_info.prevPage = prevPage;
     }
 
-    public static boolean isLoginBack() {
-        return loginBack;
+    public static boolean isLoading() {
+        return loading;
     }
 
-    public static void setLoginBack(boolean loginBack) {
-        app_info.loginBack = loginBack;
+    public static void setLoading(boolean loading) {
+        app_info.loading = loading;
     }
 }

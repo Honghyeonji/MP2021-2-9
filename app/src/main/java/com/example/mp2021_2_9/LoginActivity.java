@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
     private void newActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        app_info.setLoginBack(true);
+        app_info.setLoading(true);
     }
 
     @Override
