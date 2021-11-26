@@ -81,6 +81,8 @@
     <string name="soldout">품절</string>
     <string name="delete">삭제</string>
 
+    <string name="developer">개발팀\ndaedong2109@gmail.com</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

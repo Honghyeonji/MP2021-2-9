@@ -83,7 +83,8 @@
                 android:layout_margin="20dp"
                 android:padding="10dp"
                 android:background="@drawable/textbox_pink"
-                android:text="부스 관리자가 등록한 홍보글 노출" />
+                android:text="부스 관리자가 등록한 홍보글 노출"
+                android:textColor="@color/black" />
 
 
         </LinearLayout>

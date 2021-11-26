@@ -18,6 +18,7 @@ public class UserPage extends Fragment {
     Button infoCheck, goodsPost, promotionPost, goodsManage;
     Bundle bundle;
     String loginID; Boolean isManager;
+    TextView developer;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
