@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -246,7 +247,8 @@ public class SeeProfile extends Fragment{
                             // 프리퍼런스 저장된 로그인정보 null로 수정
                             editPrefs();
 
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                            newActivity();
+                            getActivity().finish();
                             Toast.makeText(getActivity(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Success logout!");
                         }
@@ -279,7 +281,8 @@ public class SeeProfile extends Fragment{
                                 myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                                        newActivity();
+                                        getActivity().finish();
                                         Toast.makeText(getActivity(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "Delete account");
                                     }
@@ -316,6 +319,11 @@ public class SeeProfile extends Fragment{
         editor.putString("phoneNum","");
         editor.putBoolean("isManager",false);
         editor.apply();
+    }
 
+    private void newActivity(){
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        app_info.setLoading(true);
     }
 }
