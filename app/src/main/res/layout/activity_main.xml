@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:background="?attr/colorPrimary"
+        android:background="@drawable/toolbar"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        app:titleTextColor="#BD87BB"
+        android:layout_gravity="center"
+        android:textAlignment="center"/>
 
     <FrameLayout
         android:id="@+id/frame_container"
