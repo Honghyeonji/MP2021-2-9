@@ -16,9 +16,17 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:layout_alignParentTop="true"
-        app:titleTextColor="#BD87BB"
-        android:layout_gravity="center"
-        android:textAlignment="center"/>
+        app:titleTextColor="#BD87BB">
+
+        <TextView
+            android:id="@+id/mp_toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#BD87BB"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/frame_container"

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -41,14 +42,14 @@ public class MainActivity extends AppCompatActivity{
 
         app_info.setKeyMap();
         app_info.setPageMap();
-
+        app_info.setNowPage("부스메인페이지");
         toolbar = findViewById(R.id.mp_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView textView = findViewById(R.id.mp_toolbar_text);
+        textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        getSupportActionBar().setTitle("");
 
-
-        app_info.setNowPage("부스메인페이지");
-        getSupportActionBar().setTitle("대동대동");
         Log.v("test1", "isEmptyStack?" + app_info.isEmptyStack() + ", nowPage?" + app_info.getNowPage());
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
