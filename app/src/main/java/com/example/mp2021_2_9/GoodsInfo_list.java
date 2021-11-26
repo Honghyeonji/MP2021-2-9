@@ -17,7 +17,7 @@ public class GoodsInfo_list implements Serializable {
     public String getKey(){ return key; }
     public void setKey(String key){ this.key = key; }
     public String getUserid(){ return userid; }
-    public void setUserid(String userId){ this.userid = userid;}
+    public void setUserid(String userid){ this.userid = userid;}
     public String getGoodsName(){
         return goodsName;
     }
@@ -43,7 +43,7 @@ public class GoodsInfo_list implements Serializable {
 
 
     // 그룹 생성시 사용
-    public GoodsInfo_list(String goodsImgurl,  boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice,
+    public GoodsInfo_list(String goodsImgurl, boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice,
                            String goodsTxturl, String key, String userid){
         this.goodsImgurl = goodsImgurl;
         this.goodsIsSoldOut = goodsIsSoldOut;
