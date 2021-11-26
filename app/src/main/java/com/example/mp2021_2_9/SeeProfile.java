@@ -145,7 +145,7 @@ public class SeeProfile extends Fragment{
                         UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
                         if(user != null) {
                             Map<String, Object> map = new HashMap<String, Object>();
-                            map.put("passward", newPW.getText().toString());
+                            map.put("password", newPW.getText().toString());
                             myRef.child(loginID).updateChildren(map);
                         }
                     }
