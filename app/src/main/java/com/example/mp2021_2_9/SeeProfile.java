@@ -148,14 +148,6 @@ public class SeeProfile extends Fragment{
                             map.put("passward", newPW.getText().toString());
                             myRef.child(loginID).updateChildren(map);
                         }
-                        else{
-                        }
-
-//                        UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-//                        assert user != null;
-//                        user.setPassword(newPW.getText().toString());
-//                        Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
-//                        Log.d(TAG, "Changed password is: " + user.getPassword());
                     }
 
                     @Override
