@@ -33,7 +33,19 @@
                 android:text="상품이름"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
+            <!-- 품절시 나타날 텍스트-->
+            <TextView
+                android:id="@+id/soldOutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="** 현재 품절입니다 **"
+                android:textSize="15dp"
+                android:textColor="@color/red"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/goods_price"
@@ -61,8 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:padding="10dp"
                 android:background="@drawable/textbox_pink"
                 android:text="판매자가 입력한 판매위치 노출"
@@ -74,15 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:padding="10dp"
                 android:background="@drawable/textbox_pink"/>
-
-<!--            <ImageView-->
-<!--                android:id="@+id/goods_map"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_margin="10dp"-->
-<!--                app:srcCompat="@drawable/ic_launcher_foreground" />-->
-
 
 
         </LinearLayout>

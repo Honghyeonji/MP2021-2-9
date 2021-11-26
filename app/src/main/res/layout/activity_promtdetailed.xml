@@ -33,20 +33,50 @@
                 android:textSize="25dp"
                 android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/promt_location"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="위치 : "
-                android:textSize="17dp"/>
-            <TextView
-                android:id="@+id/promt_time"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="17dp"
+                    android:text="위치 :" />
+
+                <TextView
+                    android:id="@+id/promt_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="위치 삽입"
+                    android:textSize="17dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="시간 : "
-                android:textSize="17dp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="17dp"
+                    android:text="시간 :" />
+
+                <TextView
+                   android:id="@+id/promt_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="시간 삽입"
+                    android:textSize="17dp"/>
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/promt_detail"
