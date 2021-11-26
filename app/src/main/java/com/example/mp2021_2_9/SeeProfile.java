@@ -279,6 +279,7 @@ public class SeeProfile extends Fragment{
                                 myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
+                                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
                                         Toast.makeText(getActivity(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "Delete account");
                                     }
@@ -289,7 +290,7 @@ public class SeeProfile extends Fragment{
                                         e.printStackTrace();
                                     }
                                 });
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener(){
