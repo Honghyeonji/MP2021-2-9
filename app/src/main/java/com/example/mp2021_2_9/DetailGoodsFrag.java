@@ -50,57 +50,6 @@ public class DetailGoodsFrag extends Fragment{
         goods_detail.setText(goodsinfo.getGoodsTxtUrl());
 
 
-
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        StorageReference pathReference = storage.getReferenceFromUrl(goodsinfo.getGoodsTxtUrl());
-//
-//        try{
-//            File localFile = File.createTempFile("detail", "txt");
-//            try{
-////                if(!path.exists()){
-////                    path.mkdirs();
-////                }
-////                file.createNewFile();
-//
-//                final FileDownloadTask fileDownloadTask = pathReference.getFile(localFile);
-//                fileDownloadTask.addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                        //다운로드 성공 후 할 일
-////                        FileInputStream fis;
-////                        try{
-////                            FileReader fr = new FileReader(goodsinfo.getGoodsName() + ".txt");
-////                            BufferedReader buffer = new BufferedReader(fr);
-////
-////                            String line;
-////                            ArrayList<String> lines = new ArrayList<>();
-////                            while((line = buffer.readLine()) != null){
-////                                lines.add(line);
-////                            }
-////                            buffer.close();
-////                        }catch (Exception e){
-////                            e.printStackTrace();
-////                        }
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception exception) {
-//                        //다운로드 실패 후 할 일
-//                    }
-//                }).addOnProgressListener(new OnProgressListener<FileDownloadTask.TaskSnapshot>() {
-//                    @Override
-//                    //진행상태 표시
-//                    public void onProgress(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//
-//                    }
-//                });
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
         return v;
     }
 }

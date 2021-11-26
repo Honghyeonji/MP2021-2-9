@@ -266,7 +266,7 @@ public class JoinActivity extends AppCompatActivity {
                     Map<String, Object> tempuser = new HashMap<>();
                     tempuser.put("id", strid);
                     tempuser.put("isManager", false);
-                    tempuser.put("passward", strpw);
+                    tempuser.put("password", strpw);
                     tempuser.put("phoneNum", strphone);
                     tempuser.put("userName", strname);
 
