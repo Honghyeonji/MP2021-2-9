@@ -34,19 +34,47 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/promt_location"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="위치 : "
-                android:textSize="17dp"/>
+                android:layout_marginLeft="10dp"
+                android:text="※ 시간"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
             <TextView
                 android:id="@+id/promt_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="시간 : "
-                android:textSize="17dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:background="@drawable/textbox_pink"
+                android:text="판매자가 입력한 판매위치 노출"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="※ 위치"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/promt_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:background="@drawable/textbox_pink"
+                android:text="판매자가 입력한 판매위치 노출"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/promt_detail"

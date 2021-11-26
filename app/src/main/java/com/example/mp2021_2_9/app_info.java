@@ -20,10 +20,7 @@ public class app_info {
     }
 
     public static void setPageMap(){
-        pageMap.put("메인페이지", R.layout.activity_main);
         pageMap.put("부스메인페이지", R.layout.promotion_main_screen);
-        pageMap.put("로그인페이지", R.layout.activity_login);
-        pageMap.put("회원가입페이지", R.layout.activity_join);
         pageMap.put("굿즈메인페이지", R.layout.shopping_main_screen);
         pageMap.put("개인페이지", R.layout.activity_userpage);
         pageMap.put("개인정보수정페이지", R.layout.activity_seeprofile);
@@ -44,9 +41,6 @@ public class app_info {
         keyMap.put(R.layout.activity_managegoods, "등록 상품 관리");
         keyMap.put(R.layout.activity_userpage, "대동대동");
         keyMap.put(R.layout.activity_seeprofile, "개인정보 수정");
-        keyMap.put(R.layout.activity_main, "대동대동");
-        keyMap.put(R.layout.activity_login, "로그인");
-        keyMap.put(R.layout.activity_join, "회원가입");
    }
 
    public static int getPageMap(String pageName){
