@@ -8,18 +8,19 @@ public class AddPromotionData {
     public String boothLocation,  boothName, boothOpenTime, boothImgurl, boothTxturl; //부스관련
     public String userid, key;
     public String goodsLocation, goodsName, goodsPrice,   goodsTxturl;
-    String goodsImgurl;
+    public String goodsImgurl;
     public boolean goodsIsSoldOut;
 
     public AddPromotionData(){}
-    public AddPromotionData(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String key, String userid){
+    public AddPromotionData(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String key, String userid, String goodsTxturl){
         this.goodsImgurl = goodsImgurl;
         this.goodsLocation = goodsLocation;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
         this.key = key;
-        this. userid = userid;
-        this. goodsIsSoldOut = goodsIsSoldOut;
+        this.userid = userid;
+        this.goodsIsSoldOut = goodsIsSoldOut;
+        this.goodsTxturl = goodsTxturl;
     }
     public AddPromotionData(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
         this.boothImgurl = boothImgurl;

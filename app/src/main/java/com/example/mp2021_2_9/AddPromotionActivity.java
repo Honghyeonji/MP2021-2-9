@@ -41,9 +41,11 @@ public class AddPromotionActivity extends Fragment {
     Button save;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
+
     DatabaseReference base = FirebaseDatabase.getInstance().getReference();
     DatabaseReference databaseReference = base.child("booth");
     ImageButton addposter;
+
     Bitmap btm;
     Uri posteruri;
     String boothImgurl;
@@ -76,7 +78,7 @@ public class AddPromotionActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 String filename = userid + ".PNG";
-                StorageReference imgRef = storage.getReference("goods/" + filename);
+                StorageReference imgRef = storage.getReference("booth/" + filename);
                 UploadTask uploadTask = imgRef.putFile(posteruri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
                 boothImgurl = posteruri.toString();
                 addbooth(boothImgurl,boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid,boothdetail.getText().toString());
@@ -119,8 +121,9 @@ public class AddPromotionActivity extends Fragment {
 
     }
     public void addbooth(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
+        DatabaseReference ref = databaseReference.push();
         AddPromotionData addPromotionData = new AddPromotionData(boothImgurl,boothLocation, boothName,boothOpenTime,userid,boothTxturl);
-        databaseReference.push().setValue(addPromotionData);
+        ref.setValue(addPromotionData);
 
     }
 

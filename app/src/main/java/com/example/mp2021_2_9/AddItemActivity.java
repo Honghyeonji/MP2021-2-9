@@ -20,13 +20,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,7 +36,7 @@ public class AddItemActivity extends Fragment  {
     Bundle bundle;
     View view;
     String userid;
-    EditText itemname,itemprice, boothlocation;
+    EditText itemname,itemprice, boothlocation, itemdetail;
     ImageButton additem;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
@@ -51,7 +49,7 @@ public class AddItemActivity extends Fragment  {
     ActivityResultLauncher resultLauncher;
     Bitmap btm;
     Uri imguri;
-    String goodsImgurl = "link";
+    String goodsImgurl ;
 
 
 //    FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -66,35 +64,25 @@ public class AddItemActivity extends Fragment  {
 //        loginID = getArguments().getString("ID");
 
         app_info.setNowPage("굿즈등록페이지");
-        //ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
-        //actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+        ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
+
         additem = (ImageButton) view.findViewById(R.id.selectImageBtn);
         save = (Button) view.findViewById(R.id.savebutton);
         itemname = (EditText) view.findViewById(R.id.item_name);
         itemprice = (EditText) view.findViewById(R.id.item_price);
         boothlocation = (EditText) view.findViewById(R.id.booth_location);
-
-        String loginID = this.getArguments().getString("ID", "");
-        myRef.child(loginID).addListenerForSingleValueEvent(new ValueEventListener(){
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                userid = user.getId();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-            }
-        });
+        itemdetail = (EditText)view.findViewById(R.id.item_description);
+        userid = getArguments().getString("ID");
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String filename = loginID + ".PNG";
+                String filename = userid + ".PNG";
                 StorageReference imgRef = storage.getReference("goods/" + filename);
                 UploadTask uploadTask = imgRef.putFile(imguri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
-
-                Additem("imguri.toString()",goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid );
+                goodsImgurl = imguri.toString();
+                Additem(goodsImgurl,goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid ,itemdetail.getText().toString());
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
@@ -135,10 +123,10 @@ public class AddItemActivity extends Fragment  {
         );
         return view;
     }
-    public void Additem(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String userid){
+    public void Additem(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String userid, String goodsTxturl){
         DatabaseReference ref = databaseReference.push();
 
-        AddPromotionData addgoodsdata = new AddPromotionData(goodsImgurl,goodsIsSoldOut, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid);
+        AddPromotionData addgoodsdata = new AddPromotionData(goodsImgurl,goodsIsSoldOut, goodsLocation,goodsName,goodsPrice, ref.getKey(), userid,goodsTxturl);
         ref.setValue(addgoodsdata);
     }
 
