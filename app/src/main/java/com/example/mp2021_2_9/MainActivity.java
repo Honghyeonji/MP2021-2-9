@@ -37,8 +37,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, LoadingActivity.class);
-        startActivity(intent);
+        if(!app_info.isLoginBack()){
+            Intent intent = new Intent(this, LoadingActivity.class);
+            startActivity(intent);
+        }
+        app_info.setLoginBack(false);
 
         app_info.setKeyMap();
         app_info.setPageMap();
@@ -144,5 +147,24 @@ public class MainActivity extends AppCompatActivity{
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        String layout = app_info.getPrevPage();
+        if(app_info.isEmptyStack() && (app_info.getNowPage().equals("굿즈메인페이지")
+                || app_info.getNowPage().equals("부스메인페이지")
+                || app_info.getNowPage().equals("개인페이지"))){
+            createDialog();
+        }else if(!app_info.isEmptyStack()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+        }else if(layout.equals("굿즈메인페이지")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
+        }else if(layout.equals("부스메인페이지")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+        }else if(layout.equals("개인페이지")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new UserPage()).commit();
+        }
+        app_info.setPrevPage(null);
     }
 }
