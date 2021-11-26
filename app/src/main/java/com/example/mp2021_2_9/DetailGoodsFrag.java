@@ -1,6 +1,8 @@
 package com.example.mp2021_2_9;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,8 +45,17 @@ public class DetailGoodsFrag extends Fragment{
         TextView goods_price = v.findViewById(R.id.goods_price);
         TextView goods_location = v.findViewById(R.id.goods_location);
         TextView goods_detail = v.findViewById(R.id.goods_detail);
+        TextView goods_soldOutText = v.findViewById(R.id.soldOutText);
+
+        boolean goodsIsSoldout = goodsinfo.getGoodsIsSoldOut();
 
         goods_name.setText(goodsinfo.getGoodsName());
+        if(goodsIsSoldout){
+            goods_name.setTextColor(Color.GRAY);
+            goods_name.setPaintFlags(goods_name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            goods_soldOutText.setVisibility(View.VISIBLE);
+        }
+
         goods_price.setText("가격: " + goodsinfo.getGoodsPrice() + "원");
         goods_location.setText(goodsinfo.getGoodsLocation());
         ImageView goodsImg = (ImageView) v.findViewById(R.id.goods_image);

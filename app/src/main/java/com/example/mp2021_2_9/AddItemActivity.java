@@ -51,10 +51,6 @@ public class AddItemActivity extends Fragment  {
     String goodsImgurl ;
 
 
-//    FirebaseDatabase database = FirebaseDatabase.getInstance();
-//    DatabaseReference databaseReference = database.getReference();
-//    String loginID;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,7 +76,8 @@ public class AddItemActivity extends Fragment  {
                 String filename = itemname.getText().toString() + ".PNG";
                 StorageReference imgRef = storage.getReference("goods/" + filename);
                 UploadTask uploadTask = imgRef.putFile(imguri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
-                goodsImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/goods%2F"+filename+"?alt=media";
+                goodsImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/goods%2F" + filename + "?alt=media";
+
                 Additem(goodsImgurl,goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid ,itemdetail.getText().toString());
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
