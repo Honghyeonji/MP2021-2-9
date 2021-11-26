@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity{
                     case R.id.toprofile:    // 로그인 or 개인정보화면
                         app_info.setPrevPage(null);
                         SharedPreferences preferences = getSharedPreferences("current_info", 0);
+                        SharedPreferences.Editor editor = preferences.edit();
                         String Id = preferences.getString("ID", "");
                         if (Id.equals("")) {  // 비로그인상태 - 로그인 액티비티
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity{
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     isManager = dataSnapshot.getValue(boolean.class);
-                                    preferences.edit().putBoolean("isManager", isManager);
+                                    editor.putBoolean("isManager", isManager);
+                                    editor.apply();
                                     bundle.putBoolean("isManager", isManager);
                                     userpage.setArguments(bundle);
                                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
