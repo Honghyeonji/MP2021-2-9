@@ -21,7 +21,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.database.DatabaseReference;
@@ -78,11 +77,10 @@ public class AddPromotionActivity extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String filename = userid + ".PNG";          // 부스명 수정해주세요!! (ex. 부스이름_id 등으로)
+                String filename = boothname.getText().toString() + ".PNG";
                 StorageReference imgRef = storage.getReference("booth/" + filename);
                 UploadTask uploadTask = imgRef.putFile(posteruri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
-                //boothImgurl = posteruri.toString();
-                boothImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/booth%2F" + filename + "?alt=media";
+                boothImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/booth%2F"+filename+"?alt=media";
                 addbooth(boothImgurl,boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid,boothdetail.getText().toString());
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
