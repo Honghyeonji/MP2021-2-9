@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity{
                             ld = new LoadingDialog(MainActivity.this);
                             loadingMessage = "개인정보 확인하러 가는 중";
                             ld.startLoadingDialog(loadingMessage);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("ID", preferences.getString("ID", ""));
+                            //Bundle bundle = new Bundle();
+                            //bundle.putString("ID", preferences.getString("ID", ""));
                             UserPage userpage = new UserPage();
                             myRef.child(preferences.getString("ID", "")).child("isManager").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity{
                                     isManager = dataSnapshot.getValue(boolean.class);
                                     editor.putBoolean("isManager", isManager);
                                     editor.apply();
-                                    bundle.putBoolean("isManager", isManager);
-                                    userpage.setArguments(bundle);
+                                    //bundle.putBoolean("isManager", isManager);
+                                    //userpage.setArguments(bundle);
                                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
                                 }
 
