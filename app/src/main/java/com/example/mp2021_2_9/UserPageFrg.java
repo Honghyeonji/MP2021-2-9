@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
-public class UserPage extends Fragment {
+public class UserPageFrg extends Fragment {
     View view;
     Button infoCheck, goodsPost, promotionPost, goodsManage;
     Bundle bundle;
     String loginID; Boolean isManager;
+    TextView developer;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage, container, false);
@@ -46,7 +46,7 @@ public class UserPage extends Fragment {
         infoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SeeProfile sp = new SeeProfile();
+                SeeProfileFrag sp = new SeeProfileFrag();
                 sp.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
             }
@@ -64,7 +64,7 @@ public class UserPage extends Fragment {
                         .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                SeeProfile sp = new SeeProfile();
+                                SeeProfileFrag sp = new SeeProfileFrag();
                                 sp.setArguments(bundle);
                                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
                             }
@@ -78,7 +78,7 @@ public class UserPage extends Fragment {
                         .create()
                         .show();
                 }else{
-                    AddItemActivity ai = new AddItemActivity();
+                    AddItemFrag ai = new AddItemFrag();
                     ai.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ai).commit();
                 }
@@ -96,7 +96,7 @@ public class UserPage extends Fragment {
                         .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                SeeProfile sp = new SeeProfile();
+                                SeeProfileFrag sp = new SeeProfileFrag();
                                 sp.setArguments(bundle);
                                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
                             }
@@ -112,7 +112,7 @@ public class UserPage extends Fragment {
                         .show();
                 }else {
                     /* 판매자 인증이 된 사용자라면 */
-                    AddPromotionActivity ap = new AddPromotionActivity();
+                    AddPromotionFrag ap = new AddPromotionFrag();
                     ap.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ap).commit();
                 }
@@ -130,7 +130,7 @@ public class UserPage extends Fragment {
                             .setPositiveButton("인증하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
-                                    SeeProfile sp = new SeeProfile();
+                                    SeeProfileFrag sp = new SeeProfileFrag();
                                     sp.setArguments(bundle);
                                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, sp).commit();
                                 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddItemActivity">
+    tools:context=".AddItemFrag">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,17 +18,33 @@
             android:layout_marginVertical="20dp"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/selectImageBtn"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:contentDescription="@string/camera"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/camera"
-                tools:ignore="SpeakableTextPresentCheck" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/selectImageBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/camera"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/camera"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/promotion_explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/promotion_explain"
+                    android:textSize="14dp"
+                    />
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/booth_name"

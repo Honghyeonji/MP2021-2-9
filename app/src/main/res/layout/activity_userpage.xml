@@ -48,4 +48,14 @@
         android:text="등록 상품 관리"
         android:textColor="@color/black" />
 
+    <TextView
+        android:id="@+id/developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:text="@string/developer"
+        android:textSize="12dp"
+        android:textAlignment="center"
+        android:textColor="@color/gray" />
+
 </LinearLayout>

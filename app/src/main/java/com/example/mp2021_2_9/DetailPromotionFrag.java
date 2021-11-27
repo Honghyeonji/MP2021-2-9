@@ -19,14 +19,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 // 부스 홍보 상세페이지
-public class DetailPromotionActivity extends Fragment{
+public class DetailPromotionFrag extends Fragment{
     PromoteMainFrag mainFrag;
 
     ViewGroup v;
     TextView boothName,boothLocation,boothTime,boothDetail;
     ImageView poster;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageReference = storage.getReference();
 
     @SuppressLint("SetTextI18n")
     @Nullable
@@ -34,6 +33,7 @@ public class DetailPromotionActivity extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = (ViewGroup) inflater.inflate(R.layout.activity_promtdetailed, container, false);
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("부스세부페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));

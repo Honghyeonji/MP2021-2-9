@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,10 +44,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SeeProfile extends Fragment{
+public class SeeProfileFrag extends Fragment{
     String TAG = "SeeProfile";
 
     ActivityResultLauncher resultLauncher;
@@ -76,6 +80,7 @@ public class SeeProfile extends Fragment{
         String loginID = this.getArguments().getString("ID", "");
         view = inflater.inflate(R.layout.activity_seeprofile, container, false);
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("개인정보수정페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
@@ -140,9 +145,12 @@ public class SeeProfile extends Fragment{
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo_list user = dataSnapshot.getValue(UserInfo_list.class);
-                        user.setPassword(newPW.getText().toString());
-                        Toast.makeText(getActivity(), "비밀번호가 정상적으로 바뀌었습니다.", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Changed password is: " + user.getPassword());
+                        if(user != null) {
+                            Map<String, Object> map = new HashMap<String, Object>();
+                            map.put("password", newPW.getText().toString());
+                            myRef.child(loginID).updateChildren(map);
+                            Toast.makeText(getContext().getApplicationContext(), "비밀번호가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
@@ -241,7 +249,9 @@ public class SeeProfile extends Fragment{
                             // 프리퍼런스 저장된 로그인정보 null로 수정
                             editPrefs();
 
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                            // MainActivity 새로 띄우고 기존 Activity는 종료
+                            newActivity();
+                            getActivity().finish();
                             Toast.makeText(getActivity(), "로그아웃 되었습니다", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Success logout!");
                         }
@@ -274,6 +284,9 @@ public class SeeProfile extends Fragment{
                                 myRef.child(loginID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
+                                        // MainActivity 새로 띄우고 기존 Activity는 종료
+                                        newActivity();
+                                        getActivity().finish();
                                         Toast.makeText(getActivity(), "계정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                         Log.d(TAG, "Delete account");
                                     }
@@ -284,7 +297,7 @@ public class SeeProfile extends Fragment{
                                         e.printStackTrace();
                                     }
                                 });
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener(){
@@ -310,6 +323,11 @@ public class SeeProfile extends Fragment{
         editor.putString("phoneNum","");
         editor.putBoolean("isManager",false);
         editor.apply();
+    }
 
+    private void newActivity(){ // 새로운 MainActivity 띄우고 loading page 안뜨게 loading값 설정
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        app_info.setLoading(true);
     }
 }

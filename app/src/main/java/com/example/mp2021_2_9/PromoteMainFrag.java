@@ -6,18 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
 
@@ -50,6 +46,7 @@ public class PromoteMainFrag extends Fragment{
 
         setInit();
 
+        // Toolbar, app_info 설정 변경
         app_info.setNowPage("부스메인페이지");
         TextView textView = getActivity().findViewById(R.id.mp_toolbar_text);
         textView.setText(app_info.getKeyMap(app_info.getPageMap(app_info.getNowPage())));
@@ -88,17 +85,17 @@ public class PromoteMainFrag extends Fragment{
         adapter = new BoothAdapter(boothInfo_lists, getContext());
         recyclerView.setAdapter(adapter);
 
+        // 리사이클러뷰의 아이템 선택시 발생하는 이벤트
         adapter.setOnItemClickListener(new BoothAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos){
+                BoothInfo_list tempList = boothInfo_lists.get(pos); // 클릭한 부스 아이템의 정보 읽기
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BoothInfo_list tempList = boothInfo_lists.get(pos);
-                DetailPromotionActivity f = new DetailPromotionActivity();
-                Bundle bundle = new Bundle();
+                DetailPromotionFrag f = new DetailPromotionFrag();
+                Bundle bundle = new Bundle(); // bundle에 tempList 담아 부스세부페이지 프래그먼트로 전달
                 bundle.putSerializable("BoothInfo_list", tempList);
                 f.setArguments(bundle);
                 transaction.replace(R.id.frame_container, f).commit();
-                Log.v("test", "pos:" + pos);
             }
         });
 

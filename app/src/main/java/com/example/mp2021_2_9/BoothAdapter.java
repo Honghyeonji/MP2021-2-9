@@ -1,6 +1,7 @@
 package com.example.mp2021_2_9;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,18 @@ public class BoothAdapter extends RecyclerView.Adapter<BoothAdapter.ViewHolder> 
     // 각 아이템 매칭
     @Override
     public void onBindViewHolder(@NonNull BoothAdapter.ViewHolder holder, int position){
-
         Glide.with(holder.itemView).load(boothInfo_lists.get(position).getBoothImgurl()).into(holder.imageView);
+
+        int temp = 0;
+        if ((position%2) == 1)
+             temp = position - 1;
+        else if((position%2) == 0)
+             temp = position - 2;
+
+        if(((temp%4) == 0)&&(position!=0)) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#F4C0D5"));
+            //holder.imageView.setMaxWidth(183);
+        }
     }
 
     @Override

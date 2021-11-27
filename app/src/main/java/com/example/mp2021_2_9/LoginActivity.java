@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         String TAG = "LoginActivity";
 
+        // app_info 설정 변경
         app_info.setNowPage("로그인페이지");
 
         EditText inputId = (EditText) findViewById(R.id.inputIdnum);    // 아이디(학번)
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     // 메인화면 이동
+                                    newActivity();
                                     finish();
 
                                 } else {                // 비밀번호 일치하지 않을 때
@@ -124,5 +126,19 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void newActivity(){ // 새로운 MainActivity 만들기
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        app_info.setLoading(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // 휴대폰에 내장된 BackButton을 누를 시 새로운 MainActivity 만든 후 기존 Activity 삭제
+        // (하단메뉴바가 userPage로 세팅되어있는 대신 다른 화면이 세팅되는 오류를 해결하기 위함)
+        newActivity();
+        finish();
     }
 }
