@@ -1,11 +1,18 @@
 package com.example.mp2021_2_9;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +35,11 @@ public class MainActivity extends AppCompatActivity{
     private boolean isManager;
 
     private long backKeyPressedTime = 0;
+
+    // For Loading Dialog
+    LoadingDialog ld = new LoadingDialog(MainActivity.this);
+    private String loadingMessage;
+    Handler handler;
 
     // DataBase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -65,11 +77,32 @@ public class MainActivity extends AppCompatActivity{
                 switch (item.getItemId()) {
                     case R.id.topromt:  // 홍보 메인
                         app_info.setPrevPage(null);
+                        // 로딩 다이얼로그 생성
+                        LoadingDialog ld = new LoadingDialog(MainActivity.this);
+                        loadingMessage = "홍보글 구경하러 가는 중";
+                        ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ld.finishDialog();
+                            }
+                        },2000);
                         break;
                     case R.id.toshop:   // 상품 메인
                         app_info.setPrevPage(null);
+                        ld = new LoadingDialog(MainActivity.this);
+                        loadingMessage = "상품 구경하러 가는 중";
+                        ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ld.finishDialog();
+                            }
+                        },2000);
                         break;
                     case R.id.toprofile:    // 로그인 or 개인정보화면
                         app_info.setPrevPage(null);
@@ -81,6 +114,9 @@ public class MainActivity extends AppCompatActivity{
                             startActivity(intent);
                             finish();
                         } else {              // 로그인상태 - 개인정보화면
+                            ld = new LoadingDialog(MainActivity.this);
+                            loadingMessage = "개인정보 확인하러 가는 중";
+                            ld.startLoadingDialog(loadingMessage);
                             Bundle bundle = new Bundle();
                             bundle.putString("ID", preferences.getString("ID", ""));
                             UserPage userpage = new UserPage();
@@ -100,6 +136,13 @@ public class MainActivity extends AppCompatActivity{
                                     Log.w(TAG, "Failed to read value.", error.toException());
                                 }
                             });
+                            handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ld.finishDialog();
+                                }
+                            }, 2000);
                         }
                         break;
                 }
@@ -170,4 +213,5 @@ public class MainActivity extends AppCompatActivity{
         }
         app_info.setPrevPage(null);
     }
+
 }
