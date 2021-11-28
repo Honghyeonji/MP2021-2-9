@@ -12,6 +12,7 @@ public class AddPromotionData {
     public boolean goodsIsSoldOut;
 
     public AddPromotionData(){}
+    //굿즈페이지에 작성된 정보들 저장용
     public AddPromotionData(String goodsImgurl,boolean goodsIsSoldOut, String goodsLocation, String goodsName, String goodsPrice, String key, String userid, String goodsTxturl){
         this.goodsImgurl = goodsImgurl;
         this.goodsLocation = goodsLocation;
@@ -22,6 +23,7 @@ public class AddPromotionData {
         this.goodsIsSoldOut = goodsIsSoldOut;
         this.goodsTxturl = goodsTxturl;
     }
+    //부스페이지에 작성된 정보 저장용
     public AddPromotionData(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
         this.boothImgurl = boothImgurl;
         this.boothLocation = boothLocation;
