@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity{
 
     private long backKeyPressedTime = 0;
 
+    // For Loading Dialog
+    LoadingDialog ld = new LoadingDialog(MainActivity.this);
+    private String loadingMessage;
+    Handler handler;
+
     // DataBase
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("users");
@@ -61,18 +66,41 @@ public class MainActivity extends AppCompatActivity{
 
         // 하단 메뉴바 설정(BottomNavigationBar)
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
+
         getSupportFragmentManager().beginTransaction().add(R.id.frame_container, new PromoteMainFrag()).commit();
+
         mBottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.topromt:  // 홍보 메인
                         app_info.setPrevPage(null);
+                        // 로딩 다이얼로그 생성
+                        LoadingDialog ld = new LoadingDialog(MainActivity.this);
+                        loadingMessage = "홍보글 구경하러 가는 중";
+                        ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ld.finishDialog();
+                            }
+                        },2000);
                         break;
                     case R.id.toshop:   // 상품 메인
                         app_info.setPrevPage(null);
+                        ld = new LoadingDialog(MainActivity.this);
+                        loadingMessage = "상품 구경하러 가는 중";
+                        ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ld.finishDialog();
+                            }
+                        },2000);
                         break;
                     case R.id.toprofile:    // 로그인 or 개인정보화면
                         app_info.setPrevPage(null);
@@ -84,17 +112,16 @@ public class MainActivity extends AppCompatActivity{
                             startActivity(intent);
                             finish();
                         } else {              // 로그인상태 - 개인정보화면
-                            Bundle bundle = new Bundle();
-                            bundle.putString("ID", preferences.getString("ID", ""));
-                            UserPageFrg userpage = new UserPageFrg();
+                            ld = new LoadingDialog(MainActivity.this);
+                            loadingMessage = "개인정보 확인하러 가는 중";
+                            ld.startLoadingDialog(loadingMessage);
+                            UserPage userpage = new UserPage();
                             myRef.child(preferences.getString("ID", "")).child("isManager").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     isManager = dataSnapshot.getValue(boolean.class);
                                     editor.putBoolean("isManager", isManager);
                                     editor.apply();
-                                    bundle.putBoolean("isManager", isManager);
-                                    userpage.setArguments(bundle);
                                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, userpage).commit();
                                 }
 
@@ -103,6 +130,13 @@ public class MainActivity extends AppCompatActivity{
                                     Log.w(TAG, "Failed to read value.", error.toException());
                                 }
                             });
+                            handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ld.finishDialog();
+                                }
+                            }, 2000);
                         }
                         break;
                 }
