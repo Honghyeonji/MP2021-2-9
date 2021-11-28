@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -47,7 +46,7 @@ public class DetailPromotionFrag extends Fragment{
         StorageReference txtref = storage.getReference("booth/"+"가톨릭.txt");
 
         poster = (ImageView) v.findViewById(R.id.promt_poster);// 동아리 포스터 띄울 이미지뷰
-        boothName = (TextView) v.findViewById(R.id.promt_name);
+        boothName = (TextView) v.findViewById(R.id.promt_name);             //부스이름
         boothLocation = (TextView) v.findViewById(R.id.promt_location);      // 부스 상세위치 텍스트노출
         boothTime = (TextView) v.findViewById(R.id.promt_time);              // 부스운영시간
         boothDetail = (TextView) v.findViewById(R.id.promt_detail);          // 홍보글

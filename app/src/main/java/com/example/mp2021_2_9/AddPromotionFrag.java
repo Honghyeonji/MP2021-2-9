@@ -62,7 +62,6 @@ public class AddPromotionFrag extends Fragment {
 
         save = (Button)view.findViewById(R.id.savebutton);
         boothname= (EditText) view.findViewById(R.id.booth_name);
-        boothname.setPrivateImeOptions("defaultInputmode=korean;");
         boothlocation = (EditText) view.findViewById(R.id.booth_location);
         boothtime = (EditText) view.findViewById(R.id.booth_time);
         userid = getArguments().getString("ID");
@@ -73,11 +72,13 @@ public class AddPromotionFrag extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String filename = boothname.getText().toString() + ".PNG";
+                String filename = boothname.getText().toString() + ".PNG"; //부스이름으로 파일 이름 설정
                 StorageReference imgRef = storage.getReference("booth/" + filename);
                 UploadTask uploadTask = imgRef.putFile(posteruri);         // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
-                boothImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/booth%2F" + filename + "?alt=media";
+                boothImgurl = "https://firebasestorage.googleapis.com/v0/b/mp2021-t9.appspot.com/o/booth%2F" + filename + "?alt=media"; // 아까 갤러리에서 받아온 Uri 레퍼런스에 담아서 업로드
+                //받은 부스 정보를 함수를 통해 파이어베이스에 올림
                 addbooth(boothImgurl,boothlocation.getText().toString(), boothname.getText().toString(),boothtime.getText().toString(), userid,boothdetail.getText().toString());
+                //저장버튼을 누르면 메인화면(부스 메인페이지)으로 전환
                 PromoteMainFrag Pf = new PromoteMainFrag();
                 Pf.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,Pf).commit();
@@ -117,7 +118,7 @@ public class AddPromotionFrag extends Fragment {
 
     }
     public void addbooth(String boothImgurl,String boothLocation, String boothName,String boothOpenTime, String userid, String boothTxturl){
-        DatabaseReference ref = databaseReference.push();
+        DatabaseReference ref = databaseReference.push(); //정보를 저장할때 랜덤한 값을 key로 설정하기 위해 push()로 저장
         AddPromotionData addPromotionData = new AddPromotionData(boothImgurl,boothLocation, boothName,boothOpenTime,userid,boothTxturl);
         ref.setValue(addPromotionData);
 
