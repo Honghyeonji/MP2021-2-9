@@ -34,7 +34,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    int pos = getAdapterPosition();
+                    int pos = getAbsoluteAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
                         mListener.onItemClick(v, pos);
                     }
