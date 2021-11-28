@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
                             ld = new LoadingDialog(MainActivity.this);
                             loadingMessage = "개인정보 확인하러 가는 중";
                             ld.startLoadingDialog(loadingMessage);
-                            UserPage userpage = new UserPage();
+                            UserPageFrg userpage = new UserPageFrg();
                             myRef.child(preferences.getString("ID", "")).child("isManager").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
