@@ -81,13 +81,6 @@ public class MainActivity extends AppCompatActivity{
                         loadingMessage = "홍보글 구경하러 가는 중";
                         ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PromoteMainFrag()).commit();
-                        handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                ld.finishDialog();
-                            }
-                        },2000);
                         break;
                     case R.id.toshop:   // 상품 메인
                         app_info.setPrevPage(null);
@@ -95,13 +88,6 @@ public class MainActivity extends AppCompatActivity{
                         loadingMessage = "상품 구경하러 가는 중";
                         ld.startLoadingDialog(loadingMessage);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new GoodsMainFrag()).commit();
-                        handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                ld.finishDialog();
-                            }
-                        },2000);
                         break;
                     case R.id.toprofile:    // 로그인 or 개인정보화면
                         app_info.setPrevPage(null);
@@ -131,13 +117,6 @@ public class MainActivity extends AppCompatActivity{
                                     Log.w(TAG, "Failed to read value.", error.toException());
                                 }
                             });
-                            handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ld.finishDialog();
-                                }
-                            }, 2000);
                         }
                         break;
                 }
