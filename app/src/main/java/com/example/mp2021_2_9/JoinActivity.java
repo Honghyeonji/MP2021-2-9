@@ -205,7 +205,7 @@ public class JoinActivity extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                             Toast.makeText(getApplicationContext(),
-                                    "아이디 정보를 불러오기에 실패했습니다. 에러사항은 hmj2292@kookmin.ac.kr로 보내주시길 바랍니다."
+                                    "아이디 정보를 불러오기에 실패했습니다. 에러사항은 daedong2109@gmail.com으로 보내주시길 바랍니다."
                                     ,Toast.LENGTH_SHORT).show();
                         }
                     });

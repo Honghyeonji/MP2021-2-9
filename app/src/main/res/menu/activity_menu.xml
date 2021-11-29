@@ -3,14 +3,14 @@
     <item
         android:id="@+id/topromt"
         android:icon="@drawable/promotion"
-        android:title="" />
+        android:title="Booth" />
     <item
         android:id="@+id/toshop"
         android:icon="@drawable/shop"
-        android:title="" />
+        android:title="Goods" />
     <item
         android:id="@+id/toprofile"
         android:icon="@drawable/profile"
-        android:title="" />
+        android:title="MyPage" />
 
 </menu>
