@@ -46,6 +46,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'me.relex:circleindicator:2.1.4'
+    implementation files('libs\\activation.jar')
+    implementation files('libs\\mail.jar')
+    implementation files('libs\\additionnal.jar')
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
