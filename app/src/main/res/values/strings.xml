@@ -38,16 +38,11 @@
 
     <!-- AddItem Activity -->
     <string name="addItem_title">상품 등록하기</string>
-    <string name="item_name">상품 이름</string>
-    <string name="item_price">상품 가격</string>
+    <string name="item_name">상품명</string>
+    <string name="item_price">가격</string>
     <string name="booth_location">부스 위치</string>
     <string name="item_description">상품 설명</string>
-    <string name="goods_explain">
-        * 판매상품 사진 한 장을 등록해주세요.
-        \n* 수정은 어려우니 신중하게 \n작성해주세요.
-        \n* 품절처리 및 삭제는 등록상품관리 \n페이지에서 가능합니다^^
-
-    </string>
+    <string name="admin_email">문의 daedong2109@gmail.com</string>
 
     <!-- AddPromotion Activity -->
     <string name="addPromotion_title">부스 홍보글 등록하기</string>

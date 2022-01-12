@@ -1,94 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
     android:orientation="vertical"
     tools:context=".AddItemFrag">
 
-    <ScrollView
+    <Button
+        android:id="@+id/savebutton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="48dp"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="#EABADB"
+        android:text="저장하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="vertical">
+    <ImageButton
+        android:id="@+id/selectImageBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/camera"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camera"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/selectImageBtn"
+        tools:layout_editor_absoluteX="20dp" />
 
-                <ImageButton
-                    android:id="@+id/selectImageBtn"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/white"
-                    android:contentDescription="@string/camera"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/camera"
-                    tools:ignore="SpeakableTextPresentCheck" />
+    <EditText
+        android:id="@+id/booth_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="부스 이름"
+        android:paddingHorizontal="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                <TextView
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/promotion_explain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/promotion_explain"
-                    android:textSize="14dp"
-                    />
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/booth_location"
+        app:layout_constraintEnd_toEndOf="@+id/booth_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_name" />
 
-            </LinearLayout>
+    <EditText
+        android:id="@+id/booth_location"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="부스 위치"
+        android:paddingHorizontal="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="@+id/booth_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/booth_location"
+        app:layout_constraintEnd_toEndOf="@+id/booth_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_location" />
 
-            <EditText
-                android:id="@+id/booth_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 이름"
-                android:privateImeOptions="defaultInputmode=korean" />
+    <EditText
+        android:id="@+id/booth_time"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="부스 운영 시간"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider4"
+        app:layout_constraintEnd_toEndOf="@+id/booth_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_location" />
 
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/booth"
+        app:layout_constraintEnd_toEndOf="@+id/booth_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_time" />
 
-            <EditText
-                android:id="@+id/booth_location"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 위치"
-                android:privateImeOptions="defaultInputmode=korean" />
+    <EditText
+        android:id="@+id/booth"
+        android:layout_width="369dp"
+        android:layout_height="254dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="부스 설명"
+        android:inputType="textMultiLine"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:scrollbars="vertical"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider5"
+        app:layout_constraintEnd_toEndOf="@+id/booth_location"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/booth_name"
+        app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
-            <EditText
-                android:id="@+id/booth_time"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 시간"
-                android:privateImeOptions="defaultInputmode=korean" />
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="411dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10sp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/admin_email"
+        tools:ignore="MissingConstraints" />
 
-            <EditText
-                android:id="@+id/booth"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="top"
-                android:padding="5dp"
-                android:hint="부스 설명 "
-                android:inputType="textMultiLine"
-                android:background="@drawable/memo_box"
-                android:privateImeOptions="defaultInputmode=korean"
-                android:scrollbars = "vertical"/>
+    <TextView
+        android:id="@+id/admin_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10sp"
+        android:gravity="center"
+        android:text="@string/admin_email"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/savebutton"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="#EABADB"
-                android:layout_marginBottom="30dp"
-                android:text="저장하기" />
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

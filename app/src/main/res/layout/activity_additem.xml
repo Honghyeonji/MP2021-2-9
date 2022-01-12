@@ -1,90 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
     android:orientation="vertical"
     tools:context=".AddItemFrag">
 
-    <ScrollView
+    <Button
+        android:id="@+id/savebutton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="48dp"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="#EABADB"
+        android:text="저장하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/selectImageBtn"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/white"
-                    android:contentDescription="@string/camera"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/camera"
-                    tools:ignore="SpeakableTextPresentCheck" />
-                <TextView
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/goods_explain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/goods_explain"
-                    android:textSize="14dp"
-                    />
+    <ImageButton
+        android:id="@+id/selectImageBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/camera"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camera"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-            </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/selectImageBtn"
+        tools:layout_editor_absoluteX="20dp" />
 
-            <EditText
-                android:id="@+id/item_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="상품 이름"
-                android:privateImeOptions="defaultInputmode=korean"/>
+    <EditText
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="상품 이름"
+        android:paddingHorizontal="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/booth_location"
+        app:layout_constraintEnd_toEndOf="@+id/item_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_name" />
 
-            <EditText
-                android:id="@+id/item_price"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:inputType="number"
-                android:hint="상품 가격"/>
-            <EditText
-                android:id="@+id/booth_location"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="부스 위치"
-                android:privateImeOptions="defaultInputmode=korean"/>
+    <EditText
+        android:id="@+id/booth_location"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="부스 위치"
+        android:paddingHorizontal="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="@+id/item_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-            <EditText
-                android:id="@+id/item_description"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="top"
-                android:padding="5dp"
-                android:hint="상품 설명"
-                android:inputType="textMultiLine"
-                android:background="@drawable/memo_box"
-                android:privateImeOptions="defaultInputmode=korean"
-                android:scrollbars="vertical"/>
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/item_price"
+        app:layout_constraintEnd_toEndOf="@+id/item_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_location" />
 
-            <Button
-                android:id="@+id/savebutton"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="30dp"
-                android:backgroundTint="#EABADB"
-                android:text="저장하기" />
-        </LinearLayout>
+    <EditText
+        android:id="@+id/item_price"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:hint="상품 가격"
+        android:inputType="number"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider4"
+        app:layout_constraintEnd_toEndOf="@+id/item_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/booth_location" />
 
-    </ScrollView>
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/item_description"
+        app:layout_constraintEnd_toEndOf="@+id/item_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/item_price" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/item_description"
+        android:layout_width="369dp"
+        android:layout_height="254dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="상품 설명"
+        android:inputType="textMultiLine"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:privateImeOptions="defaultInputmode=korean"
+        android:scrollbars="vertical"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider5"
+        app:layout_constraintEnd_toEndOf="@+id/booth_location"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="411dp"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10sp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/admin_email"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/admin_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10sp"
+        android:gravity="center"
+        android:text="@string/admin_email"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
