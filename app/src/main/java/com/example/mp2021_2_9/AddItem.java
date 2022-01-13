@@ -65,7 +65,6 @@ public class AddItem extends AppCompatActivity {
 
 
         additem = (ImageButton) findViewById(R.id.selectImageBtn);
-        save = (Button) findViewById(R.id.savebutton);
         itemname = (EditText)findViewById(R.id.item_name);
         itemprice = (EditText)findViewById(R.id.item_price);
         boothlocation = (EditText)findViewById(R.id.booth_location);
