@@ -2,6 +2,7 @@ package com.example.mp2021_2_9;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -78,9 +79,14 @@ public class UserPageFrg extends Fragment {
                         .create()
                         .show();
                 }else{
+                    /*
                     AddItemFrag ai = new AddItemFrag();
                     ai.setArguments(bundle);
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ai).commit();
+                     */
+                    Intent intent = new Intent(getActivity(), AddItem.class);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
                 }
             }
         });

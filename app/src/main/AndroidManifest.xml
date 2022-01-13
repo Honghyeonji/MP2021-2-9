@@ -17,8 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MP202129">
 
-        <activity android:name=".MainActivity" android:exported="true"
-            android:windowSoftInputMode="adjustUnspecified|adjustPan"> <!-- EditText가 키보드 위로 보이도록 -->
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +28,9 @@
         <activity android:name=".LoginActivity" android:label="Login page"/>
         <activity android:name=".JoinActivity" android:label="Join Page"/>
         <activity android:name=".LoadingActivity" android:label="Loading page"/>
+        <activity android:name=".AddItem" android:label="Add item page"
+            android:windowSoftInputMode="adjustUnspecified|adjustPan"/> <!-- EditText가 키보드 위로 보이도록 -->
+
 
     </application>
 

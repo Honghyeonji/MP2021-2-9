@@ -10,5 +10,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- MenuText color. -->
+        <item name="actionMenuTextColor">@color/textTop</item>
+        <item name="android:actionMenuTextColor">@color/textTop</item>
+
     </style>
 </resources>

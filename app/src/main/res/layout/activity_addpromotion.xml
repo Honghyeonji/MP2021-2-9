@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="15dp"
     android:orientation="vertical"
-    tools:context=".AddItemFrag">
+    tools:context=".AddItem">
 
     <Button
         android:id="@+id/savebutton"
@@ -139,7 +139,7 @@
         android:layout_marginHorizontal="20dp"
         android:background="@null"
         android:gravity="top"
-        android:hint="부스 설명"
+        android:hint="게시글 내용을 작성해주세요."
         android:inputType="textMultiLine"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"

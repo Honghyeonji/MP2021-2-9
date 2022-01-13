@@ -10,7 +10,7 @@
         android:layout_margin="30sp"
         android:paddingTop="20sp"
         android:orientation="vertical"
-        tools:context=".AddItemFrag">
+        tools:context=".AddItem">
 
         <TextView
             android:id="@+id/user_name"

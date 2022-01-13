@@ -27,7 +27,7 @@ public class app_info {
         pageMap.put("굿즈메인페이지", R.layout.shopping_main_screen);
         pageMap.put("개인페이지", R.layout.activity_userpage);
         pageMap.put("개인정보수정페이지", R.layout.activity_seeprofile);
-        pageMap.put("상품등록페이지", R.layout.activity_additem);
+        //pageMap.put("상품등록페이지", R.layout.activity_additem);
         pageMap.put("부스등록페이지", R.layout.activity_addpromotion);
         pageMap.put("굿즈세부페이지", R.layout.activity_goodsdetailed);
         pageMap.put("부스세부페이지", R.layout.activity_promtdetailed);
@@ -40,7 +40,7 @@ public class app_info {
         keyMap.put(R.layout.activity_goodsdetailed, "대동대동");
         keyMap.put(R.layout.activity_promtdetailed, "대동대동");
         keyMap.put(R.layout.activity_addpromotion, "부스 홍보글 등록");
-        keyMap.put(R.layout.activity_additem, "상품 등록");
+        //keyMap.put(R.layout.activity_additem, "상품 등록");
         keyMap.put(R.layout.activity_managegoods, "등록 상품 관리");
         keyMap.put(R.layout.activity_userpage, "대동대동");
         keyMap.put(R.layout.activity_seeprofile, "개인정보 수정");
