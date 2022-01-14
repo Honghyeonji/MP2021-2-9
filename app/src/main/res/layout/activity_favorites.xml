@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabGravity="fill"
-        app:tabSelectedTextColor="@color/textTop"
+        app:tabTextColor="@color/gray"
+        app:tabSelectedTextColor="@color/black"
+        app:tabBackground="@drawable/favorites_tab_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/textTop"
-        tools:ignore="MissingConstraints">
+        app:tabIndicatorColor="@color/textTop_low_opacity">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_booth"
@@ -27,7 +28,7 @@
             android:id="@+id/tab_goods"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="goods" />
+            android:text="Goods" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -42,8 +43,7 @@
         <ListView
             android:id="@+id/favorites_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="DuplicateClickableBoundsCheck">
+            android:layout_height="match_parent">
 
         </ListView>
 

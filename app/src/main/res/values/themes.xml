@@ -15,5 +15,6 @@
         <item name="actionMenuTextColor">@color/textTop</item>
         <item name="android:actionMenuTextColor">@color/textTop</item>
 
+        <item name="tabBackground">@color/white</item>
     </style>
 </resources>
