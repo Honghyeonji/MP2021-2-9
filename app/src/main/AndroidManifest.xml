@@ -30,6 +30,8 @@
         <activity android:name=".LoadingActivity" android:label="Loading page"/>
         <activity android:name=".AddItem" android:label="Add item page"
             android:windowSoftInputMode="adjustUnspecified|adjustPan"/> <!-- EditText가 키보드 위로 보이도록 -->
+        <activity android:name=".AddPromotion" android:label="Add promotion page"
+            android:windowSoftInputMode="adjustUnspecified|adjustPan"/> <!-- EditText가 키보드 위로 보이도록 -->
 
 
     </application>

@@ -137,7 +137,7 @@ public class AddItem extends AppCompatActivity {
 
                 //받은 부스 정보를 함수를 통해 파이어베이스에 올림
                 Additem(goodsImgurl,goodsIsSoldOut, boothlocation.getText().toString(), itemname.getText().toString(),itemprice.getText().toString(),userid ,itemdetail.getText().toString());
-                //저장버튼을 누르면 메인화면(상품 메인페이지)으로 전환
+                // 등록 버튼을 누르면 메인화면(상품 메인페이지)으로 전환
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
 

@@ -79,11 +79,6 @@ public class UserPageFrg extends Fragment {
                         .create()
                         .show();
                 }else{
-                    /*
-                    AddItemFrag ai = new AddItemFrag();
-                    ai.setArguments(bundle);
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ai).commit();
-                     */
                     Intent intent = new Intent(getActivity(), AddItem.class);
                     intent.putExtra("bundle", bundle);
                     startActivity(intent);
@@ -118,9 +113,9 @@ public class UserPageFrg extends Fragment {
                         .show();
                 }else {
                     /* 판매자 인증이 된 사용자라면 */
-                    AddPromotionFrag ap = new AddPromotionFrag();
-                    ap.setArguments(bundle);
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ap).commit();
+                    Intent intent = new Intent(getActivity(), AddPromotion.class);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
                 }
             }
         });
